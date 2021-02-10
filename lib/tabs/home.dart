@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smart_school/future/fetch_homework.dart';
 import 'package:smart_school/pages/attendance.dart';
-import 'package:smart_school/pages/my_pending_tasks.dart';
-import 'package:smart_school/tabs/homework.dart';
 import 'package:smart_school/utils/calender_view.dart';
 
 class HomeTab extends StatefulWidget {
@@ -60,7 +59,7 @@ class _HomeTabState extends State<HomeTab> {
                      backgroundColor: Colors.red,
                      title: Text('Homework'),
                    ),
-                   body: HomeworkTab(),
+                   body: FetchHomework(),
                  ),
                  ),
                );},
