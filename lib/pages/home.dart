@@ -143,10 +143,10 @@ class _HomeState extends State<Home> {
               )
             ],
           ),
-          bottomNavigationBar: ConvexAppBar.badge(
+          bottomNavigationBar: ConvexAppBar(
             // Optional badge argument: keys are tab indices, values can be
             // String, IconData, Color or Widget.
-            /*badge=*/ const <int, dynamic>{3: '99+'},
+            // /*badge=*/ const <int, dynamic>{3: '99+'},
             style: _tabStyle,
             backgroundColor: Colors.red,
             items: <TabItem>[
