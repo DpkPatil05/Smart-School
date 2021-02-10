@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import 'package:provider/provider.dart';
 import 'package:smart_school/future/fetch_fees.dart';
 import 'package:smart_school/future/fetch_profile.dart';
 import 'package:smart_school/future/fetch_syllabus.dart';
+import 'package:smart_school/future/fetch_timetable.dart';
 import 'package:smart_school/pages/attendance.dart';
 import 'package:smart_school/tabs/examination.dart';
 import 'package:smart_school/tabs/hamItems/apply_leave.dart';
-import 'package:smart_school/tabs/hamItems/class_time_table.dart';
-import 'package:smart_school/tabs/hamItems/download_center.dart';
 import 'package:smart_school/tabs/hamItems/hostels.dart';
 import 'package:smart_school/tabs/hamItems/lesson_plan.dart';
 import 'package:smart_school/tabs/hamItems/library.dart';
@@ -39,7 +36,7 @@ class HomeProvider with ChangeNotifier {
   Widget openPage(int index) {
     if(index == 0) return FetchProfile();
     if(index == 1) return FetchFees();
-    if(index == 2) return ClassTimeTable();
+    if(index == 2) return FetchTimetable();
     if(index == 3) return LessonPlan();
     if(index == 4) return FetchSyllabus();
     if(index == 5) return HomeworkTab();
