@@ -1,40 +1,48 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:smart_school/hive_operations.dart';
+import 'package:smart_school/modal/homework.dart';
 
 class HomeworkProvider with ChangeNotifier {
-  String userId;
-
-  bool loading = false;
-
-  // Future<LoginData> data;
-
-  String loadData(String user) {
-    userId = user;
-    // data = fetchUser();
-  }
-
-  /*Future<LoginData> fetchUser() async {
-    String url = 'http://www.paperfree-erp.in/mobileapp/homework/homework.php?studentid=$userId';
-    print('login url: ' + url);
+  Future<List<HomeworkData>> fetchHomework() async {
+    String url = 'http://www.paperfree-erp.in/mobileapp/homework/homework.php?studentid=${HiveOperation().studentID}';
+    print('homework url: ' + url);
     final response = await http.get(url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {
       try {
+        final response = await http.get(url);
         if (response.statusCode == 200) {
           // If the server did return a 200 OK response,
           // then parse the JSON.=
-
-          return loginDataFromJson(response.body);
+          final List<HomeworkData> hwData = homeworkDataFromJson(response.body);
+          return hwData;
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          loading = false;
-          return loginDataFromJson(response.body);
+          return List<HomeworkData>();
         }
-      } catch (e) {}
+      } catch(e) {
+        Fluttertoast.showToast(
+            msg: "Problem fetching data",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.blueGrey,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+      }
     } else {
+      Fluttertoast.showToast(
+          msg: "No Data connection",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.blueGrey,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
     }
-  }*/
-
+  }
 }
