@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:smart_school/modal/exam.dart';
+import 'package:smart_school/modal/exam_result.dart';
+import 'package:smart_school/modal/exam_schedule.dart';
+import 'package:smart_school/providers/exam_provider.dart';
+import 'package:smart_school/templates/exam.dart';
 
 class ExaminationTab extends StatefulWidget {
+  final List<Exam> examdata;
+
+  const ExaminationTab({this.examdata});
   @override
   _ExaminationTabState createState() => _ExaminationTabState();
 }
@@ -8,73 +17,39 @@ class ExaminationTab extends StatefulWidget {
 class _ExaminationTabState extends State<ExaminationTab> {
   @override
   Widget build(BuildContext context) {
-    return
-      Scaffold(
+    return Scaffold(
           backgroundColor: Colors.transparent,
           body: Container(
             color: Colors.white,
             child: ListView.builder(
-                itemCount: 3,
+                itemCount: widget.examdata.length-1??0,
                 itemBuilder: (context, index) {
-                  return Card(
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: ListTile(
-                        title: Column(
-                          children: [
-                            Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children:[
-                                  Text(
-                                    'Exam',
-                                    style: TextStyle(
-                                        fontSize: 25.0
-                                    ),
-                                  ),
-                                ]
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                FlatButton(
-                                  onPressed: () => showModalBottomSheet(
-                                      context: context,
-                                      builder: (BuildContext context) => Container(
-                                        alignment: Alignment.center,
-                                        height: 300.0,
-                                        child: Text('Details about the Notice'),
-                                      )
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.assessment_outlined),
-                                      const Text('Results'),
-                                    ],
-                                  ),
-                                ),
-                                FlatButton(
-                                  onPressed: () => showModalBottomSheet(
-                                      context: context,
-                                      builder: (BuildContext context) => Container(
-                                        alignment: Alignment.center,
-                                        height: 300.0,
-                                        child: Text('Details about the Notice'),
-                                      )
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.schedule),
-                                      const Text('Schedule'),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      )
+                  return StreamProvider<List<ExamSchedule>>.value(
+                    value: null,
+                    child: FutureBuilder<List<ExamSchedule>>(
+                      future: ExamProvider().fetchExamSchedule(int.parse(widget.examdata[index].examId)),
+                      builder: (BuildContext context, AsyncSnapshot<List<ExamSchedule>> examScheduleData) {
+                        switch (examScheduleData.connectionState) {
+                          case ConnectionState.waiting: return Center(child: CircularProgressIndicator());
+                          default:
+                            return examScheduleData.hasError? Text('Error: ${examScheduleData.error}')
+                                : StreamProvider<List<ExamResult>>.value(
+                              value: null,
+                              child: FutureBuilder<List<ExamResult>>(
+                                future: ExamProvider().fetchExamResult(int.parse(widget.examdata[index].examId)),
+                                builder: (BuildContext context, AsyncSnapshot<List<ExamResult>> examResultData) {
+                                  switch (examResultData.connectionState) {
+                                    case ConnectionState.waiting: return Center(child: CircularProgressIndicator());
+                                    default:
+                                      return examResultData.hasError? Text('Error: ${examResultData.error}')
+                                          : ExamCard(exam: widget.examdata[index].type, examscheduledata: examScheduleData.data, examresultdata: examResultData.data);
+                                  }
+                                },
+                              ),
+                            );
+                        }
+                      },
+                    ),
                   );
                 }
             ),
@@ -82,3 +57,4 @@ class _ExaminationTabState extends State<ExaminationTab> {
       );
   }
 }
+

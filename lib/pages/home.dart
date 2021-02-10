@@ -1,6 +1,7 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_school/future/fetch_exam.dart';
 import 'package:smart_school/future/fetch_fees.dart';
 import 'package:smart_school/future/fetch_homework.dart';
 import 'package:smart_school/future/fetch_notice.dart';
@@ -26,7 +27,7 @@ dynamic pageWidgets = <String, Widget>{
   'Homework': FetchHomework(),
   'Fees': FetchFees(),
   'Notice': FetchNotice(),
-  'Examination': ExaminationTab()
+  'Examination': FetchExam()
 };
 
 class Home extends StatefulWidget {
