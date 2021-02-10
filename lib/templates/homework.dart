@@ -40,7 +40,10 @@ class _HomeworkCardState extends State<HomeworkCard> {
                             builder: (BuildContext context) => Container(
                               alignment: Alignment.center,
                               height: 300.0,
-                              child: Text('${widget.hwdata.description}'),
+                              child: Text(
+                                '${widget.hwdata.description}',
+                                textAlign: TextAlign.center
+                              ),
                             )
                         ),
                         child: Icon(Icons.preview_outlined),

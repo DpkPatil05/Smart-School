@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_school/future/fetch_fees.dart';
 import 'package:smart_school/future/fetch_homework.dart';
+import 'package:smart_school/future/fetch_notice.dart';
 import 'package:smart_school/providers/home_provider.dart';
 import 'package:smart_school/tabs/examination.dart';
 import 'package:smart_school/tabs/home.dart';
@@ -24,7 +25,7 @@ dynamic pageWidgets = <String, Widget>{
   'Home': HomeTab(),
   'Homework': FetchHomework(),
   'Fees': FetchFees(),
-  'Notice': NoticeTab(),
+  'Notice': FetchNotice(),
   'Examination': ExaminationTab()
 };
 

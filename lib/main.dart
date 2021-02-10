@@ -10,6 +10,7 @@ import 'package:smart_school/providers/class_timetable_provider.dart';
 import 'package:smart_school/providers/fees_provider.dart';
 import 'package:smart_school/providers/homework_provider.dart';
 import 'package:smart_school/providers/login_provider.dart';
+import 'package:smart_school/providers/notice_provider.dart';
 import 'package:smart_school/providers/syllabus_provider.dart';
 import 'package:smart_school/providers/welcome_provider.dart';
 import 'package:smart_school/providers/home_provider.dart';
@@ -41,6 +42,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => HomeworkProvider()),
         ChangeNotifierProvider(create: (context) => SyllabusProvider()),
         ChangeNotifierProvider(create: (context) => TimetableProvider()),
+        ChangeNotifierProvider(create: (context) => NoticeProvider()),
       ],
       child: MaterialApp(
           home: FutureBuilder(

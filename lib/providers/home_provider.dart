@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_school/future/fetch_fees.dart';
 import 'package:smart_school/future/fetch_homework.dart';
+import 'package:smart_school/future/fetch_notice.dart';
 import 'package:smart_school/future/fetch_profile.dart';
 import 'package:smart_school/future/fetch_syllabus.dart';
 import 'package:smart_school/future/fetch_timetable.dart';
@@ -45,7 +46,7 @@ class HomeProvider with ChangeNotifier {
     // if(index == 8) return DownloadCenter();
     if(index == 10) return Attendance();
     if(index == 11) return ExaminationTab();
-    if(index == 12) return NoticeTab();
+    if(index == 12) return FetchNotice();
     if(index == 13) return TeachersReview();
     if(index == 14) return Library();
     if(index == 15) return TransportRoute();
