@@ -39,48 +39,80 @@ class _HomeworkTabState extends State<HomeworkTab> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Subject"),
-                                FlatButton(
-                                  onPressed: () => showModalBottomSheet(
-                                      context: context,
-                                      builder: (BuildContext context) => Container(
-                                        alignment: Alignment.center,
-                                        height: 300.0,
-                                        child: Text('Details about the HomeWork'),
-                                      )
+                                Text(
+                                    "Subject",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 22.0
                                   ),
-                                  child: Icon(Icons.preview_outlined),
-                                  ),
+                                ),
+                                SizedBox(
+                                  width: 40.0,
+                                  child: FlatButton(
+                                    onPressed: () => showModalBottomSheet(
+                                        context: context,
+                                        builder: (BuildContext context) => Container(
+                                          alignment: Alignment.center,
+                                          height: 300.0,
+                                          child: Text('Details about the HomeWork'),
+                                        )
+                                    ),
+                                    child: Icon(Icons.preview_outlined),
+                                    ),
+                                ),
                               ],
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Class"),
-                                Text("Status")
+                                Text(
+                                    "Class",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20.0
+                                  ),
+                                ),
+                                Text(
+                                    "Status",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20.0
+                                  ),
+                                )
                               ],
                             ),
                             SizedBox(height: 10.0,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                            Table(
                               children: [
-                                Column(
-                                  children: [
-                                    Text("Homework Date"),
-                                    Text("Submission Date"),
-                                    Text("Evaluation Date"),
-                                  ],
-                                ),
-                                SizedBox(width: 30.0,),
-                                Column(
-                                  children: [
-                                    Text("date"),
-                                    Text("date"),
-                                    Text("date"),
-                                  ],
-                                )
+                                TableRow(children: [
+                                  Text(
+                                      'Homework Date',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                  Text('from server'),
+                                ]),
+                                TableRow(children: [
+                                  Text(
+                                      'Submission Date',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                  Text('from server'),
+                                ]),
+                                TableRow(children: [
+                                  Text(
+                                      'Evaluation Date',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                  Text('from server'),
+                                ])
                               ],
-                            )
+                            ),
                           ]
                       ),
                     )
