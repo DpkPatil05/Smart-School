@@ -23,7 +23,6 @@ class FetchProfile extends StatelessWidget {
                 future: ProfileProvider().fetchTransport(),  // a Future<ProfileData> or null
                 builder: (BuildContext context, AsyncSnapshot<TransportData> transportData) {
                   switch (transportData.connectionState) {
-                    case ConnectionState.waiting: return Center(child: CircularProgressIndicator());
                     default:
                       return transportData.hasError ? Text('Error: ${transportData.error}')
                           : Profile(studentData: profileData.data, transportData: transportData.data);
