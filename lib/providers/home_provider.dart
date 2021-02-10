@@ -44,14 +44,14 @@ class HomeProvider with ChangeNotifier {
     if(index == 6) return OnlineExam();
     if(index == 7) return ApplyLeave();
     // if(index == 8) return DownloadCenter();
-    if(index == 10) return Attendance();
-    if(index == 11) return ExaminationTab();
-    if(index == 12) return FetchNotice();
-    if(index == 13) return TeachersReview();
-    if(index == 14) return Library();
-    if(index == 15) return TransportRoute();
-    if(index == 16) return Hostel();
-    if(index == 17) return null;
+    if(index == 8) return Attendance();
+    if(index == 9) return ExaminationTab();
+    if(index == 10) return FetchNotice();
+    if(index == 11) return TeachersReview();
+    if(index == 12) return Library();
+    if(index == 13) return TransportRoute();
+    if(index == 14) return Hostel();
+    if(index == 15) return null;
     return null;
   }
 
