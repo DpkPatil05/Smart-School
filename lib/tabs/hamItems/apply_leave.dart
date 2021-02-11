@@ -24,72 +24,91 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                     Form(
                         // key: _formKey,
                         child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Row(
-                                children: [
-                                  Icon(Icons.calendar_today),
-                                  SizedBox(width: 10.0),
-                                  Text(
-                                      _fromdate == null? 'From Date' :_fromdate.toString().substring(0,10),
-                                    style: TextStyle(
-                                      fontSize: 20.0,
+                          children: [
+                            Table(
+                              children: [
+                                TableRow(
+                                  children: [
+                                    Column(
+                                      children: [
+                                        SizedBox(height: 10.0),
+                                        Row(
+                                          children: [
+                                            Icon(Icons.calendar_today),
+                                            SizedBox(width: 10.0),
+                                            Text(
+                                              _fromdate == null? 'From Date' :_fromdate.toString().substring(0,10),
+                                              style: TextStyle(
+                                                fontSize: 20.0,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                  SizedBox(width: 20.0),
-                                  RaisedButton(
-                                    child: Text('From date'),
-                                      onPressed: () {
-                                        showDatePicker(
-                                            context: context,
-                                            initialDate: DateTime.now(),
-                                            firstDate: DateTime.now(),
-                                            lastDate: DateTime(2050)
-                                        ).then((date){
-                                          setState(() {
-                                            _fromdate = date;
+                                    RaisedButton(
+                                        child: Text('From date'),
+                                        onPressed: () {
+                                          showDatePicker(
+                                              context: context,
+                                              initialDate: DateTime.now(),
+                                              firstDate: DateTime.now(),
+                                              lastDate: DateTime(2050)
+                                          ).then((date){
+                                            setState(() {
+                                              _fromdate = date;
+                                            });
                                           });
-                                        });
-                                      }
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Icon(Icons.calendar_today),
-                                  SizedBox(width: 10.0),
-                                  Text(
-                                      _todate == null? 'To Date' :_todate.toString().substring(0,10),
-                                    style: TextStyle(
-                                      fontSize: 20.0,
-                                    ),
-                                  ),
-                                  SizedBox(width: 20.0),
-                                  RaisedButton(
-                                      child: Text('From date'),
-                                      onPressed: () {
-                                        showDatePicker(
-                                            context: context,
-                                            initialDate: DateTime.now(),
-                                            firstDate: DateTime.now(),
-                                            lastDate: DateTime(2050)
-                                        ).then((date){
-                                          setState(() {
-                                            _todate = date;
-                                          });
-                                        });
-                                      }
-                                  )
-                                ],
-                              ),
-                              TextFormField(
-                                decoration: const InputDecoration(
-                                  icon: const Icon(Icons.notes),
-                                  hintText: 'Reason for leave',
-                                  labelText: 'Reason',
+                                        }
+                                    )
+                                  ]
                                 ),
+                                TableRow(
+                                  children: [
+                                    Column(
+                                      children: [
+                                        SizedBox(height: 10.0),
+                                        Row(
+                                          children: [
+                                            Icon(Icons.calendar_today),
+                                            SizedBox(width: 10.0),
+                                            Text(
+                                              _todate == null? 'To Date' :_todate.toString().substring(0,10),
+                                              style: TextStyle(
+                                                fontSize: 20.0,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    RaisedButton(
+                                        child: Text('From date'),
+                                        onPressed: () {
+                                          showDatePicker(
+                                              context: context,
+                                              initialDate: DateTime.now(),
+                                              firstDate: DateTime.now(),
+                                              lastDate: DateTime(2050)
+                                          ).then((date){
+                                            setState(() {
+                                              _todate = date;
+                                            });
+                                          });
+                                        }
+                                    )
+                                  ]
+                                ),
+                              ],
+                            ),
+                            TextFormField(
+                              decoration: const InputDecoration(
+                                icon: const Icon(Icons.notes),
+                                hintText: 'Reason for leave',
+                                labelText: 'Reason',
                               ),
-                            ]
+                            ),
+                          ],
                         )
                     ),
                     RaisedButton(
@@ -170,3 +189,82 @@ class _ApplyLeaveState extends State<ApplyLeave> {
   }
 }
 
+
+// Column(
+// crossAxisAlignment: CrossAxisAlignment.start,
+// children: <Widget>[
+// Row(
+// mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+// children: [
+// Row(
+// children: [
+// Icon(Icons.calendar_today),
+// SizedBox(width: 10.0),
+// Text(
+// _fromdate == null? 'From Date' :_fromdate.toString().substring(0,10),
+// style: TextStyle(
+// fontSize: 20.0,
+// ),
+// ),
+// ],
+// ),
+// SizedBox(width: 20.0),
+// RaisedButton(
+// child: Text('From date'),
+// onPressed: () {
+// showDatePicker(
+// context: context,
+// initialDate: DateTime.now(),
+// firstDate: DateTime.now(),
+// lastDate: DateTime(2050)
+// ).then((date){
+// setState(() {
+// _fromdate = date;
+// });
+// });
+// }
+// )
+// ],
+// ),
+// Row(
+// mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+// children: [
+// Row(
+// children: [
+// Icon(Icons.calendar_today),
+// SizedBox(width: 10.0),
+// Text(
+// _todate == null? 'To Date' :_todate.toString().substring(0,10),
+// style: TextStyle(
+// fontSize: 20.0,
+// ),
+// ),
+// ],
+// ),
+// SizedBox(width: 20.0),
+// RaisedButton(
+// child: Text('From date'),
+// onPressed: () {
+// showDatePicker(
+// context: context,
+// initialDate: DateTime.now(),
+// firstDate: DateTime.now(),
+// lastDate: DateTime(2050)
+// ).then((date){
+// setState(() {
+// _todate = date;
+// });
+// });
+// }
+// )
+// ],
+// ),
+// TextFormField(
+// decoration: const InputDecoration(
+// icon: const Icon(Icons.notes),
+// hintText: 'Reason for leave',
+// labelText: 'Reason',
+// ),
+// ),
+// ]
+// )
