@@ -9,7 +9,7 @@ class _ApplyLeaveState extends State<ApplyLeave> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text("Apply Leave"),
+      child: Text("No data"),
     );
   }
 }
