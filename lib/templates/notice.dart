@@ -28,7 +28,7 @@ class _NoticeCardState extends State<NoticeCard> {
                   child: Text(
                     '${widget.noticedata.title}',
                     style: TextStyle(
-                      fontSize: 14.0,
+                      fontSize: 20.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
