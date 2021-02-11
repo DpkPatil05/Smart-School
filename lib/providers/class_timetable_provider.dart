@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:smart_school/hive_operations.dart';
-import 'package:smart_school/modal/homework.dart';
+import 'package:smart_school/modal/timetable.dart';
 
-class HomeworkProvider with ChangeNotifier {
-  Future<List<HomeworkData>> fetchHomework() async {
-    String url = 'http://www.paperfree-erp.in/mobileapp/homework/homework.php?studentid=${HiveOperation().studentID}';
-    print('homework url: ' + url);
-    final response = await http.get(url);
+class TimetableProvider with ChangeNotifier {
+  String url = '';
+
+  // ignore: missing_return
+  Future<List<TimeTableData>> fetchTimetable() async {
+    url = 'http://www.paperfree-erp.in/mobileapp/timetable/timetable.php?studentid=${HiveOperation().studentID}';
+    print('Timetable data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {
       try {
@@ -17,12 +19,12 @@ class HomeworkProvider with ChangeNotifier {
         if (response.statusCode == 200) {
           // If the server did return a 200 OK response,
           // then parse the JSON.=
-          final List<HomeworkData> hwData = homeworkDataFromJson(response.body);
-          return hwData;
+          final List<TimeTableData> timetableData = timeTableDataFromJson(response.body);
+          return timetableData;
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          return List<HomeworkData>();
+          return List<TimeTableData>();
         }
       } catch(e) {
         Fluttertoast.showToast(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_school/pages/attendance.dart';
-import 'package:smart_school/pages/settings.dart';
+import 'package:smart_school/pages/my_pending_tasks.dart';
 import 'package:smart_school/tabs/homework.dart';
 import 'package:smart_school/utils/calender_view.dart';
 

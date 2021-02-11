@@ -1,11 +1,13 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_school/future/fetch_exam.dart';
 import 'package:smart_school/future/fetch_fees.dart';
+import 'package:smart_school/future/fetch_homework.dart';
+import 'package:smart_school/future/fetch_notice.dart';
 import 'package:smart_school/providers/home_provider.dart';
 import 'package:smart_school/tabs/examination.dart';
 import 'package:smart_school/tabs/home.dart';
-import 'package:smart_school/tabs/homework.dart';
 import 'package:smart_school/tabs/notice.dart';
 import 'package:smart_school/utils/custom_clip.dart';
 
@@ -22,10 +24,10 @@ const _kPages = <String, IconData>{
 
 dynamic pageWidgets = <String, Widget>{
   'Home': HomeTab(),
-  'Homework': HomeworkTab(),
+  'Homework': FetchHomework(),
   'Fees': FetchFees(),
-  'Notice': NoticeTab(),
-  'Examination': ExaminationTab()
+  'Notice': FetchNotice(),
+  'Examination': FetchExam()
 };
 
 class Home extends StatefulWidget {
@@ -142,10 +144,10 @@ class _HomeState extends State<Home> {
               )
             ],
           ),
-          bottomNavigationBar: ConvexAppBar.badge(
+          bottomNavigationBar: ConvexAppBar(
             // Optional badge argument: keys are tab indices, values can be
             // String, IconData, Color or Widget.
-            /*badge=*/ const <int, dynamic>{3: '99+'},
+            // /*badge=*/ const <int, dynamic>{3: '99+'},
             style: _tabStyle,
             backgroundColor: Colors.red,
             items: <TabItem>[
