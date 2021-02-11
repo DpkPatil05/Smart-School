@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_school/future/fetch_attendance.dart';
 import 'package:smart_school/future/fetch_homework.dart';
-import 'package:smart_school/pages/settings.dart';
 import 'package:smart_school/utils/calender_view.dart';
 
 class HomeTab extends StatefulWidget {
@@ -21,7 +20,7 @@ class _HomeTabState extends State<HomeTab> {
               height: 380.0,
               child: Calender()
           ),
-          SizedBox(height: 50.0,),
+          SizedBox(height: 50.0),
          Column(
            children: [
              FlatButton(
@@ -80,24 +79,24 @@ class _HomeTabState extends State<HomeTab> {
                minWidth: 350.0,
              ),
              SizedBox(height: 50.0),
-             FloatingActionButton(
-               backgroundColor: Colors.red,
-               foregroundColor: Colors.black,
-               onPressed: () {
-                 Navigator.push(
-                   context,
-                   MaterialPageRoute(builder: (context) => Scaffold(
-                     appBar: AppBar(
-                       backgroundColor: Colors.red,
-                       title: Text('Homework'),
-                     ),
-                     body: Settings(),
-                   ),
-                   ),
-                 );
-               },
-               child: Icon(Icons.settings),
-             )
+             // FloatingActionButton(
+             //   backgroundColor: Colors.red,
+             //   foregroundColor: Colors.black,
+             //   onPressed: () {
+             //     Navigator.push(
+             //       context,
+             //       MaterialPageRoute(builder: (context) => Scaffold(
+             //         appBar: AppBar(
+             //           backgroundColor: Colors.red,
+             //           title: Text('Homework'),
+             //         ),
+             //         body: Settings(),
+             //       ),
+             //       ),
+             //     );
+             //   },
+             //   child: Icon(Icons.settings),
+             // )
            ],
          )
         ],
