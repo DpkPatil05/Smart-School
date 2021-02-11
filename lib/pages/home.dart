@@ -17,7 +17,7 @@ const _kPages = <String, IconData>{
   'Homework': Icons.book,
   'Fees': Icons.monetization_on,
   'Notice': Icons.mail,
-  'Examination': Icons.text_snippet,
+  'Exam': Icons.text_snippet,
 };
 
 dynamic pageWidgets = <String, Widget>{
