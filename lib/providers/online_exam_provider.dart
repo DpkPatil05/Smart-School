@@ -11,7 +11,7 @@ class OnlineExamProvider with ChangeNotifier {
   // ignore: missing_return
   Future<List<OnlineExamData>> fetchOnlineExam() async {
     url = 'http://www.paperfree-erp.in/mobileapp/onlineexam/exam.php?studentid=${HiveOperation().studentID}';
-    print('Attendance data url: ' + url);
+    print('Online exam data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {
       try {

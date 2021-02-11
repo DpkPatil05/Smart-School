@@ -3,6 +3,7 @@ import 'package:smart_school/future/fetch_attendance.dart';
 import 'package:smart_school/future/fetch_exam.dart';
 import 'package:smart_school/future/fetch_fees.dart';
 import 'package:smart_school/future/fetch_homework.dart';
+import 'package:smart_school/future/fetch_hostel.dart';
 import 'package:smart_school/future/fetch_notice.dart';
 import 'package:smart_school/future/fetch_online_exam.dart';
 import 'package:smart_school/future/fetch_profile.dart';
@@ -50,7 +51,7 @@ class HomeProvider with ChangeNotifier {
     if(index == 12) return TeachersReview();
     if(index == 13) return Library();
     if(index == 14) return TransportRoute();
-    if(index == 15) return Hostel();
+    if(index == 15) return FetchHostel();
     if(index == 16) return null;
     return null;
   }
