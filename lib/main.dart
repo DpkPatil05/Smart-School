@@ -17,6 +17,7 @@ import 'package:smart_school/providers/login_provider.dart';
 import 'package:smart_school/providers/notice_provider.dart';
 import 'package:smart_school/providers/online_exam_provider.dart';
 import 'package:smart_school/providers/syllabus_provider.dart';
+import 'package:smart_school/providers/transport_provider.dart';
 import 'package:smart_school/providers/welcome_provider.dart';
 import 'package:smart_school/providers/home_provider.dart';
 import 'package:smart_school/providers/profile_provider.dart';
@@ -53,6 +54,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => OnlineExamProvider()),
         ChangeNotifierProvider(create: (context) => HostelProvider()),
         ChangeNotifierProvider(create: (context) => LibraryProvider()),
+        ChangeNotifierProvider(create: (context) => TransportProvider()),
       ],
       child: MaterialApp(
           home: FutureBuilder(

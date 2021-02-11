@@ -13,7 +13,6 @@ import 'package:smart_school/future/fetch_timetable.dart';
 import 'package:smart_school/tabs/hamItems/apply_leave.dart';
 import 'package:smart_school/tabs/hamItems/download_center.dart';
 import 'package:smart_school/tabs/hamItems/lesson_plan.dart';
-import 'package:smart_school/tabs/hamItems/library.dart';
 import 'package:smart_school/tabs/hamItems/teachers_review.dart';
 import 'package:smart_school/tabs/hamItems/transport_route.dart';
 
