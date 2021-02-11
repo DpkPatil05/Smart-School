@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smart_school/modal/hostel.dart';
+import 'package:smart_school/modal/hostel_detail_data.dart';
+import 'package:smart_school/providers/hostel_provider.dart';
+import 'package:smart_school/templates/hostel.dart';
 
 class Hostel extends StatefulWidget {
   final List<HostelData> hosteldata;
@@ -15,51 +18,18 @@ class _HostelState extends State<Hostel> {
     return Container(
       color: Colors.white,
       child: ListView.builder(
-          itemCount: 3,
+          itemCount: widget.hosteldata.length-1??0,
           itemBuilder: (context, index) {
-            return Card(
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                child: ListTile(
-                  title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children:[
-                        SizedBox(
-                          width: 150.0,
-                          child: Text(
-                            'Boys Hostel',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 30.0,
-                          child: IconButton(
-                            iconSize: 20.0,
-                            icon: Icon(Icons.preview_outlined),
-                            tooltip: "View Details",
-                            onPressed: () => showModalBottomSheet(
-                                context: context,
-                                builder: (BuildContext context) => Container(
-                                  alignment: Alignment.center,
-                                  height: 300.0,
-                                  child: ListView.builder(
-                                      itemCount: 3,
-                                      itemBuilder: (context, index) {
-                                        return ListTile(
-                                          title: Text('Hostel members'),
-                                        );
-                                      })
-                                )
-                            )
-                          ),
-                        ),
-                      ]),
-                ),
+            return FutureBuilder<List<HostelDetailsData>>(
+              future: HostelProvider().fetchHostelDetails(int.parse(widget.hosteldata[index].id)),
+              builder: (BuildContext context, AsyncSnapshot<List<HostelDetailsData>> hostelDetailData) {
+                switch (hostelDetailData.connectionState) {
+                  case ConnectionState.waiting: return Center(child: CircularProgressIndicator());
+                  default:
+                    return hostelDetailData.hasError? Text('Error: ${hostelDetailData.error}')
+                        : HostelCard(hosteldata: widget.hosteldata[index], hosteldetaildata: hostelDetailData.data);
+                }
+              },
             );
           }),
     );

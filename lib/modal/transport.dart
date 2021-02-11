@@ -1,49 +1,37 @@
 import 'dart:convert';
 
-TransportData transportDataFromJson(String str) => TransportData.fromJson(json.decode(str));
+List<TransportData> transportDataFromJson(String str) => List<TransportData>.from(json.decode(str).map((x) => TransportData.fromJson(x)));
 
-String transportDataToJson(TransportData data) => json.encode(data.toJson());
+String transportDataToJson(List<TransportData> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class TransportData {
   TransportData({
-    this.transport,
-    this.success,
-  });
-
-  Transport transport;
-  String success;
-
-  factory TransportData.fromJson(Map<String, dynamic> json) => TransportData(
-    transport: Transport.fromJson(json["transport"]),
-    success: json["success"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "transport": transport.toJson(),
-    "success": success,
-  };
-}
-
-class Transport {
-  Transport({
     this.routeTitle,
     this.vehicleNo,
+    this.vehicleAssigned,
     this.id,
+    this.success,
   });
 
   String routeTitle;
   String vehicleNo;
+  String vehicleAssigned;
   String id;
+  String success;
 
-  factory Transport.fromJson(Map<String, dynamic> json) => Transport(
-    routeTitle: json["route_title"],
-    vehicleNo: json["vehicle_no"],
-    id: json["id"],
+  factory TransportData.fromJson(Map<String, dynamic> json) => TransportData(
+    routeTitle: json["route_title"] == null ? null : json["route_title"],
+    vehicleNo: json["vehicle_no"] == null ? null : json["vehicle_no"],
+    vehicleAssigned: json["vehicleAssigned"] == null ? null : json["vehicleAssigned"],
+    id: json["id"] == null ? null : json["id"],
+    success: json["success"] == null ? null : json["success"],
   );
 
   Map<String, dynamic> toJson() => {
-    "route_title": routeTitle,
-    "vehicle_no": vehicleNo,
-    "id": id,
+    "route_title": routeTitle == null ? null : routeTitle,
+    "vehicle_no": vehicleNo == null ? null : vehicleNo,
+    "vehicleAssigned": vehicleAssigned == null ? null : vehicleAssigned,
+    "id": id == null ? null : id,
+    "success": success == null ? null : success,
   };
 }
