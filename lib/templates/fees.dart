@@ -27,7 +27,7 @@ class _FeesCardState extends State<FeesCard> {
                   child: Text(
                     "${widget.feedata.type}",
                     style: TextStyle(
-                        fontSize: 14.0,
+                        fontSize: 20.0,
                         fontWeight: FontWeight.bold
                     ),
                   ),

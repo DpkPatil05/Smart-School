@@ -400,7 +400,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                         padding: const EdgeInsets.all(8),
                                         children: <Widget>[
                                           Container(
-                                            height: 120.0,
+                                            height: 180.0,
                                             child: Row(
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
@@ -411,21 +411,41 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                                     image: NetworkImage(profileProvider.getImageUrl(widget.studentData.fatherpic).toString()),
                                                   ),
                                                 ),
-                                                SizedBox(width: 85.0),
+                                                SizedBox(width: 50.0),
                                                 Column(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
-                                                    SizedBox(height: 10.0),
-                                                    Expanded(
-                                                      child: Text(
-                                                        'Father',
-                                                        style: TextStyle(fontWeight: FontWeight.bold),
+                                                    // SizedBox(height: 10.0),
+                                                    Text(
+                                                      'Father',
+                                                      style: TextStyle(
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 20.0
                                                       ),
                                                     ),
-                                                    Expanded(child: Text('${widget.studentData.fathername}')),
-                                                    Expanded(child: Text('${widget.studentData.fatherphone}')),
-                                                    Expanded(child: Text('${widget.studentData.fatheroccupation}'))
+                                                    SizedBox(height:10.0),
+                                                    Row(
+                                                      children: [
+                                                        Icon(Icons.person),
+                                                        SizedBox(width: 10.0),
+                                                        Text('${widget.studentData.fathername}'),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Icon(Icons.call),
+                                                        SizedBox(width: 10.0),
+                                                        Text('${widget.studentData.fatherphone}'),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Icon(Icons.work_outline),
+                                                        SizedBox(width: 10.0),
+                                                        Text('${widget.studentData.fatheroccupation}'),
+                                                      ],
+                                                    )
                                                   ],
                                                 ),
                                               ],
@@ -433,7 +453,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                           ),
                                           Divider(color: Colors.black),
                                           Container(
-                                            height: 120.0,
+                                            height: 180.0,
                                             child: Row(
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
@@ -444,21 +464,41 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                                     image: NetworkImage(profileProvider.getImageUrl(widget.studentData.motherpic).toString()),
                                                   ),
                                                 ),
-                                                SizedBox(width: 85.0),
+                                                SizedBox(width: 50.0),
                                                 Column(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
-                                                    SizedBox(height: 10.0),
-                                                    Expanded(
-                                                      child: Text(
-                                                        'Mother',
-                                                        style: TextStyle(fontWeight: FontWeight.bold),
+                                                    // SizedBox(height: 10.0),
+                                                    Text(
+                                                      'Mother',
+                                                      style: TextStyle(
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 20.0
                                                       ),
                                                     ),
-                                                    Expanded(child: Text('${widget.studentData.mothername}')),
-                                                    Expanded(child: Text('${widget.studentData.motherphone}')),
-                                                    Expanded(child: Text('${widget.studentData.motheroccupation}'))
+                                                    SizedBox(height:10.0),
+                                                    Row(
+                                                      children: [
+                                                        Icon(Icons.person),
+                                                        SizedBox(width: 10.0),
+                                                        Text('${widget.studentData.mothername}'),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Icon(Icons.call),
+                                                        SizedBox(width: 10.0),
+                                                        Text('${widget.studentData.motherphone}'),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Icon(Icons.work_outline),
+                                                        SizedBox(width: 10.0),
+                                                        Text('${widget.studentData.motheroccupation}'),
+                                                      ],
+                                                    )
                                                   ],
                                                 ),
                                               ],
@@ -466,7 +506,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                           ),
                                           Divider(color: Colors.black),
                                           Container(
-                                            height: 120.0,
+                                            height: 180.0,
                                             child: Row(
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
@@ -477,21 +517,41 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                                     image: NetworkImage(profileProvider.getImageUrl(widget.studentData.guardianpic).toString()),
                                                   ),
                                                 ),
-                                                SizedBox(width: 85.0),
+                                                SizedBox(width: 50.0),
                                                 Column(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
-                                                    SizedBox(height: 10.0),
-                                                    Expanded(
-                                                      child: Text(
-                                                        'Guardian',
-                                                        style: TextStyle(fontWeight: FontWeight.bold),
+                                                    // SizedBox(height: 10.0),
+                                                    Text(
+                                                      'Guardian',
+                                                      style: TextStyle(
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 20.0
                                                       ),
                                                     ),
-                                                    Expanded(child: Text('${widget.studentData.guardianname}')),
-                                                    Expanded(child: Text('${widget.studentData.guardianphone}')),
-                                                    Expanded(child: Text('${widget.studentData.guardianoccupation}'))
+                                                    SizedBox(height:10.0),
+                                                    Row(
+                                                      children: [
+                                                        Icon(Icons.person),
+                                                        SizedBox(width: 10.0),
+                                                        Text('${widget.studentData.guardianname}'),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Icon(Icons.call),
+                                                        SizedBox(width: 10.0),
+                                                        Text('${widget.studentData.guardianphone}'),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Icon(Icons.work_outline),
+                                                        SizedBox(width: 10.0),
+                                                        Text('${widget.studentData.guardianoccupation}'),
+                                                      ],
+                                                    )
                                                   ],
                                                 ),
                                               ],

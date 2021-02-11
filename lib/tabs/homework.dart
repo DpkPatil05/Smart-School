@@ -75,7 +75,7 @@ class _HomeworkTabState extends State<HomeworkTab> {
                                 Text(
                                     "Status",
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold,
+                                      // fontWeight: FontWeight.bold,
                                       fontSize: 20.0
                                   ),
                                 )
