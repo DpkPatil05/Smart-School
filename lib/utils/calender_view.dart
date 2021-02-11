@@ -13,7 +13,7 @@ class _CalenderState extends State<Calender> {
   Widget build(BuildContext context){
     return Scaffold(
       body: TableCalendar(
-          rowHeight: 32.0,
+          rowHeight: 40.0,
           calendarController: _controller),
     );
   }
