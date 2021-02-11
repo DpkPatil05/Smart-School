@@ -9,7 +9,7 @@ class _DownloadCenterState extends State<DownloadCenter> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text("Apply Leave"),
+      child: Text("No data"),
     );
   }
 }

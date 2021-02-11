@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:smart_school/modal/profile.dart';
 import 'package:smart_school/modal/transport.dart';
 import 'package:smart_school/providers/profile_provider.dart';
+import 'package:smart_school/providers/transport_provider.dart';
 import 'package:smart_school/utils/custom_clip.dart';
 import 'package:smart_school/utils/custom_clip_parents.dart';
 
@@ -36,7 +37,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
             default:
               return profileData.hasError? Text('Error: ${profileData.error}')
                   : FutureBuilder<TransportData>(
-                future: ProfileProvider().fetchTransport(),  // a Future<ProfileData> or null
+                future: TransportProvider().fetchTransport(),  // a Future<ProfileData> or null
                 builder: (BuildContext context, AsyncSnapshot<TransportData> transportData) {
                   switch (transportData.connectionState) {
                     case ConnectionState.waiting: return Center(child: CircularProgressIndicator());

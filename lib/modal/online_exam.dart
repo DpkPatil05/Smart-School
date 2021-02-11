@@ -6,56 +6,44 @@ String onlineExamDataToJson(List<OnlineExamData> data) => json.encode(List<dynam
 
 class OnlineExamData {
   OnlineExamData({
-    this.englishClassTest,
-    this.success,
-  });
-
-  EnglishClassTest englishClassTest;
-  String success;
-
-  factory OnlineExamData.fromJson(Map<String, dynamic> json) => OnlineExamData(
-    englishClassTest: json["English Class Test"] == null ? null : EnglishClassTest.fromJson(json["English Class Test"]),
-    success: json["success"] == null ? null : json["success"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "English Class Test": englishClassTest == null ? null : englishClassTest.toJson(),
-    "success": success == null ? null : success,
-  };
-}
-
-class EnglishClassTest {
-  EnglishClassTest({
+    this.exam,
     this.from,
     this.to,
     this.attempt,
     this.description,
     this.attempted,
     this.status,
+    this.success,
   });
 
+  String exam;
   String from;
   String to;
   String attempt;
   String description;
   int attempted;
   String status;
+  String success;
 
-  factory EnglishClassTest.fromJson(Map<String, dynamic> json) => EnglishClassTest(
-    from: json["from"],
-    to: json["to"],
-    attempt: json["attempt"],
-    description: json["description"],
-    attempted: json["attempted"],
-    status: json["status"],
+  factory OnlineExamData.fromJson(Map<String, dynamic> json) => OnlineExamData(
+    exam: json["exam"] == null ? null : json["exam"],
+    from: json["from"] == null ? null : json["from"],
+    to: json["to"] == null ? null : json["to"],
+    attempt: json["attempt"] == null ? null : json["attempt"],
+    description: json["description"] == null ? null : json["description"],
+    attempted: json["attempted"] == null ? null : json["attempted"],
+    status: json["status"] == null ? null : json["status"],
+    success: json["success"] == null ? null : json["success"],
   );
 
   Map<String, dynamic> toJson() => {
-    "from": from,
-    "to": to,
-    "attempt": attempt,
-    "description": description,
-    "attempted": attempted,
-    "status": status,
+    "exam": exam == null ? null : exam,
+    "from": from == null ? null : from,
+    "to": to == null ? null : to,
+    "attempt": attempt == null ? null : attempt,
+    "description": description == null ? null : description,
+    "attempted": attempted == null ? null : attempted,
+    "status": status == null ? null : status,
+    "success": success == null ? null : success,
   };
 }

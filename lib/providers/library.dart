@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:smart_school/hive_operations.dart';
-import 'package:smart_school/modal/homework.dart';
+import 'package:smart_school/modal/library.dart';
 
-class HomeworkProvider with ChangeNotifier {
-  Future<List<HomeworkData>> fetchHomework() async {
-    String url = 'http://www.paperfree-erp.in/mobileapp/homework/homework.php?studentid=${HiveOperation().studentID}';
-    print('homework url: ' + url);
+class LibraryProvider with ChangeNotifier {
+  String url = '';
+
+  // ignore: missing_return
+  Future<List<LibraryData>> fetchLibrary() async {
+    url = 'https://www.paperfree-erp.in/mobileapp/library1/library.php?studentid=${HiveOperation().studentID}';
+    print('Library data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {
       try {
@@ -16,12 +19,12 @@ class HomeworkProvider with ChangeNotifier {
         if (response.statusCode == 200) {
           // If the server did return a 200 OK response,
           // then parse the JSON.=
-          final List<HomeworkData> hwData = homeworkDataFromJson(response.body);
-          return hwData;
+          final List<LibraryData> libraryData = libraryDataFromJson(response.body);
+          return libraryData;
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          return List<HomeworkData>();
+          return List<LibraryData>();
         }
       } catch(e) {
         Fluttertoast.showToast(

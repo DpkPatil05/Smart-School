@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:smart_school/modal/profile.dart';
 import 'package:smart_school/modal/transport.dart';
 import 'package:smart_school/providers/profile_provider.dart';
+import 'package:smart_school/providers/transport_provider.dart';
 import 'package:smart_school/tabs/hamItems/profile.dart';
 
-import 'package:smart_school/hive_operations.dart';
 
 class FetchProfile extends StatelessWidget {
   @override
@@ -20,11 +20,11 @@ class FetchProfile extends StatelessWidget {
             default:
               return profileData.hasError? Text('Error: ${profileData.error}')
                   : FutureBuilder<TransportData>(
-                future: ProfileProvider().fetchTransport(),  // a Future<ProfileData> or null
-                builder: (BuildContext context, AsyncSnapshot<TransportData> transportData) {
-                  switch (transportData.connectionState) {
-                    default:
-                      return transportData.hasError ? Text('Error: ${transportData.error}')
+                    future: TransportProvider().fetchTransport(),  // a Future<ProfileData> or null
+                    builder: (BuildContext context, AsyncSnapshot<TransportData> transportData) {
+                    switch (transportData.connectionState) {
+                      default:
+                        return transportData.hasError ? Text('Error: ${transportData.error}')
                           : Profile(studentData: profileData.data, transportData: transportData.data);
                   }
                 },

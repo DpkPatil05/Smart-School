@@ -25,7 +25,7 @@ dynamic pageWidgets = <String, Widget>{
   'Homework': FetchHomework(),
   'Fees': FetchFees(),
   'Notice': FetchNotice(),
-  'Examination': FetchExam()
+  'Exam': FetchExam()
 };
 
 class Home extends StatefulWidget {
