@@ -7,7 +7,6 @@ import 'package:smart_school/future/fetch_profile.dart';
 import 'package:smart_school/future/fetch_syllabus.dart';
 import 'package:smart_school/future/fetch_timetable.dart';
 import 'package:smart_school/pages/attendance.dart';
-import 'package:smart_school/tabs/examination.dart';
 import 'package:smart_school/tabs/hamItems/apply_leave.dart';
 import 'package:smart_school/tabs/hamItems/hostels.dart';
 import 'package:smart_school/tabs/hamItems/lesson_plan.dart';
