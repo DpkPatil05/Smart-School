@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class DropDown extends StatefulWidget {
-  DropDown() : super();
+class LanguageDropDown extends StatefulWidget {
+LanguageDropDown() : super();
 
   final String title = "DropDown Demo";
 
   @override
-  DropDownState createState() => DropDownState();
+  LanguageDropDownState createState() => LanguageDropDownState();
 }
 
 class Language {
@@ -26,7 +26,7 @@ class Language {
   }
 }
 
-class DropDownState extends State<DropDown> {
+class LanguageDropDownState extends State<LanguageDropDown> {
   //
   List<Language> _languages = Language.getLanguages();
   List<DropdownMenuItem<Language>> _dropdownMenuItems;

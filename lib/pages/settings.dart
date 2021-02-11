@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/ashup/AndroidStudioProjects/Smart-School/lib/utils/language.dart';
+import 'package:smart_school/utils/language.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -16,8 +16,13 @@ class _SettingsState extends State<Settings> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Languages"),
-              DropDown()
+              Text(
+                  "Language",
+                style: TextStyle(
+                  fontSize: 20.0
+                ),
+              ),
+              LanguageDropDown()
             ],
           )
           )
