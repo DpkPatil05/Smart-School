@@ -10,6 +10,7 @@ import 'package:smart_school/future/fetch_online_exam.dart';
 import 'package:smart_school/future/fetch_profile.dart';
 import 'package:smart_school/future/fetch_syllabus.dart';
 import 'package:smart_school/future/fetch_timetable.dart';
+import 'package:smart_school/future/fetch_transport_routes.dart';
 import 'package:smart_school/tabs/hamItems/apply_leave.dart';
 import 'package:smart_school/tabs/hamItems/download_center.dart';
 import 'package:smart_school/tabs/hamItems/lesson_plan.dart';
@@ -49,7 +50,7 @@ class HomeProvider with ChangeNotifier {
     if(index == 11) return FetchNotice();
     if(index == 12) return TeachersReview();
     if(index == 13) return FetchLibrary();
-    if(index == 14) return TransportRoute();
+    if(index == 14) return FetchTransportRoutes();
     if(index == 15) return FetchHostel();
     if(index == 16) return null;
     return null;
