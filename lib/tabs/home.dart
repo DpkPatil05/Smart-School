@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_school/future/fetch_attendance.dart';
 import 'package:smart_school/future/fetch_homework.dart';
 import 'package:smart_school/pages/attendance.dart';
 import 'package:smart_school/utils/calender_view.dart';
@@ -32,7 +33,7 @@ class _HomeTabState extends State<HomeTab> {
                        backgroundColor: Colors.red,
                        title: Text('Attendance'),
                      ),
-                     body: Attendance(),
+                     body: FetchAttendance(),
                    ),
                    ),
                  );},

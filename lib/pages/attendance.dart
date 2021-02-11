@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import '../utils/calender_view.dart';
+import 'package:smart_school/modal/attendance.dart';
+import 'package:smart_school/utils/calender_view.dart';
 
 class Attendance extends StatefulWidget {
+  final List<AttendanceData> attendancedata;
+
+  const Attendance({this.attendancedata});
   @override
   _AttendanceState createState() => _AttendanceState();
 }
@@ -38,7 +42,7 @@ class _AttendanceState extends State<Attendance> {
                       ),
                     ],
                   ),
-                  SizedBox(width: 50.0,),
+                  SizedBox(width: 50.0),
                   Row(
                     children: [
                       Icon(
@@ -59,64 +63,63 @@ class _AttendanceState extends State<Attendance> {
                   ]
                 ),
 
-              Row(
+                Row(
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.circle,
+                            size: 30.0,
+                            color: Colors.yellow,
+                          ),
+                          SizedBox(width: 20.0,),
+                          Text(
+                            'Late      ',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(width: 50.0,),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.circle,
+                            size: 30.0,
+                            color: Colors.deepOrange,
+                          ),
+                          SizedBox(width: 20.0),
+                          Text(
+                            'Half Day',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ]
+                ),
+
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.circle,
-                          size: 30.0,
-                          color: Colors.yellow,
-                        ),
-                        SizedBox(width: 20.0,),
-                        Text(
-                          'Late      ',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                          ),
-                        ),
-                      ],
+                    Icon(
+                      Icons.circle,
+                      size: 30.0,
+                      color: Colors.grey,
                     ),
-                    SizedBox(width: 50.0,),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.circle,
-                          size: 30.0,
-                          color: Colors.deepOrange,
-                        ),
-                        SizedBox(width: 20.0,),
-                        Text(
-                          'Half Day',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                          ),
-                        ),
-                      ],
+                    SizedBox(width: 20.0),
+                    Text(
+                      'Holiday',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0,
+                      ),
                     ),
-                  ]
-              ),
-
-              Row(
-                children: [
-                  Icon(
-                    Icons.circle,
-                    size: 30.0,
-                    color: Colors.grey,
-                  ),
-                  SizedBox(width: 20.0,),
-                  Text(
-                    'Holiday',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0,
-                    ),
-                  ),
-                ],
-              ),
-
+                  ],
+                ),
               ]
             )
           )

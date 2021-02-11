@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_school/future/fetch_attendance.dart';
 import 'package:smart_school/future/fetch_exam.dart';
 import 'package:smart_school/future/fetch_fees.dart';
 import 'package:smart_school/future/fetch_homework.dart';
@@ -7,7 +8,6 @@ import 'package:smart_school/future/fetch_profile.dart';
 import 'package:smart_school/future/fetch_syllabus.dart';
 import 'package:smart_school/future/fetch_timetable.dart';
 import 'package:smart_school/pages/attendance.dart';
-import 'package:smart_school/tabs/examination.dart';
 import 'package:smart_school/tabs/hamItems/apply_leave.dart';
 import 'package:smart_school/tabs/hamItems/hostels.dart';
 import 'package:smart_school/tabs/hamItems/lesson_plan.dart';
@@ -44,7 +44,7 @@ class HomeProvider with ChangeNotifier {
     if(index == 6) return OnlineExam();
     if(index == 7) return ApplyLeave();
     // if(index == 8) return DownloadCenter();
-    if(index == 8) return Attendance();
+    if(index == 8) return FetchAttendance();
     if(index == 9) return FetchExam();
     if(index == 10) return FetchNotice();
     if(index == 11) return TeachersReview();
