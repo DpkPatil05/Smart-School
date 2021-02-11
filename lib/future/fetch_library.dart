@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_school/modal/library.dart';
-import 'package:smart_school/providers/library.dart';
+import 'package:smart_school/providers/library_provider.dart';
 import 'package:smart_school/tabs/hamItems/library.dart';
 
 class FetchLibrary extends StatelessWidget {

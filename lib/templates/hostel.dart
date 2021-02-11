@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_school/modal/hostel.dart';
-import 'package:smart_school/modal/hostel_detail_data.dart';
+import 'package:smart_school/modal/hostel_details.dart';
 
 class HostelCard extends StatefulWidget {
   final HostelData hosteldata;

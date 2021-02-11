@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:smart_school/hive_operations.dart';
-import 'package:smart_school/modal/attendance.dart';
+import 'package:smart_school/modal/lesson_plan.dart';
 
-class AttendanceProvider with ChangeNotifier {
+class LessonPlanProvider with ChangeNotifier {
   String url = '';
 
   // ignore: missing_return
-  Future<List<AttendanceData>> fetchAttendance() async {
-    url = 'http://www.paperfree-erp.in/mobileapp/attendance1/attendance1.php?studentid=${HiveOperation().studentID}';
-    print('Attendance data url: ' + url);
+  Future<List<LessonPlanData>> fetchLessonPlan() async {
+    url = 'https://www.paperfree-erp.in/mobileapp/lessonplan/lessonplan.php?studentid=${HiveOperation().studentID}';
+    print('Lesson data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {
       try {
@@ -19,12 +19,12 @@ class AttendanceProvider with ChangeNotifier {
         if (response.statusCode == 200) {
           // If the server did return a 200 OK response,
           // then parse the JSON.=
-          final List<AttendanceData> attendanceData = attendanceDataFromJson(response.body);
-          return attendanceData;
+          final List<LessonPlanData> lessonplanData = lessonPlanDataFromJson(response.body);
+          return lessonplanData;
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          return List<AttendanceData>();
+          return List<LessonPlanData>();
         }
       } catch(e) {
         Fluttertoast.showToast(

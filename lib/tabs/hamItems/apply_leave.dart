@@ -1,7 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:smart_school/modal/leave_data.dart';
+import 'package:smart_school/providers/apply_leave_provider.dart';
+import 'package:smart_school/templates/leave_data.dart';
 
 class ApplyLeave extends StatefulWidget {
+  final List<LeaveData> leavedata;
+
+  const ApplyLeave({this.leavedata});
   @override
   _ApplyLeaveState createState() => _ApplyLeaveState();
 }
@@ -9,6 +16,7 @@ class ApplyLeave extends StatefulWidget {
 class _ApplyLeaveState extends State<ApplyLeave> {
   DateTime _fromdate;
   DateTime _todate;
+  final textEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +30,6 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                   children: [
                     SizedBox(height: 10),
                     Form(
-                        // key: _formKey,
                         child: Column(
                           children: [
                             Table(
@@ -73,7 +80,7 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                                             Icon(Icons.calendar_today),
                                             SizedBox(width: 10.0),
                                             Text(
-                                              _todate == null? 'To Date' :_todate.toString().substring(0,10),
+                                              _todate == null? 'To Date' :_todate.toString().substring(0, 10),
                                               style: TextStyle(
                                                 fontSize: 20.0,
                                               ),
@@ -107,13 +114,22 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                                 hintText: 'Reason for leave',
                                 labelText: 'Reason',
                               ),
+                              controller: textEditingController,
                             ),
                           ],
                         )
                     ),
                     RaisedButton(
                         child: Text('Submit'),
-                        onPressed: (){}
+                        onPressed: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) =>
+                                Provider.of<ApplyLeaveProvider>(context, listen: false)
+                                    .saveLeave(_fromdate, _todate, textEditingController.text),
+                            ),
+                          );
+                        }
                     )
                   ],
                 )
@@ -123,148 +139,12 @@ class _ApplyLeaveState extends State<ApplyLeave> {
         backgroundColor: Colors.red,
       ),
       body: ListView.builder(
-          itemCount: 3,
+          itemCount: widget.leavedata.length-1??0,
           itemBuilder: (context, index) {
             // final homeworkData = homework[index];
-            return  Card(
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                child: ListTile(
-                  title: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children:[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Apply Date: from server',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20.0
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 10.0),
-                        Table(
-                          children: [
-                            TableRow(children: [
-                              Text(
-                                'From Date',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold
-                                ),
-                              ),
-                              Text('from server'),
-                            ]),
-                            TableRow(children: [
-                              Text(
-                                'To date',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold
-                                ),
-                              ),
-                              Text('from server'),
-                            ]),
-                            TableRow(children: [
-                              Text(
-                                'Reason',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold
-                                ),
-                              ),
-                              Text('from server'),
-                            ])
-                          ],
-                        ),
-                      ]
-                  ),
-                )
-            );
+            return LeaveDataCard(leavedata: widget.leavedata[index]);
           }
       ),
     );
   }
 }
-
-
-// Column(
-// crossAxisAlignment: CrossAxisAlignment.start,
-// children: <Widget>[
-// Row(
-// mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-// children: [
-// Row(
-// children: [
-// Icon(Icons.calendar_today),
-// SizedBox(width: 10.0),
-// Text(
-// _fromdate == null? 'From Date' :_fromdate.toString().substring(0,10),
-// style: TextStyle(
-// fontSize: 20.0,
-// ),
-// ),
-// ],
-// ),
-// SizedBox(width: 20.0),
-// RaisedButton(
-// child: Text('From date'),
-// onPressed: () {
-// showDatePicker(
-// context: context,
-// initialDate: DateTime.now(),
-// firstDate: DateTime.now(),
-// lastDate: DateTime(2050)
-// ).then((date){
-// setState(() {
-// _fromdate = date;
-// });
-// });
-// }
-// )
-// ],
-// ),
-// Row(
-// mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-// children: [
-// Row(
-// children: [
-// Icon(Icons.calendar_today),
-// SizedBox(width: 10.0),
-// Text(
-// _todate == null? 'To Date' :_todate.toString().substring(0,10),
-// style: TextStyle(
-// fontSize: 20.0,
-// ),
-// ),
-// ],
-// ),
-// SizedBox(width: 20.0),
-// RaisedButton(
-// child: Text('From date'),
-// onPressed: () {
-// showDatePicker(
-// context: context,
-// initialDate: DateTime.now(),
-// firstDate: DateTime.now(),
-// lastDate: DateTime(2050)
-// ).then((date){
-// setState(() {
-// _todate = date;
-// });
-// });
-// }
-// )
-// ],
-// ),
-// TextFormField(
-// decoration: const InputDecoration(
-// icon: const Icon(Icons.notes),
-// hintText: 'Reason for leave',
-// labelText: 'Reason',
-// ),
-// ),
-// ]
-// )

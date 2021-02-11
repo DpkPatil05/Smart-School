@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:smart_school/modal/lesson_plan.dart';
+import 'package:smart_school/templates/lesson_plan.dart';
 
 class LessonPlan extends StatefulWidget {
+  final List<LessonPlanData> lessonplandata;
+
+  const LessonPlan({this.lessonplandata});
   @override
   _LessonPlanState createState() => _LessonPlanState();
 }
@@ -11,88 +16,9 @@ class _LessonPlanState extends State<LessonPlan> {
     return Container(
       color: Colors.white,
       child: ListView.builder(
-          itemCount: 7,
+          itemCount: widget.lessonplandata.length-1??0,
           itemBuilder: (context, index) {
-            return Card(
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-                ),
-                child: ListTile(
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('MONDAY'),
-                    IconButton(
-                      iconSize: 20.0,
-                      icon: Icon(Icons.preview_outlined),
-                      tooltip: "View Details",
-                      onPressed: () => showModalBottomSheet(
-                          context: context,
-                          builder: (BuildContext context) => Container(
-                            alignment: Alignment.center,
-                            height: 500.0,
-                            child: ListView.builder(
-                                itemCount: 3,
-                                itemBuilder: (context, index) {
-                                  return Card(
-                                    elevation: 5,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                                    child: ListTile(
-                                        title: Column(
-                                          children: [
-                                            Text(
-                                                'Subject',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold
-                                              ),
-                                            ),
-                                            Table(
-                                              children: [
-                                                TableRow(children: [
-                                                  Text(
-                                                    'Room No',
-                                                    style: TextStyle(
-                                                        fontWeight: FontWeight.bold
-                                                    ),
-                                                  ),
-                                                  Text('server'),
-                                                ]),
-                                                TableRow(children: [
-                                                  Text(
-                                                    'From Time',
-                                                    style: TextStyle(
-                                                        fontWeight: FontWeight.bold
-                                                    ),
-                                                  ),
-                                                  Text('server'),
-                                                ]),
-                                                TableRow(children: [
-                                                  Text(
-                                                    'To Time',
-                                                    style: TextStyle(
-                                                        fontWeight: FontWeight.bold
-                                                    ),
-                                                  ),
-                                                  Text('server'),
-                                                ])
-                                              ],
-                                            ),
-                                          ],
-                                        )
-                                    ),
-                                  );
-                                }
-                            ),
-                          )
-                      ),
-                    ),
-                  ],
-                )
-            ),
-            );
+            return LessonPlanCard(lessonplan: widget.lessonplandata[index]);
           }
       ),
     );

@@ -32,6 +32,7 @@ class _TransportRoutesCardState extends State<TransportRoutesCard> {
                       Row(
                         children: [
                           Icon(Icons.location_on_outlined),
+                          SizedBox(width: 10.0),
                           Text(
                             '${widget.transportdata.routeTitle}',
                             style: TextStyle(fontSize: 24.0),
