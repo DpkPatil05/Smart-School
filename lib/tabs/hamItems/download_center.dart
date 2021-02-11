@@ -5,11 +5,68 @@ class DownloadCenter extends StatefulWidget {
   _DownloadCenterState createState() => _DownloadCenterState();
 }
 
-class _DownloadCenterState extends State<DownloadCenter> {
+class _DownloadCenterState extends State<DownloadCenter> with SingleTickerProviderStateMixin{
+TabController _controller;
+
+@override
+void initState() {
+  super.initState();
+  _controller = TabController(length: 4, vsync: this);
+}
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("No data"),
+    return
+      Column(
+      children: [
+        Container(
+          decoration: BoxDecoration(color: Colors.red),
+          child: TabBar(
+            controller: _controller,
+            tabs: [
+              Tab(
+                text: 'Assignments',
+              ),
+              Tab(
+                text: 'Study Material',
+              ),
+              Tab(
+                text: 'Syllabus',
+              ),
+              Tab(
+                text: 'Others',
+              ),
+            ],
+          ),
+        ),
+        Container(
+          height: 400.0,
+            child: TabBarView(
+              controller: _controller,
+              children: <Widget>[
+                Container(
+                  child: Center(
+                    child: Text('Assignments'),
+                  ),
+                ),
+                Container(
+                  child: Center(
+                    child: Text('Study Material'),
+                  ),
+                ),
+                Container(
+                  child: Center(
+                    child: Text('Syllabus'),
+                  ),
+                ),
+                Container(
+                  child: Center(
+                    child: Text('Others'),
+                  ),
+                ),
+              ],
+            )
+        )
+      ],
     );
   }
 }

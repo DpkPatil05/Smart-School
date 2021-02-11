@@ -57,7 +57,143 @@ class _TransportRouteState extends State<TransportRoute> {
                                     builder: (BuildContext context) => Container(
                                       alignment: Alignment.center,
                                       height: 300.0,
-                                      child: Text('Details about the Notice'),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            'Route title',
+                                            style: TextStyle(
+                                                fontSize: 24.0
+                                            ),
+                                          ),
+                                          SizedBox(height: 10.0),
+                                          Card(
+                                            child: Table(
+                                              children: [
+                                                TableRow(children: [
+                                                  Text(
+                                                    'Vehicle No:',
+                                                    style: TextStyle(
+                                                        fontSize: 20.0,
+                                                        fontWeight: FontWeight.bold
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                      'server',
+                                                    style: TextStyle(
+                                                      fontSize: 20.0,
+                                                    ),
+                                                  ),
+                                                ])
+                                              ],
+                                            ),
+                                          ),
+                                          Card(
+                                            child: Table(
+                                              children: [
+                                              TableRow(children: [
+                                                  Text(
+                                                    'Vehicle Model',
+                                                    style: TextStyle(
+                                                        fontSize: 20.0,
+                                                        fontWeight: FontWeight.bold
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                      'server',
+                                                    style: TextStyle(
+                                                      fontSize: 20.0,
+                                                    ),
+                                                  ),
+                                                ])
+                                              ],
+                                            ),
+                                          ),
+                                          Card(
+                                            child: Table(
+                                              children: [
+                                                TableRow(children: [
+                                                  Text(
+                                                    'Made',
+                                                    style: TextStyle(
+                                                        fontSize: 20.0,
+                                                        fontWeight: FontWeight.bold
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                      'server',
+                                                    style: TextStyle(
+                                                      fontSize: 20.0,
+                                                    ),
+                                                  ),
+                                                ])
+                                              ],
+                                            ),
+                                          ),
+                                          Card(
+                                            child: Table(
+                                              children: [
+                                                TableRow(children: [
+                                                  Text(
+                                                    'Drover Name',
+                                                    style: TextStyle(
+                                                        fontSize: 20.0,
+                                                        fontWeight: FontWeight.bold
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                      'server',
+                                                    style: TextStyle(
+                                                      fontSize: 20.0,
+                                                    ),
+                                                  ),
+                                                ])
+                                              ],
+                                            ),
+                                          ),
+                                          Card(
+                                            child: Table(
+                                              children: [
+                                                TableRow(children: [
+                                                  Text(
+                                                    'Driver License',
+                                                    style: TextStyle(
+                                                        fontSize: 20.0,
+                                                        fontWeight: FontWeight.bold
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                      'server',
+                                                    style: TextStyle(
+                                                      fontSize: 20.0,
+                                                    ),
+                                                  ),
+                                                ])
+                                              ],
+                                            ),
+                                          ),
+                                          Card(
+                                            child: Table(
+                                              children: [
+                                                TableRow(children: [
+                                                  Text(
+                                                    'Driver Contact',
+                                                    style: TextStyle(
+                                                        fontSize: 20.0,
+                                                        fontWeight: FontWeight.bold
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                      'server',
+                                                    style: TextStyle(
+                                                      fontSize: 20.0,
+                                                    ),
+                                                  ),
+                                                ])
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      )
                                     )
                                 ),
                               ),

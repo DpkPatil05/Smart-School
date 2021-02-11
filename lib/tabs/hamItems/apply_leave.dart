@@ -94,7 +94,7 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                     ),
                     RaisedButton(
                         child: Text('Submit'),
-                        onPressed: null
+                        onPressed: (){}
                     )
                   ],
                 )
