@@ -29,7 +29,10 @@ class _ExamCardState extends State<ExamCard> {
                   children:[
                     Text(
                       '${widget.exam}',
-                      style: TextStyle(fontSize: 25.0),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0
+                      ),
                     ),
                   ]
               ),

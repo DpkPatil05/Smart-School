@@ -16,16 +16,59 @@ class _SettingsState extends State<Settings> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                  "Language",
-                style: TextStyle(
-                  fontSize: 20.0
-                ),
+              Row(
+                children: [
+                  SizedBox(width: 20.0),
+                  Text(
+                      "Language",
+                    style: TextStyle(
+                      fontSize: 20.0
+                    ),
+                  ),
+                ],
               ),
               LanguageDropDown()
             ],
           )
-          )
+          ),
+        Card(
+            child: InkWell(
+              onTap: (){},
+              child: Container(
+                height: 50.0,
+                child: Row(
+                  children: [
+                    SizedBox(width: 20.0),
+                    Text(
+                      "Settings",
+                      style: TextStyle(
+                          fontSize: 20.0
+                      ),
+                    ),
+                  ]
+                ),
+              ),
+            )
+        ),
+        Card(
+            child: InkWell(
+              onTap: (){},
+              child: Container(
+                height: 50.0,
+                child: Row(
+                  children: [
+                    SizedBox(width: 20.0),
+                    Text(
+                      "Track Driver",
+                      style: TextStyle(
+                          fontSize: 20.0
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+        )
       ],
     );
   }

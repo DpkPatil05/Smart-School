@@ -4,6 +4,7 @@ import 'package:smart_school/modal/profile.dart';
 import 'package:smart_school/modal/transport.dart';
 import 'package:smart_school/providers/profile_provider.dart';
 import 'package:smart_school/utils/custom_clip.dart';
+import 'package:smart_school/utils/custom_clip_parents.dart';
 
 class Profile extends StatefulWidget {
   final ProfileData studentData;
@@ -405,7 +406,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 ClipOval(
-                                                  clipper: MyClipper(),
+                                                  clipper: ParentClipper(),
                                                   child: FadeInImage(
                                                     placeholder: AssetImage(profileProvider.defaultProfilePic),
                                                     image: NetworkImage(profileProvider.getImageUrl(widget.studentData.fatherpic).toString()),
@@ -458,7 +459,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 ClipOval(
-                                                  clipper: MyClipper(),
+                                                  clipper: ParentClipper(),
                                                   child: FadeInImage(
                                                     placeholder: AssetImage(profileProvider.defaultProfilePic),
                                                     image: NetworkImage(profileProvider.getImageUrl(widget.studentData.motherpic).toString()),
@@ -511,7 +512,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 ClipOval(
-                                                  clipper: MyClipper(),
+                                                  clipper: ParentClipper(),
                                                   child: FadeInImage(
                                                     placeholder: AssetImage(profileProvider.defaultProfilePic),
                                                     image: NetworkImage(profileProvider.getImageUrl(widget.studentData.guardianpic).toString()),
