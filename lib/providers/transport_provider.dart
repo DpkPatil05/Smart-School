@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,10 +12,13 @@ import 'package:smart_school/modal/transport_details.dart';
 class TransportProvider with ChangeNotifier {
   String url = '';
 
-  int getTransportId(List<TransportData> tdata) {
+  int getVehicleId(List<TransportData> tdata) {
     int vehicleID;
-    for(int i = 0; i < tdata.length-1; i++){
-      if(tdata[i].vehicleAssigned == "assigned") vehicleID = int.parse(tdata[i].id);
+    if (tdata != null) {
+      for (int i = 0; i < tdata.length - 1; i++) {
+        if (tdata[i].vehicleAssigned == "assigned")
+          vehicleID = int.parse(tdata[i].id);
+      }
     }
     return vehicleID;
   }
@@ -77,14 +82,7 @@ class TransportProvider with ChangeNotifier {
           return null;
         }
       } catch (e) {
-        Fluttertoast.showToast(
-            msg: "Problem fetching data",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.blueGrey,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
+        print("Problem fetching transport data: ${e.toString()}");
       }
     } else {
       Fluttertoast.showToast(
