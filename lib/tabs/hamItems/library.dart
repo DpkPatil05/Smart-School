@@ -14,7 +14,7 @@ class _LibraryState extends State<Library> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 3,
+        itemCount: widget.librarydata.length-1??0,
         itemBuilder: (context, index) {
           return LibraryCard(librarydata: widget.librarydata[index]);
         }

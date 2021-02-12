@@ -10,6 +10,7 @@ class LibraryData {
     this.bookNo,
     this.author,
     this.issueDate,
+    this.dueReturnDate,
     this.returnDate,
     this.success,
   });
@@ -18,7 +19,8 @@ class LibraryData {
   String bookNo;
   String author;
   String issueDate;
-  String returnDate;
+  String dueReturnDate;
+  dynamic returnDate;
   String success;
 
   factory LibraryData.fromJson(Map<String, dynamic> json) => LibraryData(
@@ -26,7 +28,8 @@ class LibraryData {
     bookNo: json["BookNo"] == null ? null : json["BookNo"],
     author: json["Author"] == null ? null : json["Author"],
     issueDate: json["IssueDate"] == null ? null : json["IssueDate"],
-    returnDate: json["ReturnDate"] == null ? null : json["ReturnDate"],
+    dueReturnDate: json["DueReturnDate"] == null ? null : json["DueReturnDate"],
+    returnDate: json["ReturnDate"],
     success: json["success"] == null ? null : json["success"],
   );
 
@@ -35,7 +38,8 @@ class LibraryData {
     "BookNo": bookNo == null ? null : bookNo,
     "Author": author == null ? null : author,
     "IssueDate": issueDate == null ? null : issueDate,
-    "ReturnDate": returnDate == null ? null : returnDate,
+    "DueReturnDate": dueReturnDate == null ? null : dueReturnDate,
+    "ReturnDate": returnDate,
     "success": success == null ? null : success,
   };
 }

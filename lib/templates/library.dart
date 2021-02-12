@@ -21,91 +21,34 @@ class _LibraryCardState extends State<LibraryCard> {
       ),
       child: ListTile(
           title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${widget.librarydata.bookTitle}',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold
-                        ),
-                      ),
-                      Text(
-                        '${widget.librarydata.author}',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+              ListTile(
+                title: Text('Book Title: ${widget.librarydata.bookTitle}'),
+                subtitle: Row(
+                  children: [
+                    Text('Author: '),
+                    Expanded(child: Text('${widget.librarydata.author}')),
+                  ],
+                ),
               ),
-              SizedBox(height: 10.0),
-              Row(
-                children: [
-                  Table(
-                    defaultColumnWidth: FixedColumnWidth(90.0),
-                    children: [
-                      TableRow(children: [
-                        Text(
-                          'Book No:',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        Text('${widget.librarydata.bookNo}'),
-                      ]),
-                      TableRow(children: [
-                        Text(
-                          'Issue Date:',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        Text('${widget.librarydata.issueDate}'),
-                      ]),
-                      TableRow(children: [
-                        Text(
-                          'Return Date',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        Text('${widget.librarydata.returnDate}'),
-                      ]),
-                    ],
-                  ),
-                  // Table(
-                  //   defaultColumnWidth: FixedColumnWidth(90.0),
-                  //   children: [
-                  //     TableRow(children: [
-                  //       Text(
-                  //         'Due Date',
-                  //         style: TextStyle(
-                  //             fontWeight: FontWeight.bold
-                  //         ),
-                  //       ),
-                  //       Text('${widget.librarydata}'),
-                  //     ]),
-                  //     TableRow(children: [
-                  //       Text(
-                  //         'status',
-                  //         style: TextStyle(
-                  //             fontWeight: FontWeight.bold
-                  //         ),
-                  //       ),
-                  //       Text('server'),
-                  //     ]),
-                  //   ],
-                  // ),
-                ],
+              ListTile(
+                title: Text('Book No: ${widget.librarydata.bookNo}'),
               ),
-            ],
-          )
+              ListTile(
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Issue Date: ${widget.librarydata.issueDate}'),
+                    Text('Due Date: ${widget.librarydata.dueReturnDate}')
+                  ],
+                ),
+              ),
+              ListTile(
+                title: Text('Return Date'),
+                subtitle: null == widget.librarydata.returnDate ? Text("Not Returned") : Text('${widget.librarydata.returnDate}'),
+              ),
+            ]
+          ),
       ),
     );
   }
