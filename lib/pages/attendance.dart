@@ -24,6 +24,26 @@ class _AttendanceState extends State<Attendance> {
               ),
               SizedBox(height: 30.0,),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('This Month: ',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  Text(
+                    widget.attendancedata[0].attendancePerct,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 30.0,),
+              Row(
                 children: [
                   Row(
                     children: [
