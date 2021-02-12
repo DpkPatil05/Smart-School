@@ -65,6 +65,7 @@ class _HomeState extends State<Home> {
   }
   @override
   Widget build(BuildContext context) {
+    HiveOperation().studentBox.put('sid', int.parse(widget.studentid));
     return DefaultTabController(
       length: 5,
       initialIndex: 0,
@@ -93,7 +94,6 @@ class _HomeState extends State<Home> {
             create: (context) => HomeProvider(),
             child: Consumer<HomeProvider>(
               builder: (context, hamData, child) {
-                HiveOperation().studentBox.put('sid', int.parse(widget.studentid));
                 return Drawer(
                   child: ListView(
                     children: [
