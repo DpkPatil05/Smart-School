@@ -7,11 +7,11 @@ import 'package:smart_school/tabs/hamItems/class_time_table.dart';
 class FetchTimetable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<List<TimeTableData>>.value(
+    return StreamProvider<List<List<TimetableData>>>.value(
       value: null,
-      child: FutureBuilder<List<TimeTableData>>(
+      child: FutureBuilder<List<List<TimetableData>>>(
         future: TimetableProvider().fetchTimetable(),
-        builder: (BuildContext context, AsyncSnapshot<List<TimeTableData>> timetableData) {
+        builder: (BuildContext context, AsyncSnapshot<List<List<TimetableData>>> timetableData) {
           switch (timetableData.connectionState) {
             case ConnectionState.waiting: return Center(child: CircularProgressIndicator());
             default:

@@ -92,7 +92,8 @@ class _LessonPlanCardState extends State<LessonPlanCard> {
                 ),
               ),
             ],
-          )),
+          )
+      ),
     );
   }
 }
