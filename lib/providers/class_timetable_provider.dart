@@ -9,7 +9,7 @@ class TimetableProvider with ChangeNotifier {
   String url = '';
 
   // ignore: missing_return
-  Future<List<TimeTableData>> fetchTimetable() async {
+  Future<List<List<TimetableData>>> fetchTimetable() async {
     url = 'http://www.paperfree-erp.in/mobileapp/timetable/timetable.php?studentid=${HiveOperation().studentID}';
     print('Timetable data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
@@ -19,12 +19,12 @@ class TimetableProvider with ChangeNotifier {
         if (response.statusCode == 200) {
           // If the server did return a 200 OK response,
           // then parse the JSON.=
-          final List<TimeTableData> timetableData = timeTableDataFromJson(response.body);
+          final List<List<TimetableData>> timetableData = timetableDataFromJson(response.body);
           return timetableData;
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          return List<TimeTableData>();
+          return List<List<TimetableData>>();
         }
       } catch(e) {
         Fluttertoast.showToast(

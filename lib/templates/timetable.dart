@@ -1,66 +1,117 @@
 import 'package:flutter/material.dart';
+import 'package:smart_school/modal/timetable.dart';
 
-class TimetableCard extends StatelessWidget {
+class TimetableCard extends StatefulWidget {
+  final List<TimetableData> timetabledata;
+
+  const TimetableCard({this.timetabledata});
+
+  @override
+  _TimetableCardState createState() => _TimetableCardState();
+}
+
+class _TimetableCardState extends State<TimetableCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
-        elevation: 5,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
-        ),
-        child: ListTile(
-          title: Column(
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      child: ListTile(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Weekday (from server)',
-                style: TextStyle(
-                    fontSize: 25.0
+              Text('${widget.timetabledata[0].day}'),
+              IconButton(
+                iconSize: 20.0,
+                icon: Icon(Icons.preview_outlined),
+                tooltip: "View Details",
+                onPressed: () => showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) => Container(
+                      alignment: Alignment.center,
+                      height: 500.0,
+                      child: ListView.builder(
+                          itemCount: widget.timetabledata.length??0,
+                          itemBuilder: (context, index) {
+                            return "Not Scheduled" == widget.timetabledata[index].subject ?
+                            Padding(
+                              padding: const EdgeInsets.only(top: 138.0),
+                              child: Center(
+                                  child: Text(
+                                    "Not Scheduled",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20.0,
+
+                                    ),
+                                  )
+                              ),
+                            ) :
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                SizedBox(height: 25.0),
+                                ListTile(
+                                  title: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Divider(),
+                                      SizedBox(
+                                        width: 100.0,
+                                        child: Text(
+                                          "${widget.timetabledata[index].subject}",
+                                          style: TextStyle(
+                                              fontSize: 14.0,
+                                              fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 69.0,
+                                        child: Text(
+                                          "${widget.timetabledata[index].timeFrom}",
+                                          style: TextStyle(
+                                              fontSize: 14.0,
+                                              fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        "to",
+                                        style: TextStyle(
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                      Text(
+                                        "${widget.timetabledata[index].timeTo}",
+                                        style: TextStyle(
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                      Text(
+                                        "Room(${widget.timetabledata[index].roomno})",
+                                        style: TextStyle(
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            );
+                          }
+                      ),
+                    )
                 ),
               ),
-              DataTable(
-                columns: [
-                  DataColumn(
-                      label: Text(
-                          'Time',
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)
-                      )),
-                  DataColumn(
-                      label: Text(
-                          'Subject',
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)
-                      )),
-                  DataColumn(
-                      label: Text(
-                          'Room No',
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)
-                      )),
-                ],
-                rows: [
-                  DataRow(cells: [
-                    DataCell(Text('from server')),
-                    DataCell(Text('English')),
-                    DataCell(Text('from server')),
-                  ]),
-                  DataRow(cells: [
-                    DataCell(Text('from server')),
-                    DataCell(Text('Hindi')),
-                    DataCell(Text('from server')),
-                  ]),
-                  DataRow(cells: [
-                    DataCell(Text('from server')),
-                    DataCell(Text('Maths')),
-                    DataCell(Text('from server')),
-                  ]),
-                  DataRow(cells: [
-                    DataCell(Text('from server')),
-                    DataCell(Text('Social Studies')),
-                    DataCell(Text('from server')),
-                  ]),
-                ],
-              ),
             ],
-          ),
-        )
+          )
+      ),
     );
   }
 }

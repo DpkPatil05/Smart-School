@@ -3,7 +3,7 @@ import 'package:smart_school/modal/timetable.dart';
 import 'package:smart_school/templates/timetable.dart';
 
 class ClassTimeTable extends StatefulWidget {
-  final List<TimeTableData> timetabledata;
+  final List<List<TimetableData>> timetabledata;
 
   const ClassTimeTable({this.timetabledata});
   @override
@@ -16,9 +16,9 @@ class _ClassTimeTableState extends State<ClassTimeTable> {
     return Container(
       color: Colors.white,
       child: ListView.builder(
-          itemCount: 7,
+          itemCount: widget.timetabledata.length??0,
           itemBuilder: (context, index) {
-            return TimetableCard();
+            return TimetableCard(timetabledata: widget.timetabledata[index]);
           }
       ),
     );
