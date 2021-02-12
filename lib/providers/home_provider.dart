@@ -15,7 +15,6 @@ import 'package:smart_school/future/fetch_timetable.dart';
 import 'package:smart_school/future/fetch_transport_routes.dart';
 import 'package:smart_school/future/lesson_plan.dart';
 import 'package:smart_school/tabs/hamItems/download_center.dart';
-import 'package:smart_school/tabs/hamItems/teachers_review.dart';
 
 
 class HomeProvider with ChangeNotifier {

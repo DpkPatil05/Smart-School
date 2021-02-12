@@ -1,25 +1,45 @@
 import 'dart:convert';
 
-List<AttendanceData> attendanceDataFromJson(String str) => List<AttendanceData>.from(json.decode(str).map((x) => AttendanceData.fromJson(x)));
+AttendanceData attendanceDataFromJson(String str) => AttendanceData.fromJson(json.decode(str));
 
-String attendanceDataToJson(List<AttendanceData> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String attendanceDataToJson(AttendanceData data) => json.encode(data.toJson());
 
 class AttendanceData {
   AttendanceData({
-    this.attendancePerct,
+    this.attendence,
     this.success,
   });
 
-  String attendancePerct;
+  Attendence attendence;
   String success;
 
   factory AttendanceData.fromJson(Map<String, dynamic> json) => AttendanceData(
-    attendancePerct: json["attendancePerct"] == null ? null : json["attendancePerct"],
-    success: json["success"] == null ? null : json["success"],
+    attendence: Attendence.fromJson(json["attendence"]),
+    success: json["success"],
   );
 
   Map<String, dynamic> toJson() => {
-    "attendancePerct": attendancePerct == null ? null : attendancePerct,
-    "success": success == null ? null : success,
+    "attendence": attendence.toJson(),
+    "success": success,
+  };
+}
+
+class Attendence {
+  Attendence({
+    this.attendancePerct,
+    this.attendancearray,
+  });
+
+  String attendancePerct;
+  List<dynamic> attendancearray;
+
+  factory Attendence.fromJson(Map<String, dynamic> json) => Attendence(
+    attendancePerct: json["attendance_Perct"],
+    attendancearray: List<dynamic>.from(json["attendancearray"].map((x) => x)),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "attendance_Perct": attendancePerct,
+    "attendancearray": List<dynamic>.from(attendancearray.map((x) => x)),
   };
 }

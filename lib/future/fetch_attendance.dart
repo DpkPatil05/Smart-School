@@ -7,11 +7,11 @@ import 'package:smart_school/providers/attendance_provider.dart';
 class FetchAttendance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<List<AttendanceData>>.value(
+    return StreamProvider<AttendanceData>.value(
       value: null,
-      child: FutureBuilder<List<AttendanceData>>(
+      child: FutureBuilder<AttendanceData>(
         future: AttendanceProvider().fetchAttendance(),
-        builder: (BuildContext context, AsyncSnapshot<List<AttendanceData>> attendanceData) {
+        builder: (BuildContext context, AsyncSnapshot<AttendanceData> attendanceData) {
           switch (attendanceData.connectionState) {
             case ConnectionState.waiting: return Center(child: CircularProgressIndicator());
             default:
