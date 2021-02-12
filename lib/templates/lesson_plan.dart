@@ -43,11 +43,18 @@ class _LessonPlanCardState extends State<LessonPlanCard> {
                                   title: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        'Subject: ${widget.lessonplan[index].subject}',
-                                        style: TextStyle(fontWeight: FontWeight.bold),
+                                      Table(
+                                        children: [
+                                          TableRow(children: [
+                                            Text(
+                                              'Subject',
+                                              style: TextStyle(fontWeight: FontWeight.bold),
+                                            ),
+                                            Text('${widget.lessonplan[index].subject}'),
+                                          ]),
+                                        ],
                                       ),
-                                      SizedBox(height: 6.0,),
+                                      SizedBox(height: 6.0),
                                       Table(
                                         children: [
                                           TableRow(children: [

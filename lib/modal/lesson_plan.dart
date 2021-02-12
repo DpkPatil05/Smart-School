@@ -20,7 +20,7 @@ class LessonPlanData {
   String timeTo;
 
   factory LessonPlanData.fromJson(Map<String, dynamic> json) => LessonPlanData(
-    day: json["day"] == null ? null : json["day"],
+    day: json["day"],
     subject: json["subject"],
     roomno: json["roomno"],
     timeFrom: json["time_from"],
@@ -28,7 +28,7 @@ class LessonPlanData {
   );
 
   Map<String, dynamic> toJson() => {
-    "day": day == null ? null : day,
+    "day": day,
     "subject": subject,
     "roomno": roomno,
     "time_from": timeFrom,
