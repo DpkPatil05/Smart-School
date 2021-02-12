@@ -44,23 +44,103 @@ void initState() {
               controller: _controller,
               children: <Widget>[
                 Container(
-                  child: Center(
-                    child: Text('Assignments'),
+                  child: ListView.builder(
+                      itemCount: 1,
+                      itemBuilder: (context, index) {
+                        return Card(
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            child: ListTile(
+                              title: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('Assignment 1'),
+                                  IconButton(
+                                      icon: Icon(Icons.file_download),
+                                      onPressed: (){}
+                                  )
+                                ],
+                              )
+                            )
+                        );
+                      }
                   ),
                 ),
                 Container(
-                  child: Center(
-                    child: Text('Study Material'),
+                  child: ListView.builder(
+                      itemCount: 1,
+                      itemBuilder: (context, index) {
+                        return Card(
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            child: ListTile(
+                                title: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('Study material 1'),
+                                    IconButton(
+                                        icon: Icon(Icons.file_download),
+                                        onPressed: (){}
+                                    )
+                                  ],
+                                )
+                            )
+                        );
+                      }
                   ),
                 ),
                 Container(
-                  child: Center(
-                    child: Text('Syllabus'),
+                  child: ListView.builder(
+                      itemCount: 1,
+                      itemBuilder: (context, index) {
+                        return Card(
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            child: ListTile(
+                                title: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('Syllabus1'),
+                                    IconButton(
+                                        icon: Icon(Icons.file_download),
+                                        onPressed: (){}
+                                    )
+                                  ],
+                                )
+                            )
+                        );
+                      }
                   ),
                 ),
                 Container(
-                  child: Center(
-                    child: Text('Others'),
+                  child: ListView.builder(
+                      itemCount: 1,
+                      itemBuilder: (context, index) {
+                        return Card(
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            child: ListTile(
+                                title: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('others'),
+                                    IconButton(
+                                        icon: Icon(Icons.file_download),
+                                        onPressed: (){}
+                                    )
+                                  ],
+                                )
+                            )
+                        );
+                      }
                   ),
                 ),
               ],
