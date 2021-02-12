@@ -1,5 +1,6 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_school/future/fetch_exam.dart';
 import 'package:smart_school/future/fetch_fees.dart';
@@ -37,6 +38,31 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   TabStyle _tabStyle = TabStyle.flip;
+  Future<bool> _onPressed(){
+    return showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: Text('Are You Sure'),
+          content: Text('You are going to exit the application!'),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('NO'),
+              onPressed: (){
+                Navigator.of(context).pop(false);
+              },
+            ),
+            FlatButton(
+              child: Text('YES'),
+              onPressed: (){
+                SystemNavigator.pop();
+              },
+            )
+          ],
+        );
+      }
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -149,6 +175,10 @@ class _HomeState extends State<Home> {
                   child: TabBarView(
                     children: [for(final widget in pageWidgets.values) widget],
                 )
+              ),
+              WillPopScope(
+                onWillPop: _onPressed,
+                child: Container(),
               )
             ],
           ),
