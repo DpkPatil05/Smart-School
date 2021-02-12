@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smart_school/modal/leave_data.dart';
+import 'package:smart_school/providers/apply_leave_provider.dart';
 
 class LeaveDataCard extends StatefulWidget {
   final LeaveData leavedata;
@@ -36,7 +38,15 @@ class _LeaveDataCardState extends State<LeaveDataCard> {
                           ),
                         ),
                         RaisedButton(
-                            onPressed: () {}
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) =>
+                                    Provider.of<ApplyLeaveProvider>(context, listen: false)
+                                        .delete(int.parse(widget.leavedata.id))
+                                ),
+                              );
+                            }
                         )
                       ],
                     ),

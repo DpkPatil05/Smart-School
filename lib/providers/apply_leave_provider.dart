@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:smart_school/future/fetch_applied_leave_response.dart';
+import 'package:smart_school/future/fetch_delete_leave.dart';
 import 'package:smart_school/modal/leave_data.dart';
 import 'package:smart_school/modal/leave_upload_response.dart';
 
@@ -17,13 +18,16 @@ class ApplyLeaveProvider with ChangeNotifier {
     return FetchAppliedLeaveResponse(fromdate: fromdate, todate: todate, reason: reason);
   }
 
-  void delete(int index) {
+  Widget delete(int id) {
+    return FetchDeleteLeaveResponse(leaveid: id);
   }
 
   // ignore: missing_return
   Future<LeaveUploadMessage> uploadLeaveData(DateTime fromdate, DateTime todate, String reason) async {
+    var fromDateToSend = "${fromdate.year}-${fromdate.month}-${fromdate.day}";
+    var toDateToSend = "${todate.year}-${todate.month}-${todate.day}";
     url = 'http://www.paperfree-erp.in/mobileapp/applyleave/applyleave.php?studentid='
-        '${HiveOperation().studentID}&fdate=$fromdate&tdate=$todate&reason=$reason';
+        '${HiveOperation().studentID}&fdate=$fromDateToSend&tdate=$toDateToSend&reason=${reason.replaceAll(" ", "%20")}';
     print('Upload Leave url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {
@@ -38,6 +42,52 @@ class ApplyLeaveProvider with ChangeNotifier {
           // then throw an exception.
           Fluttertoast.showToast(
               msg: "Problem uploading data",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              backgroundColor: Colors.blueGrey,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
+        }
+      } catch(e) {
+        Fluttertoast.showToast(
+            msg: "Problem uploading data",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.blueGrey,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+      }
+    } else {
+      Fluttertoast.showToast(
+          msg: "No Data connection",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.blueGrey,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+    }
+  }
+
+  // ignore: missing_return
+  Future<LeaveUploadMessage> deleteLeaveData(int id) async {
+    url = 'http://www.paperfree-erp.in/mobileapp/applyleave/applyleave.php?leaveid=$id';
+    print('Delete Leave url: ' + url);
+    bool result = await DataConnectionChecker().hasConnection;
+    if (result) {
+      try {
+        final response = await http.get(url);
+        if (response.statusCode == 200) {
+          // If the server did return a 200 OK response,
+          // then parse the JSON.=
+          return leaveUploadMessageFromJson(response.body);
+        } else {
+          // If the server did not return a 200 OK response,
+          // then throw an exception.
+          Fluttertoast.showToast(
+              msg: "Problem deleting data",
               toastLength: Toast.LENGTH_SHORT,
               gravity: ToastGravity.BOTTOM,
               backgroundColor: Colors.blueGrey,

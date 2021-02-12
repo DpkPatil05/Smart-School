@@ -3,7 +3,7 @@ import 'package:smart_school/modal/lesson_plan.dart';
 import 'package:smart_school/templates/lesson_plan.dart';
 
 class LessonPlan extends StatefulWidget {
-  final List<LessonPlanData> lessonplandata;
+  final List<List<LessonPlanData>> lessonplandata;
 
   const LessonPlan({this.lessonplandata});
   @override
@@ -16,7 +16,7 @@ class _LessonPlanState extends State<LessonPlan> {
     return Container(
       color: Colors.white,
       child: ListView.builder(
-          itemCount: widget.lessonplandata.length-1??0,
+          itemCount: widget.lessonplandata.length??0,
           itemBuilder: (context, index) {
             return LessonPlanCard(lessonplan: widget.lessonplandata[index]);
           }

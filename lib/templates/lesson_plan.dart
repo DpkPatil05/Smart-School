@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_school/modal/lesson_plan.dart';
 
 class LessonPlanCard extends StatefulWidget {
-  final LessonPlanData lessonplan;
+  final List<LessonPlanData> lessonplan;
 
   const LessonPlanCard({this.lessonplan});
   @override
@@ -21,7 +21,7 @@ class _LessonPlanCardState extends State<LessonPlanCard> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('${widget.lessonplan.day}'),
+              Text('${widget.lessonplan[0].day}'),
               IconButton(
                 iconSize: 20.0,
                 icon: Icon(Icons.preview_outlined),
@@ -32,7 +32,7 @@ class _LessonPlanCardState extends State<LessonPlanCard> {
                       alignment: Alignment.center,
                       height: 500.0,
                       child: ListView.builder(
-                          itemCount: 3,
+                          itemCount: widget.lessonplan.length??0,
                           itemBuilder: (context, index) {
                             return Card(
                               elevation: 5,
@@ -41,11 +41,13 @@ class _LessonPlanCardState extends State<LessonPlanCard> {
                               ),
                               child: ListTile(
                                   title: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        '${widget.lessonplan.subject}',
+                                        'Subject: ${widget.lessonplan[index].subject}',
                                         style: TextStyle(fontWeight: FontWeight.bold),
                                       ),
+                                      SizedBox(height: 6.0,),
                                       Table(
                                         children: [
                                           TableRow(children: [
@@ -53,14 +55,14 @@ class _LessonPlanCardState extends State<LessonPlanCard> {
                                               'Room No',
                                               style: TextStyle(fontWeight: FontWeight.bold),
                                             ),
-                                            Text('server'),
+                                            Text('${widget.lessonplan[index].roomno}'),
                                           ]),
                                           TableRow(children: [
                                             Text(
                                               'From Time',
                                               style: TextStyle(fontWeight: FontWeight.bold),
                                             ),
-                                            Text('server'),
+                                            Text('${widget.lessonplan[index].timeFrom}'),
                                           ]),
                                           TableRow(children: [
                                             Text(
@@ -69,7 +71,7 @@ class _LessonPlanCardState extends State<LessonPlanCard> {
                                                   fontWeight: FontWeight.bold
                                               ),
                                             ),
-                                            Text('server'),
+                                            Text('${widget.lessonplan[index].timeTo}'),
                                           ])
                                         ],
                                       ),

@@ -141,7 +141,6 @@ class _ApplyLeaveState extends State<ApplyLeave> {
       body: ListView.builder(
           itemCount: widget.leavedata.length-1??0,
           itemBuilder: (context, index) {
-            // final homeworkData = homework[index];
             return LeaveDataCard(leavedata: widget.leavedata[index]);
           }
       ),

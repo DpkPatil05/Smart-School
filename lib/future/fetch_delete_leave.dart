@@ -5,17 +5,22 @@ import 'package:smart_school/providers/apply_leave_provider.dart';
 
 import 'fetch_leave.dart';
 
-class FetchAppliedLeaveResponse extends StatelessWidget {
-  final DateTime fromdate, todate;
-  final String reason;
+class FetchDeleteLeaveResponse extends StatefulWidget {
+  final int leaveid;
 
-  const FetchAppliedLeaveResponse({this.fromdate, this.todate, this.reason});
+  const FetchDeleteLeaveResponse({this.leaveid});
+
+  @override
+  _FetchDeleteLeaveResponseState createState() => _FetchDeleteLeaveResponseState();
+}
+
+class _FetchDeleteLeaveResponseState extends State<FetchDeleteLeaveResponse> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<LeaveUploadMessage>.value(
       value: null,
       child: FutureBuilder<LeaveUploadMessage>(
-        future: ApplyLeaveProvider().uploadLeaveData(fromdate, todate, reason),
+        future: ApplyLeaveProvider().deleteLeaveData(widget.leaveid),
         builder: (BuildContext context, AsyncSnapshot<LeaveUploadMessage> leaveData) {
           switch (leaveData.connectionState) {
             case ConnectionState.waiting: return Center(child: CircularProgressIndicator());

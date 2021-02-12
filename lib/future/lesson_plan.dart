@@ -9,9 +9,9 @@ class FetchLessonPlan extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamProvider<List<LessonPlanData>>.value(
       value: null,
-      child: FutureBuilder<List<LessonPlanData>>(
+      child: FutureBuilder<List<List<LessonPlanData>>>(
         future: LessonPlanProvider().fetchLessonPlan(),
-        builder: (BuildContext context, AsyncSnapshot<List<LessonPlanData>> lessonPlanData) {
+        builder: (BuildContext context, AsyncSnapshot<List<List<LessonPlanData>>> lessonPlanData) {
           switch (lessonPlanData.connectionState) {
             case ConnectionState.waiting: return Center(child: CircularProgressIndicator());
             default:
