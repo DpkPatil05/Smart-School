@@ -17,7 +17,6 @@ class _AttendanceState extends State<Attendance> {
       backgroundColor: Colors.black,
       body: Container(
         child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                   height: 400.0,
@@ -43,10 +42,15 @@ class _AttendanceState extends State<Attendance> {
                   ),
                 ],
               ),
-              SizedBox(height: 30.0),
-              Column(
+              SizedBox(height: 40.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
+                  SizedBox(
+                    width: 130.0,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Row(
                           children: [
@@ -55,7 +59,7 @@ class _AttendanceState extends State<Attendance> {
                               size: 30.0,
                               color: Colors.green,
                             ),
-                            SizedBox(width: 20.0,),
+                            SizedBox(width: 20.0),
                             Text(
                               'Present',
                               style: TextStyle(
@@ -65,17 +69,16 @@ class _AttendanceState extends State<Attendance> {
                             ),
                           ],
                         ),
-                        SizedBox(width: 50.0),
                         Row(
                           children: [
                             Icon(
                               Icons.circle,
                               size: 30.0,
-                              color: Colors.brown,
+                              color: Colors.yellow,
                             ),
-                            SizedBox(width: 20.0,),
+                            SizedBox(width: 20.0),
                             Text(
-                              'Absent',
+                              'Late',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20.0,
@@ -83,65 +86,71 @@ class _AttendanceState extends State<Attendance> {
                             ),
                           ],
                         ),
-                        ]
-                      ),
-                      Row(
+                        Row(
                           children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.circle,
-                                  size: 30.0,
-                                  color: Colors.yellow,
-                                ),
-                                SizedBox(width: 20.0,),
-                                Text(
-                                  'Late      ',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20.0,
-                                  ),
-                                ),
-                              ],
+                            Icon(
+                              Icons.circle,
+                              size: 30.0,
+                              color: Colors.grey,
                             ),
-                            SizedBox(width: 50.0,),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.circle,
-                                  size: 30.0,
-                                  color: Colors.deepOrange,
-                                ),
-                                SizedBox(width: 20.0),
-                                Text(
-                                  'Half Day',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20.0,
-                                  ),
-                                ),
-                              ],
+                            SizedBox(width: 20.0),
+                            Text(
+                              'Holiday',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                              ),
                             ),
-                          ]
-                      ),
-                      Row(
+                          ],
+                        ),
+                      ]
+                    ),
+                  ),
+                  SizedBox(
+                    width: 130.0,
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Icon(
-                            Icons.circle,
-                            size: 30.0,
-                            color: Colors.grey,
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.circle,
+                                size: 30.0,
+                                color: Colors.brown,
+                              ),
+                              SizedBox(width: 20.0,),
+                              Text(
+                                'Absent',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.0,
+                                ),
+                              ),
+                            ],
                           ),
-                          SizedBox(width: 20.0),
-                          Text(
-                            'Holiday',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.0,
-                            ),
+
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.circle,
+                                size: 30.0,
+                                color: Colors.deepOrange,
+                              ),
+                              SizedBox(width: 20.0),
+                              Text(
+                                'Half Day',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.0,
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                ]
+
+                        ]
+                    ),
+                  ),
+                ],
               ),
             ]
         )
