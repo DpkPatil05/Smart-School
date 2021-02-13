@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_school/future/fetch_attendance.dart';
+import 'package:smart_school/future/fetch_calender_data.dart';
 import 'package:smart_school/future/fetch_homework.dart';
 import 'package:smart_school/utils/calender_view.dart';
 
@@ -17,8 +18,8 @@ class _HomeTabState extends State<HomeTab> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-              height: 400.0,
-              child: Calender()
+              height: 380.0,
+              child: FetchCalender()
           ),
           SizedBox(height: 50.0),
          Column(
@@ -33,9 +34,9 @@ class _HomeTabState extends State<HomeTab> {
                        title: Text('Attendance'),
                      ),
                      body: FetchAttendance(),
-                   ),
-                   ),
-                 );},
+                   )),
+                 );
+                 },
                child: const Text(
                    'Attendance',
                    style: TextStyle(
@@ -45,7 +46,8 @@ class _HomeTabState extends State<HomeTab> {
                ),
                shape: RoundedRectangleBorder(
                    borderRadius: BorderRadius.circular(18.0),
-                   side: BorderSide(color: Colors.red)),
+                   side: BorderSide(color: Colors.red)
+               ),
                color: Colors.red,
                height: 50.0,
                minWidth: 350.0,

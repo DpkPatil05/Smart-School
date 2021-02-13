@@ -106,8 +106,9 @@ class _HomeState extends State<Home> {
                               height: 120,
                               child: CircleAvatar(
                                 radius: 30,
-                                backgroundImage: NetworkImage(hamData.loadProfilePic(widget.imgurl))==null?
-                                                 AssetImage(hamData.defaultProfilePic):NetworkImage(hamData.loadProfilePic(widget.imgurl)),
+                                backgroundImage:null == NetworkImage(hamData.loadProfilePic(widget.imgurl))  ?
+                                                        AssetImage(hamData.defaultProfilePic)
+                                                        :NetworkImage(hamData.loadProfilePic(widget.imgurl)),
                                 // child: FadeInImage(
                                 //   placeholder: AssetImage(hamData.defaultProfilePic),
                                 //   image: NetworkImage(hamData.loadProfilePic(widget.imgurl).toString()),

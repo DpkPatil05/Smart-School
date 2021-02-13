@@ -14,6 +14,7 @@ import 'package:smart_school/future/fetch_teachers_review.dart';
 import 'package:smart_school/future/fetch_timetable.dart';
 import 'package:smart_school/future/fetch_transport_routes.dart';
 import 'package:smart_school/future/lesson_plan.dart';
+import 'package:smart_school/tabs/hamItems/about_us.dart';
 import 'package:smart_school/tabs/hamItems/download_center.dart';
 
 
@@ -29,7 +30,7 @@ class HomeProvider with ChangeNotifier {
     ['Online Exam', '0xe8a6', '6'], ['Apply Leave', '0xe0b7', '7'], ['Download Center', '0xf189', '8'],
     ['Attendance', '0xe8f9', '9'], ['Examination', '0xeb8f', '10'], ['Notice Board', '0xe658', '11'],
     ['Teachers Reviews', '0xe355', '12'], ['Library', '0xe927', '13'], ['Transport Route', '0xe990', '14'],
-    ['Hostels', '0xe98f', '15'], ['Logout', '0xe848', '16']
+    ['Hostels', '0xe98f', '15'],  ['About Us', '0xe7d9', '16'], ['Logout', '0xe848', '17']
   ];
 
   loadProfilePic(String path) => fetchProfilePic+path;
@@ -51,6 +52,7 @@ class HomeProvider with ChangeNotifier {
     if(index == 13) return FetchLibrary();
     if(index == 14) return FetchTransportRoutes();
     if(index == 15) return FetchHostel();
+    if(index == 16) return AboutUs();
     if(index == 16) return null;
     return null;
   }
