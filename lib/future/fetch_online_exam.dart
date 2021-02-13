@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_school/modal/online_exam.dart';
-import 'package:smart_school/pages/attendance.dart';
 import 'package:smart_school/providers/online_exam_provider.dart';
 import 'package:smart_school/tabs/hamItems/online_exam.dart';
 

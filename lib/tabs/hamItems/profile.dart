@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_school/modal/profile.dart';
@@ -5,8 +6,6 @@ import 'package:smart_school/modal/transport.dart';
 import 'package:smart_school/modal/transport_details.dart';
 import 'package:smart_school/providers/profile_provider.dart';
 import 'package:smart_school/providers/transport_provider.dart';
-import 'package:smart_school/utils/custom_clip.dart';
-import 'package:smart_school/utils/custom_clip_parents.dart';
 
 class Profile extends StatefulWidget {
   final ProfileData studentData;
@@ -46,16 +45,28 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                         DrawerHeader(
                           decoration: BoxDecoration(color: Colors.grey),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              ClipOval(
-                                clipper: MyClipper(),
-                                child: FadeInImage(
-                                    placeholder: AssetImage(profileProvider.defaultProfilePic),
-                                    image: NetworkImage(profileProvider.getImageUrl(
-                                        widget.studentData.imgurl.replaceAll('\\', '')).toString()
-                                    )
-                                ),
-                              ),
+                             SizedBox(
+                               width: 120.0,
+                               height: 150.0,
+                               child: CircleAvatar(
+                                 radius: 30.0,
+                                 backgroundColor: Colors.grey,
+                                 backgroundImage: NetworkImage(profileProvider.getImageUrl(widget.studentData.imgurl.replaceAll('\\', '')))==null?
+                                 AssetImage(profileProvider.defaultProfilePic):NetworkImage(profileProvider.getImageUrl(widget.studentData.imgurl.replaceAll('\\', ''))),
+                                 // child: FadeInImage(
+                                 //     placeholder: AssetImage(profileProvider.defaultProfilePic),
+                                 //     image: NetworkImage(profileProvider.getImageUrl(
+                                 //         widget.studentData.imgurl.replaceAll('\\', '')).toString()
+                                 //     )
+                                 // ),
+                                 // ClipOval(
+                                 //   // clipper: MyClipper(),
+                                 //   child:
+                                 // ),
+                               )
+                             ),
                               SizedBox(width: 20.0),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -401,17 +412,23 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                     child: Row(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        ClipOval(
-                                          clipper: ParentClipper(),
-                                          child: FadeInImage(
-                                            placeholder: AssetImage(profileProvider.defaultProfilePic),
-                                            image: NetworkImage(profileProvider.getImageUrl(widget.studentData.fatherpic).toString()),
-                                          ),
-                                        ),
+                                       SizedBox(
+                                         width: 150.0,
+                                         height: 150.0,
+                                         child: CircleAvatar(
+                                           radius: 30.0,
+                                           backgroundImage: NetworkImage(profileProvider.getImageUrl(widget.studentData.fatherpic))==null?
+                                                            AssetImage(profileProvider.defaultProfilePic):NetworkImage(profileProvider.getImageUrl(widget.studentData.fatherpic)),
+                                           // child: FadeInImage(
+                                           //   placeholder: AssetImage(profileProvider.defaultProfilePic),
+                                           //   image: NetworkImage(profileProvider.getImageUrl(widget.studentData.fatherpic).toString()),
+                                           // ),
+                                         ),
+                                       ),
                                         SizedBox(width: 50.0),
                                         Column(
                                           mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             // SizedBox(height: 10.0),
                                             Text(
@@ -425,6 +442,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                             Row(
                                               children: [
                                                 Icon(Icons.person),
+                                                SizedBox(width: 10.0),
                                                 SizedBox(
                                                   width: 100.0,
                                                   child: Text('${widget.studentData.fathername}')
@@ -434,12 +452,14 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                             Row(
                                               children: [
                                                 Icon(Icons.call),
+                                                SizedBox(width: 10.0),
                                                 Text('${widget.studentData.fatherphone}'),
                                               ],
                                             ),
                                             Row(
                                               children: [
                                                 Icon(Icons.work_outline),
+                                                SizedBox(width: 10.0),
                                                 Text('${widget.studentData.fatheroccupation}'),
                                               ],
                                             )
@@ -454,11 +474,17 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                     child: Row(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        ClipOval(
-                                          clipper: ParentClipper(),
-                                          child: FadeInImage(
-                                            placeholder: AssetImage(profileProvider.defaultProfilePic),
-                                            image: NetworkImage(profileProvider.getImageUrl(widget.studentData.motherpic).toString()),
+                                        SizedBox(
+                                          width: 150.0,
+                                          height: 150.0,
+                                          child: CircleAvatar(
+                                            radius: 30.0,
+                                            backgroundImage:  NetworkImage(profileProvider.getImageUrl(widget.studentData.motherpic))==null?
+                                                              AssetImage(profileProvider.defaultProfilePic):NetworkImage(profileProvider.getImageUrl(widget.studentData.motherpic)),
+                                            // child: FadeInImage(
+                                            //   placeholder: AssetImage(profileProvider.defaultProfilePic),
+                                            //   image: NetworkImage(profileProvider.getImageUrl(widget.studentData.motherpic).toString()),
+                                            // ),
                                           ),
                                         ),
                                         SizedBox(width: 50.0),
@@ -479,7 +505,10 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                               children: [
                                                 Icon(Icons.person),
                                                 SizedBox(width: 10.0),
-                                                Text('${widget.studentData.mothername}'),
+                                               SizedBox(
+                                                 width: 100.0,
+                                                 child: Text('${widget.studentData.mothername}'),
+                                               )
                                               ],
                                             ),
                                             Row(
@@ -507,11 +536,17 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                     child: Row(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        ClipOval(
-                                          clipper: ParentClipper(),
-                                          child: FadeInImage(
-                                            placeholder: AssetImage(profileProvider.defaultProfilePic),
-                                            image: NetworkImage(profileProvider.getImageUrl(widget.studentData.guardianpic).toString()),
+                                        SizedBox(
+                                          width: 150.0,
+                                          height: 150.0,
+                                          child: CircleAvatar(
+                                            radius: 30.0,
+                                            backgroundImage: NetworkImage(profileProvider.getImageUrl(widget.studentData.guardianpic))==null?
+                                                              AssetImage(profileProvider.defaultProfilePic):NetworkImage(profileProvider.getImageUrl(widget.studentData.guardianpic)),
+                                            // child: FadeInImage(
+                                            //   placeholder: AssetImage(profileProvider.defaultProfilePic),
+                                            //   image: NetworkImage(profileProvider.getImageUrl(widget.studentData.guardianpic).toString()),
+                                            // ),
                                           ),
                                         ),
                                         SizedBox(width: 50.0),
@@ -532,7 +567,10 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                               children: [
                                                 Icon(Icons.person),
                                                 SizedBox(width: 10.0),
-                                                Text('${widget.studentData.guardianname}'),
+                                                SizedBox(
+                                                  width: 100.0,
+                                                  child:  Text('${widget.studentData.guardianname}'),
+                                                )
                                               ],
                                             ),
                                             Row(

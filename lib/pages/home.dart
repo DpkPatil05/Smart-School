@@ -9,7 +9,6 @@ import 'package:smart_school/future/fetch_notice.dart';
 import 'package:smart_school/pages/settings.dart';
 import 'package:smart_school/providers/home_provider.dart';
 import 'package:smart_school/tabs/home.dart';
-import 'package:smart_school/utils/custom_clip.dart';
 import 'package:smart_school/hive_operations.dart';
 
 
@@ -100,12 +99,19 @@ class _HomeState extends State<Home> {
                       DrawerHeader(
                         decoration: BoxDecoration(color: Colors.grey),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            ClipOval(
-                              clipper: MyClipper(),
-                              child: FadeInImage(
-                                placeholder: AssetImage(hamData.defaultProfilePic),
-                                image: NetworkImage(hamData.loadProfilePic(widget.imgurl).toString()),
+                            SizedBox(
+                              width: 120,
+                              height: 120,
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundImage: NetworkImage(hamData.loadProfilePic(widget.imgurl))==null?
+                                                 AssetImage(hamData.defaultProfilePic):NetworkImage(hamData.loadProfilePic(widget.imgurl)),
+                                // child: FadeInImage(
+                                //   placeholder: AssetImage(hamData.defaultProfilePic),
+                                //   image: NetworkImage(hamData.loadProfilePic(widget.imgurl).toString()),
+                                // ),
                               ),
                             ),
                             Column(
