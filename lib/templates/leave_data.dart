@@ -16,6 +16,37 @@ class LeaveDataCard extends StatefulWidget {
 class _LeaveDataCardState extends State<LeaveDataCard> {
   @override
   Widget build(BuildContext context) {
+    Future<bool> _onPressed(){
+      return showDialog(
+          context: context,
+          builder: (BuildContext context){
+            return AlertDialog(
+              title: Text('Are You Sure'),
+              content: Text('You are going delete the leave!'),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('NO'),
+                  onPressed: (){
+                    Navigator.of(context).pop(false);
+                  },
+                ),
+                FlatButton(
+                  child: Text('YES'),
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) =>
+                          Provider.of<ApplyLeaveProvider>(context, listen: false)
+                              .delete(int.parse(widget.leavedata.id))
+                      ),
+                    );
+                  },
+                )
+              ],
+            );
+          }
+      );
+    }
     return Card(
         elevation: 5,
         shape: RoundedRectangleBorder(
@@ -43,13 +74,7 @@ class _LeaveDataCardState extends State<LeaveDataCard> {
                       children: [
                         RawMaterialButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) =>
-                                  Provider.of<ApplyLeaveProvider>(context, listen: false)
-                                      .delete(int.parse(widget.leavedata.id))
-                              ),
-                            );
+                            _onPressed();
                           },
                           elevation: 2.0,
                           fillColor: Colors.grey,
