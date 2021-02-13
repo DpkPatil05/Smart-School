@@ -3,7 +3,7 @@ import 'package:smart_school/modal/attendance.dart';
 import 'package:smart_school/utils/calender_view.dart';
 
 class Attendance extends StatefulWidget {
-  final List<AttendanceData> attendancedata;
+  final AttendanceData attendancedata;
 
   const Attendance({this.attendancedata});
   @override
@@ -17,12 +17,13 @@ class _AttendanceState extends State<Attendance> {
       backgroundColor: Colors.black,
       body: Container(
         child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                   height: 400.0,
                   child: Calender()
               ),
-              SizedBox(height: 30.0,),
+              SizedBox(height: 30.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -34,7 +35,7 @@ class _AttendanceState extends State<Attendance> {
                     ),
                   ),
                   Text(
-                    widget.attendancedata[0].attendancePerct,
+                    '${widget.attendancedata.attendence.attendancePerct}',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 20.0,
@@ -42,77 +43,97 @@ class _AttendanceState extends State<Attendance> {
                   ),
                 ],
               ),
-              SizedBox(height: 30.0,),
-              Row(
+              SizedBox(height: 30.0),
+              Column(
                 children: [
                   Row(
-                    children: [
-                      Icon(
-                        Icons.circle,
-                        size: 30.0,
-                        color: Colors.green,
-                      ),
-                      SizedBox(width: 20.0,),
-                      Text(
-                        'Present',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(width: 50.0),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.circle,
-                        size: 30.0,
-                        color: Colors.brown,
-                      ),
-                      SizedBox(width: 20.0,),
-                      Text(
-                        'Absent',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                  ]
-                ),
-
-                Row(
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.circle,
-                            size: 30.0,
-                            color: Colors.yellow,
-                          ),
-                          SizedBox(width: 20.0,),
-                          Text(
-                            'Late      ',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.0,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.circle,
+                              size: 30.0,
+                              color: Colors.green,
                             ),
-                          ),
-                        ],
+                            SizedBox(width: 20.0,),
+                            Text(
+                              'Present',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(width: 50.0),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.circle,
+                              size: 30.0,
+                              color: Colors.brown,
+                            ),
+                            SizedBox(width: 20.0,),
+                            Text(
+                              'Absent',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                        ]
                       ),
-                      SizedBox(width: 50.0,),
+                      Row(
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.circle,
+                                  size: 30.0,
+                                  color: Colors.yellow,
+                                ),
+                                SizedBox(width: 20.0,),
+                                Text(
+                                  'Late      ',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(width: 50.0,),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.circle,
+                                  size: 30.0,
+                                  color: Colors.deepOrange,
+                                ),
+                                SizedBox(width: 20.0),
+                                Text(
+                                  'Half Day',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ]
+                      ),
                       Row(
                         children: [
                           Icon(
                             Icons.circle,
                             size: 30.0,
-                            color: Colors.deepOrange,
+                            color: Colors.grey,
                           ),
                           SizedBox(width: 20.0),
                           Text(
-                            'Half Day',
+                            'Holiday',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20.0,
@@ -120,29 +141,11 @@ class _AttendanceState extends State<Attendance> {
                           ),
                         ],
                       ),
-                    ]
-                ),
-
-                Row(
-                  children: [
-                    Icon(
-                      Icons.circle,
-                      size: 30.0,
-                      color: Colors.grey,
-                    ),
-                    SizedBox(width: 20.0),
-                    Text(
-                      'Holiday',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                      ),
-                    ),
-                  ],
-                ),
-              ]
-            )
-          )
+                ]
+              ),
+            ]
+        )
+      )
      );
   }
 }

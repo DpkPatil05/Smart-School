@@ -9,7 +9,7 @@ class AttendanceProvider with ChangeNotifier {
   String url = '';
 
   // ignore: missing_return
-  Future<List<AttendanceData>> fetchAttendance() async {
+  Future<AttendanceData> fetchAttendance() async {
     url = 'http://www.paperfree-erp.in/mobileapp/attendance1/attendance1.php?studentid=${HiveOperation().studentID}';
     print('Attendance data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
@@ -19,12 +19,12 @@ class AttendanceProvider with ChangeNotifier {
         if (response.statusCode == 200) {
           // If the server did return a 200 OK response,
           // then parse the JSON.=
-          final List<AttendanceData> attendanceData = attendanceDataFromJson(response.body);
+          final AttendanceData attendanceData = attendanceDataFromJson(response.body);
           return attendanceData;
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          return List<AttendanceData>();
+          return AttendanceData();
         }
       } catch(e) {
         Fluttertoast.showToast(
