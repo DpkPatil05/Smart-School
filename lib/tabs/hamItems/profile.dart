@@ -427,7 +427,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                        ),
                                         SizedBox(width: 50.0),
                                         Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             // SizedBox(height: 10.0),
@@ -438,13 +438,12 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                                   fontSize: 20.0
                                               ),
                                             ),
-                                            SizedBox(height:10.0),
                                             Row(
                                               children: [
                                                 Icon(Icons.person),
                                                 SizedBox(width: 10.0),
                                                 SizedBox(
-                                                  width: 100.0,
+                                                  width: 150.0,
                                                   child: Text('${widget.studentData.fathername}')
                                                 ),
                                               ],
@@ -489,7 +488,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                         ),
                                         SizedBox(width: 50.0),
                                         Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             // SizedBox(height: 10.0),
@@ -500,13 +499,12 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                                   fontSize: 20.0
                                               ),
                                             ),
-                                            SizedBox(height:10.0),
                                             Row(
                                               children: [
                                                 Icon(Icons.person),
                                                 SizedBox(width: 10.0),
                                                SizedBox(
-                                                 width: 100.0,
+                                                 width: 150.0,
                                                  child: Text('${widget.studentData.mothername}'),
                                                )
                                               ],
@@ -551,7 +549,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                         ),
                                         SizedBox(width: 50.0),
                                         Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             // SizedBox(height: 10.0),
@@ -562,13 +560,12 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                                   fontSize: 20.0
                                               ),
                                             ),
-                                            SizedBox(height:10.0),
                                             Row(
                                               children: [
                                                 Icon(Icons.person),
                                                 SizedBox(width: 10.0),
                                                 SizedBox(
-                                                  width: 100.0,
+                                                  width: 150.0,
                                                   child:  Text('${widget.studentData.guardianname}'),
                                                 )
                                               ],
