@@ -17,7 +17,7 @@ class _HomeTabState extends State<HomeTab> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-              height: 380.0,
+              height: 400.0,
               child: Calender()
           ),
           SizedBox(height: 50.0),
