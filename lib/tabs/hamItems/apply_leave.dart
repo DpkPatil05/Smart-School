@@ -44,7 +44,8 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                                             Icon(Icons.calendar_today),
                                             SizedBox(width: 10.0),
                                             Text(
-                                              _fromdate == null? 'From Date' :_fromdate.toString().substring(0,10),
+                                              _fromdate == null? 'From Date'
+                                                  :_fromdate.toString().substring(0,10),
                                               style: TextStyle(
                                                 fontSize: 20.0,
                                               ),
@@ -80,7 +81,8 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                                             Icon(Icons.calendar_today),
                                             SizedBox(width: 10.0),
                                             Text(
-                                              _todate == null? 'To Date' :_todate.toString().substring(0, 10),
+                                              _todate == null? 'To Date'
+                                                  :_todate.toString().substring(0, 10),
                                               style: TextStyle(
                                                 fontSize: 20.0,
                                               ),

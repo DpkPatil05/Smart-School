@@ -44,7 +44,7 @@ class HomeProvider with ChangeNotifier {
     );
   }
 
-  loadProfilePic(String path) => fetchProfilePic+path;
+  String loadProfilePic(String path) => fetchProfilePic+path;
 
   Widget openPage(int index) {
     if(index == 0) return FetchProfile();
