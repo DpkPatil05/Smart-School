@@ -154,8 +154,8 @@ class _HomeState extends State<Home> {
                               Expanded(child: Text('${hamItem[0]}')),
                             ],
                           ),
-                          onTap: () =>
-                              Navigator.push(
+                          onTap: () => "Logout" == hamItem[0] ? hamData.logoutFunction(context)
+                              : Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) =>
                                     Scaffold(

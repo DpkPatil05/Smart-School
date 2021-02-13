@@ -14,6 +14,8 @@ import 'package:smart_school/future/fetch_teachers_review.dart';
 import 'package:smart_school/future/fetch_timetable.dart';
 import 'package:smart_school/future/fetch_transport_routes.dart';
 import 'package:smart_school/future/lesson_plan.dart';
+import 'package:smart_school/hive_operations.dart';
+import 'package:smart_school/pages/login.dart';
 import 'package:smart_school/tabs/hamItems/about_us.dart';
 import 'package:smart_school/tabs/hamItems/download_center.dart';
 
@@ -24,6 +26,7 @@ class HomeProvider with ChangeNotifier {
   final String fetchProfilePic = 'http://www.paperfree-erp.in/college/demo-high-school/';
   final String defaultProfilePic = 'assets/profile.png';
 
+
   final List hamburgerItems = [
     ['Profile', '0xe900', '0'], ['Fees', '0xe87d', '1'], ['Class Timetable', '0xe623', '2'],
     ['Lesson Plan', '0xe5f6', '3'], ['Syllabus Status', '0xe80f', '4'], ['Homework','0xe868', '5'],
@@ -32,6 +35,14 @@ class HomeProvider with ChangeNotifier {
     ['Teachers Reviews', '0xe355', '12'], ['Library', '0xe927', '13'], ['Transport Route', '0xe990', '14'],
     ['Hostels', '0xe98f', '15'],  ['About Us', '0xe7d9', '16'], ['Logout', '0xe848', '17']
   ];
+
+  logoutFunction(BuildContext context) {
+    HiveOperation().studentBox.delete('sid');
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Login())
+    );
+  }
 
   loadProfilePic(String path) => fetchProfilePic+path;
 
@@ -53,7 +64,6 @@ class HomeProvider with ChangeNotifier {
     if(index == 14) return FetchTransportRoutes();
     if(index == 15) return FetchHostel();
     if(index == 16) return AboutUs();
-    if(index == 16) return null;
     return null;
   }
 
