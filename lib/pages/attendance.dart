@@ -20,7 +20,7 @@ class _AttendanceState extends State<Attendance> {
             children: [
               Container(
                   height: 400.0,
-                  child: Calender()
+                  child: Calender(attendance: widget.attendancedata)
               ),
               SizedBox(height: 30.0),
               Row(
@@ -128,7 +128,6 @@ class _AttendanceState extends State<Attendance> {
                               ),
                             ],
                           ),
-
                           Row(
                             children: [
                               Icon(
@@ -146,7 +145,6 @@ class _AttendanceState extends State<Attendance> {
                               ),
                             ],
                           ),
-
                         ]
                     ),
                   ),
