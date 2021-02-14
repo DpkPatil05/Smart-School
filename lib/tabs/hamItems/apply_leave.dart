@@ -124,11 +124,19 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                     RaisedButton(
                         child: Text('Submit'),
                         onPressed: (){
-                          Navigator.push(
+                          Navigator.of(context).pop(false);
+                          Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) =>
-                                Provider.of<ApplyLeaveProvider>(context, listen: false)
-                                    .saveLeave(_fromdate, _todate, textEditingController.text),
+                            MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  Scaffold(
+                                    appBar: AppBar(
+                                      backgroundColor: Colors.red,
+                                      title: Text('Apply Leave'),
+                                    ),
+                                    body: Provider.of<ApplyLeaveProvider>(context, listen: false)
+                                        .saveLeave(_fromdate, _todate, textEditingController.text),
+                                  ),
                             ),
                           );
                         }
