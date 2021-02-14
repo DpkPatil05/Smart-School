@@ -33,12 +33,20 @@ class _LeaveDataCardState extends State<LeaveDataCard> {
                 FlatButton(
                   child: Text('YES'),
                   onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) =>
-                          Provider.of<ApplyLeaveProvider>(context, listen: false)
-                              .delete(int.parse(widget.leavedata.id))
-                      ),
+                    Navigator.of(context).pop(false);
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              Scaffold(
+                                appBar: AppBar(
+                                  backgroundColor: Colors.red,
+                                  title: Text('Apply Leave'),
+                                ),
+                                body: Provider.of<ApplyLeaveProvider>(context)
+                                    .delete(int.parse(widget.leavedata.id)),
+                              ),
+                        ),
                     );
                   },
                 )
