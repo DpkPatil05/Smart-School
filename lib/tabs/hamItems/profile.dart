@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_school/modal/profile.dart';
 import 'package:smart_school/modal/transport.dart';
@@ -416,8 +417,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                           child: CachedNetworkImage(
                                             imageUrl:'${profileProvider.getImageUrl(widget.studentData.fatherpic)}',
                                             imageBuilder: (context, imageProvider) => Container(
-                                              width: 130.0,
-                                              height: 130.0,
+                                              width: 110.0,
+                                              height: 110.0,
                                               decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
                                                 image: DecorationImage(
@@ -425,7 +426,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                               ),
                                             ),
                                             placeholder: (context, url) => CircularProgressIndicator(),
-                                            errorWidget: (context, url, error) => Icon(Icons.error),
+                                            errorWidget: (context, url, error) => Image.asset('${profileProvider.defaultProfilePic}'),
                                           ),
                                         ),
                                         SizedBox(width: 50.0),
@@ -480,8 +481,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                           child: CachedNetworkImage(
                                             imageUrl:'${profileProvider.getImageUrl(widget.studentData.motherpic)}',
                                             imageBuilder: (context, imageProvider) => Container(
-                                              width: 130.0,
-                                              height: 130.0,
+                                              width: 110.0,
+                                              height: 110.0,
                                               decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
                                                 image: DecorationImage(
@@ -489,7 +490,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                               ),
                                             ),
                                             placeholder: (context, url) => CircularProgressIndicator(),
-                                            errorWidget: (context, url, error) => Icon(Icons.error),
+                                            errorWidget: (context, url, error) => Image.asset('${profileProvider.defaultProfilePic}'),
                                           ),
                                         ),
                                         SizedBox(width: 50.0),
@@ -541,14 +542,14 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         SizedBox(
-                                          width: 130.0,
-                                          height: 150.0,
+                                          width: 110.0,
+                                          height: 110.0,
                                           child: ClipOval(
                                             child: CachedNetworkImage(
                                               imageUrl:'${profileProvider.getImageUrl(widget.studentData.guardianpic)}',
                                               imageBuilder: (context, imageProvider) => Container(
-                                                width: 130.0,
-                                                height: 130.0,
+                                                width: 110.0,
+                                                height: 110.0,
                                                 decoration: BoxDecoration(
                                                   shape: BoxShape.circle,
                                                   image: DecorationImage(
@@ -556,7 +557,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                                 ),
                                               ),
                                               placeholder: (context, url) => CircularProgressIndicator(),
-                                              errorWidget: (context, url, error) => Icon(Icons.error),
+                                              errorWidget: (context, url, error) => Image.asset('${profileProvider.defaultProfilePic}'),
                                             ),
                                           ),
                                         ),
