@@ -30,6 +30,7 @@ dependencies:
   convex_bottom_bar:
   fluttertoast: ^7.1.6
   table_calendar: ^2.3.3
+  url_launcher: ^5.7.10
 
   data_connection_checker: ^0.3.4
   http: ^0.12.2

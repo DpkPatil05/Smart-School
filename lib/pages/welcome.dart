@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'package:smart_school/pages/login.dart';
 import 'package:smart_school/providers/welcome_provider.dart';
 

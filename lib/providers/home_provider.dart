@@ -21,6 +21,7 @@ import 'package:smart_school/tabs/hamItems/download_center.dart';
 class HomeProvider with ChangeNotifier {
   int studentid;
   String userrole, firstlast, imgurl, classsection, standard;
+  final String linkedinlogo = 'assets/linkedin.png';
   final String fetchProfilePic = 'http://www.paperfree-erp.in/college/demo-high-school/';
   final String defaultProfilePic = 'assets/profile.png';
 
