@@ -52,14 +52,14 @@ class _TimetableCardState extends State<TimetableCard> {
                             Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                SizedBox(height: 25.0),
+                                SizedBox(height: 20.0),
                                 ListTile(
                                   title: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Divider(),
                                       SizedBox(
-                                        width: 100.0,
+                                        width: 90.0,
                                         child: Text(
                                           "${widget.timetabledata[index].subject}",
                                           style: TextStyle(
@@ -69,7 +69,7 @@ class _TimetableCardState extends State<TimetableCard> {
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 69.0,
+                                        width: 66.0,
                                         child: Text(
                                           "${widget.timetabledata[index].timeFrom}",
                                           style: TextStyle(
