@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -405,26 +406,28 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                               ),
 
                               ListView(
-                                padding: const EdgeInsets.all(8),
                                 children: <Widget>[
                                   Container(
                                     height: 180.0,
                                     child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
-                                       SizedBox(
-                                         width: 150.0,
-                                         height: 150.0,
-                                         child: CircleAvatar(
-                                           radius: 30.0,
-                                           backgroundImage: NetworkImage(profileProvider.getImageUrl(widget.studentData.fatherpic))==null?
-                                                            AssetImage(profileProvider.defaultProfilePic):NetworkImage(profileProvider.getImageUrl(widget.studentData.fatherpic)),
-                                           // child: FadeInImage(
-                                           //   placeholder: AssetImage(profileProvider.defaultProfilePic),
-                                           //   image: NetworkImage(profileProvider.getImageUrl(widget.studentData.fatherpic).toString()),
-                                           // ),
-                                         ),
-                                       ),
+                                        ClipOval(
+                                          child: CachedNetworkImage(
+                                            imageUrl:'${profileProvider.getImageUrl(widget.studentData.fatherpic)}',
+                                            imageBuilder: (context, imageProvider) => Container(
+                                              width: 130.0,
+                                              height: 130.0,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                image: DecorationImage(
+                                                    image: imageProvider, fit: BoxFit.cover),
+                                              ),
+                                            ),
+                                            placeholder: (context, url) => CircularProgressIndicator(),
+                                            errorWidget: (context, url, error) => Icon(Icons.error),
+                                          ),
+                                        ),
                                         SizedBox(width: 50.0),
                                         Column(
                                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -471,19 +474,22 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                   Container(
                                     height: 180.0,
                                     child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
-                                        SizedBox(
-                                          width: 150.0,
-                                          height: 150.0,
-                                          child: CircleAvatar(
-                                            radius: 30.0,
-                                            backgroundImage:  NetworkImage(profileProvider.getImageUrl(widget.studentData.motherpic))==null?
-                                                              AssetImage(profileProvider.defaultProfilePic):NetworkImage(profileProvider.getImageUrl(widget.studentData.motherpic)),
-                                            // child: FadeInImage(
-                                            //   placeholder: AssetImage(profileProvider.defaultProfilePic),
-                                            //   image: NetworkImage(profileProvider.getImageUrl(widget.studentData.motherpic).toString()),
-                                            // ),
+                                        ClipOval(
+                                          child: CachedNetworkImage(
+                                            imageUrl:'${profileProvider.getImageUrl(widget.studentData.motherpic)}',
+                                            imageBuilder: (context, imageProvider) => Container(
+                                              width: 130.0,
+                                              height: 130.0,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                image: DecorationImage(
+                                                    image: imageProvider, fit: BoxFit.cover),
+                                              ),
+                                            ),
+                                            placeholder: (context, url) => CircularProgressIndicator(),
+                                            errorWidget: (context, url, error) => Icon(Icons.error),
                                           ),
                                         ),
                                         SizedBox(width: 50.0),
@@ -532,19 +538,26 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                   Container(
                                     height: 180.0,
                                     child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         SizedBox(
-                                          width: 150.0,
+                                          width: 130.0,
                                           height: 150.0,
-                                          child: CircleAvatar(
-                                            radius: 30.0,
-                                            backgroundImage: NetworkImage(profileProvider.getImageUrl(widget.studentData.guardianpic))==null?
-                                                              AssetImage(profileProvider.defaultProfilePic):NetworkImage(profileProvider.getImageUrl(widget.studentData.guardianpic)),
-                                            // child: FadeInImage(
-                                            //   placeholder: AssetImage(profileProvider.defaultProfilePic),
-                                            //   image: NetworkImage(profileProvider.getImageUrl(widget.studentData.guardianpic).toString()),
-                                            // ),
+                                          child: ClipOval(
+                                            child: CachedNetworkImage(
+                                              imageUrl:'${profileProvider.getImageUrl(widget.studentData.guardianpic)}',
+                                              imageBuilder: (context, imageProvider) => Container(
+                                                width: 130.0,
+                                                height: 130.0,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  image: DecorationImage(
+                                                      image: imageProvider, fit: BoxFit.cover),
+                                                ),
+                                              ),
+                                              placeholder: (context, url) => CircularProgressIndicator(),
+                                              errorWidget: (context, url, error) => Icon(Icons.error),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(width: 50.0),

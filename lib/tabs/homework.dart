@@ -20,7 +20,6 @@ class _HomeworkTabState extends State<HomeworkTab> {
           child: ListView.builder(
               itemCount: widget.hwdata.length-1??0,
               itemBuilder: (context, index) {
-                // final homeworkData = homework[index];
                 return HomeworkCard(hwdata: widget.hwdata[index]);
               }
           ),

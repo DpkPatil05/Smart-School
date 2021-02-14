@@ -6,6 +6,12 @@ import 'package:smart_school/hive_operations.dart';
 import 'package:smart_school/modal/homework.dart';
 
 class HomeworkProvider with ChangeNotifier {
+  String getDescription(String description) {
+    String description1 = description.replaceAll('<p>', '');
+    description1 = description1.replaceAll('<br>', '');
+    return description1.replaceAll('</p>', '');
+  }
+
   // ignore: missing_return
   Future<List<HomeworkData>> fetchHomework() async {
     String url = 'http://www.paperfree-erp.in/mobileapp/homework/homework.php?studentid=${HiveOperation().studentID}';

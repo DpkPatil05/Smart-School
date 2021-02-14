@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_school/modal/homework.dart';
+import 'package:smart_school/providers/homework_provider.dart';
 
 class HomeworkCard extends StatefulWidget {
   final HomeworkData hwdata;
@@ -41,7 +42,7 @@ class _HomeworkCardState extends State<HomeworkCard> {
                               alignment: Alignment.center,
                               height: 300.0,
                               child: Text(
-                                '${widget.hwdata.description}',
+                                '${HomeworkProvider().getDescription(widget.hwdata.description)}',
                                 textAlign: TextAlign.center
                               ),
                             )
@@ -56,16 +57,11 @@ class _HomeworkCardState extends State<HomeworkCard> {
                   children: [
                     Text(
                       "${widget.hwdata.completion}",
-                      style: "Complete" == widget.hwdata.completion ?
-                      TextStyle(
-                        color: Colors.green,
+                      style: TextStyle(
+                        color: "Complete" == widget.hwdata.completion ?
+                                Colors.green : Colors.deepOrange,
                         fontWeight: FontWeight.bold,
                         fontSize: 20.0
-                      ) :
-                      TextStyle(
-                          color: Colors.deepOrange,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0
                       )
                     )
                   ],

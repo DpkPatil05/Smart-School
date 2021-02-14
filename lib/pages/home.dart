@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -98,51 +99,56 @@ class _HomeState extends State<Home> {
                     children: [
                       DrawerHeader(
                         decoration: BoxDecoration(color: Colors.grey),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: 120,
-                              height: 120,
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundImage:null == NetworkImage(hamData.loadProfilePic(widget.imgurl))  ?
-                                                        AssetImage(hamData.defaultProfilePic)
-                                                        :NetworkImage(hamData.loadProfilePic(widget.imgurl)),
-                                // child: FadeInImage(
-                                //   placeholder: AssetImage(hamData.defaultProfilePic),
-                                //   image: NetworkImage(hamData.loadProfilePic(widget.imgurl).toString()),
-                                // ),
+                        child: SizedBox(
+                          width: 300.0,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              ClipOval(
+                                child: CachedNetworkImage(
+                                  imageUrl:'${hamData.loadProfilePic(widget.imgurl)}',
+                                  imageBuilder: (context, imageProvider) => Container(
+                                    width: 120.0,
+                                    height: 120.0,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                          image: imageProvider, fit: BoxFit.cover),
+                                    ),
+                                  ),
+                                  placeholder: (context, url) => CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) => Icon(Icons.error),
+                                ),
                               ),
-                            ),
-                            Column(
-                              children: [
-                                SizedBox(height: 40.0),
-                                SizedBox(
-                                  width: 110.0,
-                                  child: Center(
-                                    child: Text(
-                                      widget.firstlast,
-                                      style: TextStyle(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.bold
+                              Column(
+                                children: [
+                                  SizedBox(height: 40.0),
+                                  SizedBox(
+                                    width: 110.0,
+                                    child: Center(
+                                      child: Text(
+                                        widget.firstlast,
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          fontWeight: FontWeight.bold
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(height: 13.0),
-                                SizedBox(
-                                  width: 110.0,
-                                  child: Center(
-                                    child: Text(
-                                      widget.standard,
-                                      style: TextStyle(fontSize: 13.0),
+                                  SizedBox(height: 13.0),
+                                  SizedBox(
+                                    width: 110.0,
+                                    child: Center(
+                                      child: Text(
+                                        widget.standard,
+                                        style: TextStyle(fontSize: 13.0),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       for(final hamItem in hamData.hamburgerItems)
@@ -154,8 +160,8 @@ class _HomeState extends State<Home> {
                               Expanded(child: Text('${hamItem[0]}')),
                             ],
                           ),
-                          onTap: () =>
-                              Navigator.push(
+                          onTap: () => "Logout" == hamItem[0] ? hamData.logoutFunction(context)
+                              : Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) =>
                                     Scaffold(
