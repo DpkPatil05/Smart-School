@@ -14,13 +14,22 @@ import 'package:smart_school/hive_operations.dart';
 class ApplyLeaveProvider with ChangeNotifier {
   String url = '';
 
+  toast(String msg) {
+    Fluttertoast.showToast(
+        msg: "$msg",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.blueGrey,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+  }
+
   Widget saveLeave(DateTime fromdate, DateTime todate, String reason) {
     return FetchAppliedLeaveResponse(fromdate: fromdate, todate: todate, reason: reason);
   }
 
-  Widget delete(int id) {
-    return FetchDeleteLeaveResponse(leaveid: id);
-  }
+  Widget delete(int id) => FetchDeleteLeaveResponse(leaveid: id);
 
   // ignore: missing_return
   Future<LeaveUploadMessage> uploadLeaveData(DateTime fromdate, DateTime todate, String reason) async {
@@ -40,34 +49,13 @@ class ApplyLeaveProvider with ChangeNotifier {
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          Fluttertoast.showToast(
-              msg: "Problem uploading data",
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.BOTTOM,
-              backgroundColor: Colors.blueGrey,
-              textColor: Colors.white,
-              fontSize: 16.0
-          );
+          toast("Problem uploading data");
         }
       } catch(e) {
-        Fluttertoast.showToast(
-            msg: "Problem uploading data",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.blueGrey,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
+        toast("Problem uploading data");
       }
     } else {
-      Fluttertoast.showToast(
-          msg: "No Data connection",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.blueGrey,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
+      toast("No Data connection");
     }
   }
 
@@ -86,34 +74,13 @@ class ApplyLeaveProvider with ChangeNotifier {
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          Fluttertoast.showToast(
-              msg: "Problem deleting data",
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.BOTTOM,
-              backgroundColor: Colors.blueGrey,
-              textColor: Colors.white,
-              fontSize: 16.0
-          );
+          toast("Problem deleting data");
         }
       } catch(e) {
-        Fluttertoast.showToast(
-            msg: "Problem uploading data",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.blueGrey,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
+        toast("Problem uploading data");
       }
     } else {
-      Fluttertoast.showToast(
-          msg: "No Data connection",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.blueGrey,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
+      toast("No Data connection");
     }
   }
 
@@ -136,24 +103,10 @@ class ApplyLeaveProvider with ChangeNotifier {
           return List<LeaveData>();
         }
       } catch(e) {
-        Fluttertoast.showToast(
-            msg: "Problem uploading data",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.blueGrey,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
+        toast("Problem uploading data");
       }
     } else {
-      Fluttertoast.showToast(
-          msg: "No Data connection",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.blueGrey,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
+      toast("No Data connection");
     }
   }
 
