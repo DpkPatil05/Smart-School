@@ -6,6 +6,7 @@ import 'package:smart_school/future/fetch_homework.dart';
 import 'package:smart_school/future/fetch_hostel.dart';
 import 'package:smart_school/future/fetch_leave.dart';
 import 'package:smart_school/future/fetch_library.dart';
+import 'package:smart_school/future/fetch_my_documents.dart';
 import 'package:smart_school/future/fetch_notice.dart';
 import 'package:smart_school/future/fetch_online_exam.dart';
 import 'package:smart_school/future/fetch_profile.dart';
@@ -50,7 +51,7 @@ class HomeProvider with ChangeNotifier {
 
   Widget openPage(int index) {
     if(index == 0) return FetchProfile();
-    if(index == 1) return MyDocuments();
+    if(index == 1) return FetchMyDocuments();
     if(index == 2) return FetchFees();
     if(index == 3) return FetchTimetable();
     if(index == 4) return FetchLessonPlan();

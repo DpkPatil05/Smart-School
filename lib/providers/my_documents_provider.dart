@@ -1,4 +1,6 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:dio/dio.dart';
+import 'package:ext_storage/ext_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smart_school/hive_operations.dart';
@@ -6,7 +8,10 @@ import 'package:smart_school/modal/my_documents.dart';
 import 'package:http/http.dart' as http;
 
 class MyDocumentsProvider with ChangeNotifier {
-  String downloadURL = 'http://www.paperfree-erp.in/college/demo-high-school/uploads/'
+  bool downloading = false;
+  String progress = "";
+
+  String generalDownloadURL = 'http://www.paperfree-erp.in/college/demo-high-school/uploads/'
       'student_documents/${HiveOperation().studentID}/';
 
   toast(String msg) {
@@ -20,10 +25,33 @@ class MyDocumentsProvider with ChangeNotifier {
     );
   }
 
+  Future<void> startDownload(String doc) async {
+    String downloadURL = generalDownloadURL + doc;
+    print('Download url: ' + downloadURL);
+    Dio dio = Dio();
+    try {
+      // var dir = await getApplicationDocumentsDirectory();
+      String path = await ExtStorage.getExternalStoragePublicDirectory(
+          ExtStorage.DIRECTORY_DOWNLOADS);
+      await dio.download(downloadURL, "$path", onReceiveProgress: (rec, total){
+        downloading = true;
+        progress = ((rec/total)*100).toStringAsFixed(0) + "%";
+        notifyListeners();
+      });
+    } catch(e) {
+      downloading = false;
+      notifyListeners();
+      toast("Download failed");
+    }
+    downloading = false;
+    progress = "Complete";
+    notifyListeners();
+  }
+
   // ignore: missing_return
   Future<List<MyDocumentsData>> fetchDocuments() async {
     String url = 'http://www.paperfree-erp.in/mobileapp/mydocuments/mydocuments.php?studentid=${HiveOperation().studentID}';
-    print('Fees data url: ' + url);
+    print('My Documents url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {
       try {
