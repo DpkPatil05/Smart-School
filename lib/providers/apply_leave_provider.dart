@@ -35,7 +35,7 @@ class ApplyLeaveProvider with ChangeNotifier {
   Future<LeaveUploadMessage> uploadLeaveData(DateTime fromdate, DateTime todate, String reason) async {
     var fromDateToSend = "${fromdate.year}-${fromdate.month}-${fromdate.day}";
     var toDateToSend = "${todate.year}-${todate.month}-${todate.day}";
-    url = 'http://www.paperfree-erp.in/mobileapp/applyleave/applyleave.php?studentid='
+    url = 'http://www.paperfree-erp.in/mobileapp/applyleave/applyleave.php?sid='
         '${HiveOperation().studentID}&fdate=$fromDateToSend&tdate=$toDateToSend&reason=${reason.replaceAll(" ", "%20")}';
     print('Upload Leave url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;

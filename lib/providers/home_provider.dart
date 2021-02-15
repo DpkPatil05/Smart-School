@@ -18,6 +18,7 @@ import 'package:smart_school/hive_operations.dart';
 import 'package:smart_school/pages/login.dart';
 import 'package:smart_school/tabs/hamItems/about_us.dart';
 import 'package:smart_school/tabs/hamItems/download_center.dart';
+import 'package:smart_school/tabs/hamItems/my_documents.dart';
 
 
 class HomeProvider with ChangeNotifier {
@@ -29,12 +30,12 @@ class HomeProvider with ChangeNotifier {
 
 
   final List hamburgerItems = [
-    ['Profile', '0xe900', '0'], ['Fees', '0xe87d', '1'], ['Class Timetable', '0xe623', '2'],
-    ['Lesson Plan', '0xe5f6', '3'], ['Syllabus Status', '0xe80f', '4'], ['Homework','0xe868', '5'],
-    ['Online Exam', '0xe8a6', '6'], ['Apply Leave', '0xe0b7', '7'], ['Download Center', '0xf189', '8'],
-    ['Attendance', '0xe8f9', '9'], ['Examination', '0xeb8f', '10'], ['Notice Board', '0xe658', '11'],
-    ['Teachers Reviews', '0xe355', '12'], ['Library', '0xe927', '13'], ['Transport Route', '0xe990', '14'],
-    ['Hostels', '0xe98f', '15'],  ['About Us', '0xe7d9', '16'], ['Logout', '0xe848', '17']
+    ['Profile', '0xe900', '0'], ['My Documents', '0xe75f', '1'],['Fees', '0xe87d', '2'], ['Class Timetable', '0xe623', '3'],
+    ['Lesson Plan', '0xe5f6', '4'], ['Syllabus Status', '0xe80f', '5'], ['Homework','0xe868', '6'],
+    ['Online Exam', '0xe8a6', '7'], ['Apply Leave', '0xe0b7', '8'], ['Download Center', '0xf189', '9'],
+    ['Attendance', '0xe8f9', '10'], ['Examination', '0xeb8f', '11'], ['Notice Board', '0xe658', '12'],
+    ['Teachers Reviews', '0xe355', '13'], ['Library', '0xe927', '14'], ['Transport Route', '0xe990', '15'],
+    ['Hostels', '0xe98f', '16'],  ['About Us', '0xe7d9', '17'], ['Logout', '0xe848', '18']
   ];
 
   logoutFunction(BuildContext context) {
@@ -49,22 +50,23 @@ class HomeProvider with ChangeNotifier {
 
   Widget openPage(int index) {
     if(index == 0) return FetchProfile();
-    if(index == 1) return FetchFees();
-    if(index == 2) return FetchTimetable();
-    if(index == 3) return FetchLessonPlan();
-    if(index == 4) return FetchSyllabus();
-    if(index == 5) return FetchHomework();
-    if(index == 6) return FetchOnlineExam();
-    if(index == 7) return FetchLeave();
-    if(index == 8) return DownloadCenter();
-    if(index == 9) return FetchAttendance();
-    if(index == 10) return FetchExam();
-    if(index == 11) return FetchNotice();
-    if(index == 12) return FetchTeachersReview();
-    if(index == 13) return FetchLibrary();
-    if(index == 14) return FetchTransportRoutes();
-    if(index == 15) return FetchHostel();
-    if(index == 16) return AboutUs();
+    if(index == 1) return MyDocuments();
+    if(index == 2) return FetchFees();
+    if(index == 3) return FetchTimetable();
+    if(index == 4) return FetchLessonPlan();
+    if(index == 5) return FetchSyllabus();
+    if(index == 6) return FetchHomework();
+    if(index == 7) return FetchOnlineExam();
+    if(index == 8) return FetchLeave();
+    if(index == 9) return DownloadCenter();
+    if(index == 10) return FetchAttendance();
+    if(index == 11) return FetchExam();
+    if(index == 12) return FetchNotice();
+    if(index == 13) return FetchTeachersReview();
+    if(index == 14) return FetchLibrary();
+    if(index == 15) return FetchTransportRoutes();
+    if(index == 16) return FetchHostel();
+    if(index == 17) return AboutUs();
     return null;
   }
 

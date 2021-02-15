@@ -13,12 +13,11 @@ class Calender extends StatefulWidget {
 class _CalenderState extends State<Calender> with TickerProviderStateMixin {
   CalendarController _controller = CalendarController();
 
-
   @override
   Widget build(BuildContext context){
     return Scaffold(
       body: TableCalendar(
-        rowHeight: 50.0,
+        rowHeight: 49.0,
         calendarController: _controller,
       ),
     );
