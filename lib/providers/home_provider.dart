@@ -40,7 +40,10 @@ class HomeProvider with ChangeNotifier {
 
   logoutFunction(BuildContext context) {
     HiveOperation().studentBox.delete('sid');
-    Navigator.push(
+    Navigator.of(context).pop(false);
+    Navigator.of(context).pop(false);
+    Navigator.of(context).pop(false);
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => Login())
     );
