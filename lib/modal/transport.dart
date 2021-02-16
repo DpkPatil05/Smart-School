@@ -6,32 +6,32 @@ String transportDataToJson(List<TransportData> data) => json.encode(List<dynamic
 
 class TransportData {
   TransportData({
-    this.routeTitle,
     this.vehicleNo,
-    this.vehicleAssigned,
     this.id,
+    this.routeTitle,
+    this.vehicleAssigned,
     this.success,
   });
 
-  String routeTitle;
   String vehicleNo;
-  String vehicleAssigned;
   String id;
+  String routeTitle;
+  String vehicleAssigned;
   String success;
 
   factory TransportData.fromJson(Map<String, dynamic> json) => TransportData(
-    routeTitle: json["route_title"] == null ? null : json["route_title"],
     vehicleNo: json["vehicle_no"] == null ? null : json["vehicle_no"],
-    vehicleAssigned: json["vehicleAssigned"] == null ? null : json["vehicleAssigned"],
     id: json["id"] == null ? null : json["id"],
+    routeTitle: json["route_title"] == null ? null : json["route_title"],
+    vehicleAssigned: json["vehicleAssigned"] == null ? null : json["vehicleAssigned"],
     success: json["success"] == null ? null : json["success"],
   );
 
   Map<String, dynamic> toJson() => {
-    "route_title": routeTitle == null ? null : routeTitle,
     "vehicle_no": vehicleNo == null ? null : vehicleNo,
-    "vehicleAssigned": vehicleAssigned == null ? null : vehicleAssigned,
     "id": id == null ? null : id,
+    "route_title": routeTitle == null ? null : routeTitle,
+    "vehicleAssigned": vehicleAssigned == null ? null : vehicleAssigned,
     "success": success == null ? null : success,
   };
 }

@@ -12,6 +12,17 @@ import 'package:smart_school/modal/transport_details.dart';
 class TransportProvider with ChangeNotifier {
   String url = '';
 
+  toast(msg) {
+    Fluttertoast.showToast(
+        msg: "$msg",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.blueGrey,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+  }
+
   int getVehicleId(List<TransportData> tdata) {
     int vehicleID;
     if (tdata != null) {
@@ -20,6 +31,7 @@ class TransportProvider with ChangeNotifier {
           vehicleID = int.parse(tdata[i].id);
       }
     }
+    HiveOperation().studentBox.put('vid', vehicleID);
     return vehicleID;
   }
 
@@ -42,24 +54,10 @@ class TransportProvider with ChangeNotifier {
           return List<TransportData>();
         }
       } catch (e) {
-        Fluttertoast.showToast(
-            msg: "Problem fetching data",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.blueGrey,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
+        toast("Problem fetching data");
       }
     } else {
-      Fluttertoast.showToast(
-          msg: "No Data connection",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.blueGrey,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
+      toast("No Data connection");
     }
   }
 
@@ -83,16 +81,11 @@ class TransportProvider with ChangeNotifier {
         }
       } catch (e) {
         print("Problem fetching transport data: ${e.toString()}");
+        toast("Problem fetching transport data");
       }
     } else {
-      Fluttertoast.showToast(
-          msg: "No Data connection",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.blueGrey,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
+      toast("No Data connection");
+
     }
   }
 }

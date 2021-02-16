@@ -52,22 +52,22 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                              SizedBox(
                                width: 120.0,
                                height: 150.0,
-                               child: CircleAvatar(
-                                 radius: 30.0,
-                                 backgroundColor: Colors.grey,
-                                 backgroundImage: NetworkImage(profileProvider.getImageUrl(widget.studentData.imgurl.replaceAll('\\', '')))==null?
-                                 AssetImage(profileProvider.defaultProfilePic):NetworkImage(profileProvider.getImageUrl(widget.studentData.imgurl.replaceAll('\\', ''))),
-                                 // child: FadeInImage(
-                                 //     placeholder: AssetImage(profileProvider.defaultProfilePic),
-                                 //     image: NetworkImage(profileProvider.getImageUrl(
-                                 //         widget.studentData.imgurl.replaceAll('\\', '')).toString()
-                                 //     )
-                                 // ),
-                                 // ClipOval(
-                                 //   // clipper: MyClipper(),
-                                 //   child:
-                                 // ),
-                               )
+                               child: ClipOval(
+                                 child: CachedNetworkImage(
+                                   imageUrl:'${profileProvider.getImageUrl(widget.studentData.imgurl.replaceAll('\\', ''))}',
+                                   imageBuilder: (context, imageProvider) => Container(
+                                     width: 110.0,
+                                     height: 110.0,
+                                     decoration: BoxDecoration(
+                                       shape: BoxShape.circle,
+                                       image: DecorationImage(
+                                           image: imageProvider, fit: BoxFit.cover),
+                                     ),
+                                   ),
+                                   placeholder: (context, url) => CircularProgressIndicator(),
+                                   errorWidget: (context, url, error) => Image.asset('${profileProvider.defaultProfilePic}'),
+                                 ),
+                               ),
                              ),
                               SizedBox(width: 20.0),
                               Column(
