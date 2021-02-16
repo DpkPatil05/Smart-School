@@ -16,7 +16,6 @@ import 'package:smart_school/future/fetch_timetable.dart';
 import 'package:smart_school/future/fetch_transport_routes.dart';
 import 'package:smart_school/future/fetch_lesson_plan.dart';
 import 'package:smart_school/hive_operations.dart';
-import 'package:smart_school/pages/login.dart';
 import 'package:smart_school/tabs/hamItems/about_us.dart';
 import 'package:smart_school/tabs/hamItems/download_center.dart';
 
