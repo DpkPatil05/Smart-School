@@ -42,11 +42,6 @@ class HomeProvider with ChangeNotifier {
     HiveOperation().studentBox.delete('sid');
     Navigator.of(context).pop(false);
     Navigator.of(context).pop(false);
-    Navigator.of(context).pop(false);
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => Login())
-    );
   }
 
   String loadProfilePic(String path) => fetchProfilePic+path;
