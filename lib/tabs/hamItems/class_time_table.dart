@@ -15,7 +15,18 @@ class _ClassTimeTableState extends State<ClassTimeTable> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: ListView.builder(
+      child: 1 == widget.timetabledata.length ?
+      Card(
+        child: Center(
+            child: Text(
+              "No Data available",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15.0
+              ),
+            )
+        ),
+      ) :ListView.builder(
           itemCount: widget.timetabledata.length??0,
           itemBuilder: (context, index) {
             return TimetableCard(timetabledata: widget.timetabledata[index]);

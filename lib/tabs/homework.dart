@@ -17,7 +17,18 @@ class _HomeworkTabState extends State<HomeworkTab> {
         backgroundColor: Colors.transparent,
         body: Container(
           color: Colors.white,
-          child: ListView.builder(
+          child: 1 == widget.hwdata.length ?
+          Card(
+            child: Center(
+                child: Text(
+                  "No Homeworks assigned",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0
+                  ),
+                )
+            ),
+          ) :ListView.builder(
               itemCount: widget.hwdata.length-1??0,
               itemBuilder: (context, index) {
                 return HomeworkCard(hwdata: widget.hwdata[index]);

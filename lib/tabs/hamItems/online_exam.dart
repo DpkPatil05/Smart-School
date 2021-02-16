@@ -15,7 +15,18 @@ class _OnlineExamState extends State<OnlineExam> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: ListView.builder(
+      child: 1 == widget.onlineexamdata.length ?
+      Card(
+        child: Center(
+            child: Text(
+              "No Online Exam Data available",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15.0
+              ),
+            )
+        ),
+      ):ListView.builder(
           itemCount: widget.onlineexamdata.length-1??0,
           itemBuilder: (context, index) {
             return OnlineExamCard(examdata: widget.onlineexamdata[index]);

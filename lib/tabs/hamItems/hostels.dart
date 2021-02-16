@@ -17,7 +17,18 @@ class _HostelState extends State<Hostel> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: ListView.builder(
+      child: 1 == widget.hosteldata.length ?
+      Card(
+        child: Center(
+            child: Text(
+              "No Hostels available",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15.0
+              ),
+            )
+        ),
+      ):ListView.builder(
           itemCount: widget.hosteldata.length-1??0,
           itemBuilder: (context, index) {
             return FutureBuilder<List<HostelDetailsData>>(

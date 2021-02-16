@@ -15,7 +15,18 @@ class _TransportRouteState extends State<TransportRoute> {
   Widget build(BuildContext context) {
     return Container(
         color: Colors.white,
-        child: ListView.builder(
+        child: 1 == widget.transportdata.length ?
+        Card(
+          child: Center(
+              child: Text(
+                "No Transport Data available",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15.0
+                ),
+              )
+          ),
+        ):ListView.builder(
             itemCount: widget.transportdata.length-1??0,
             itemBuilder: (context, index) {
               return TransportRoutesCard(transportdata: widget.transportdata[index]);

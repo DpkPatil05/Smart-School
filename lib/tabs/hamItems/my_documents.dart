@@ -41,34 +41,46 @@ class _MyDocumentState extends State<MyDocuments> {
               );
             }
           ),
-        ) : ListView.builder(
-        itemCount: widget.documentsdata.length-1??0,
-        itemBuilder: (context, index) {
-          return Card(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0),
+        ) :
+          1 == widget.documentsdata.length ?
+            Card(
+              child: Center(
                   child: Text(
-                    "${widget.documentsdata[index].title}",
+                    "No Documents available",
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.0
                     ),
-                  ),
-                ),
-                IconButton(
-                    icon: Icon(Icons.download_rounded),
-                    onPressed: () {
-                      MyDocumentsProvider().checkStoragePermission().then((value) =>
-                          MyDocumentsProvider().startDownload(widget.documentsdata[index].doc)
-                      );
-                    }
-                ),
-              ],
-            ),
-          );
-        }
-      );
+                  )
+              ),
+            ):ListView.builder(
+                itemCount: widget.documentsdata.length-1??0,
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child: Text(
+                            "${widget.documentsdata[index].title}",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                            icon: Icon(Icons.download_rounded),
+                            onPressed: () {
+                              MyDocumentsProvider().checkStoragePermission().then((value) =>
+                                  MyDocumentsProvider().startDownload(widget.documentsdata[index].doc)
+                              );
+                            }
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              );
   }
 }

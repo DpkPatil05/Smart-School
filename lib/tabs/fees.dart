@@ -14,7 +14,18 @@ class _FeesTabState extends State<FeesTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       body: ListView.builder(
+       body: 1 == widget.feedata.length ?
+       Card(
+         child: Center(
+             child: Text(
+               "No data available",
+               style: TextStyle(
+                   fontWeight: FontWeight.bold,
+                   fontSize: 15.0
+               ),
+             )
+         ),
+       ) :ListView.builder(
          itemCount: widget.feedata.length-1??0,
          itemBuilder: (BuildContext context, int index) {
            return FeesCard(feedata: widget.feedata[index]);

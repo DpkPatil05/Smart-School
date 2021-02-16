@@ -24,7 +24,7 @@ class _NoticeTabState extends State<NoticeTab> {
                   "No notice available",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 15.0
+                    fontSize: 20.0
                   ),
                 )
             ),

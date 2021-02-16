@@ -21,7 +21,18 @@ class _ExaminationTabState extends State<ExaminationTab> {
           backgroundColor: Colors.transparent,
           body: Container(
             color: Colors.white,
-            child: ListView.builder(
+            child: 1 == widget.examdata.length ?
+            Card(
+              child: Center(
+                  child: Text(
+                    "No Exams available",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.0
+                    ),
+                  )
+              ),
+            ) :ListView.builder(
                 itemCount: widget.examdata.length-1??0,
                 itemBuilder: (context, index) {
                   return StreamProvider<List<ExamSchedule>>.value(

@@ -16,7 +16,18 @@ class _TeachersReviewState extends State<TeachersReview> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: ListView.builder(
+      child: 1 == widget.reviewdata.length ?
+      Card(
+        child: Center(
+            child: Text(
+              "No Reviews available",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15.0
+              ),
+            )
+        ),
+      ):ListView.builder(
           itemCount: widget.reviewdata.length-1??0,
           itemBuilder: (context, index) {
             return TeachersReviewCard(reviewdata: widget.reviewdata[index]);

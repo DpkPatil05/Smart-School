@@ -13,7 +13,18 @@ class SyllabusStatus extends StatefulWidget {
 class _SyllabusStatusState extends State<SyllabusStatus> {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return 1 == widget.syllabus.length ?
+    Card(
+      child: Center(
+          child: Text(
+            "No Syllabus available",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15.0
+            ),
+          )
+      ),
+    ):ListView.builder(
       itemCount: widget.syllabus.length-1??0,
       itemBuilder: (BuildContext context, int index) {
         return SyllabusCard(syllabus: widget.syllabus[index]);

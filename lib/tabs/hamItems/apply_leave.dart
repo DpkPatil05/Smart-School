@@ -148,7 +148,18 @@ class _ApplyLeaveState extends State<ApplyLeave> {
         child: Icon(Icons.add),
         backgroundColor: Colors.red,
       ),
-      body: ListView.builder(
+      body: 1 == widget.leavedata.length ?
+      Card(
+        child: Center(
+            child: Text(
+              "No leaves Applied, Press the '+' button to apply leave",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15.0
+              ),
+            )
+        ),
+      ) :ListView.builder(
           itemCount: widget.leavedata.length-1??0,
           itemBuilder: (context, index) {
             return LeaveDataCard(leavedata: widget.leavedata[index]);
