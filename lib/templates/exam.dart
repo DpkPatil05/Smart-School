@@ -66,7 +66,7 @@ class _ExamCardState extends State<ExamCard> {
                                   Divider(),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 16.0),
-                                    child: Text('Start Time: ${widget.examresultdata[index].note}'),
+                                    child: Text('Grade: ${widget.examresultdata[index].note}'),
                                   ),
                                 ],
                               );
