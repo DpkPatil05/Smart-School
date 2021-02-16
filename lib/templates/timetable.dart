@@ -48,8 +48,8 @@ class _TimetableCardState extends State<TimetableCard> {
                                     ),
                                   )
                               ),
-                            ) :
-                            Column(
+                            )
+                            : Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 SizedBox(height: 20.0),
@@ -69,34 +69,24 @@ class _TimetableCardState extends State<TimetableCard> {
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 66.0,
+                                        width: 80.0,
                                         child: Text(
-                                          "${widget.timetabledata[index].timeFrom}",
+                                          "${widget.timetabledata[index].timeFrom} "
+                                              "- ${widget.timetabledata[index].timeTo}",
                                           style: TextStyle(
                                               fontSize: 14.0,
                                               fontWeight: FontWeight.bold
                                           ),
                                         ),
                                       ),
-                                      Text(
-                                        "to",
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.bold
-                                        ),
-                                      ),
-                                      Text(
-                                        "${widget.timetabledata[index].timeTo}",
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.bold
-                                        ),
-                                      ),
-                                      Text(
-                                        "Room(${widget.timetabledata[index].roomno})",
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.bold
+                                      SizedBox(
+                                        width: 90.0,
+                                        child: Text(
+                                          "Room(${widget.timetabledata[index].roomno})",
+                                          style: TextStyle(
+                                              fontSize: 14.0,
+                                              fontWeight: FontWeight.bold
+                                          ),
                                         ),
                                       ),
                                     ],
