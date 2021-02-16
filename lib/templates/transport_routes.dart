@@ -57,9 +57,9 @@ class _TransportRoutesCardState extends State<TransportRoutesCard> {
                                     children: [
                                       Text(
                                         '${widget.transportdata.routeTitle}',
-                                        style: TextStyle(fontSize: 24.0),
+                                        style: TextStyle(fontSize: 23.0),
                                       ),
-                                      SizedBox(height: 10.0),
+                                      SizedBox(height: 20.0),
                                       Card(
                                         child: Table(
                                           children: [
@@ -67,13 +67,13 @@ class _TransportRoutesCardState extends State<TransportRoutesCard> {
                                               Text(
                                                 'Vehicle No:',
                                                 style: TextStyle(
-                                                    fontSize: 20.0,
+                                                    fontSize: 17.0,
                                                     fontWeight: FontWeight.bold
                                                 ),
                                               ),
                                               Text(
                                                 '${transportDetails.data.vehicleData.vehicleNo}',
-                                                style: TextStyle(fontSize: 20.0),
+                                                style: TextStyle(fontSize: 17.0),
                                               ),
                                             ])
                                           ],
@@ -86,13 +86,13 @@ class _TransportRoutesCardState extends State<TransportRoutesCard> {
                                               Text(
                                                 'Vehicle Model',
                                                 style: TextStyle(
-                                                    fontSize: 20.0,
+                                                    fontSize: 17.0,
                                                     fontWeight: FontWeight.bold
                                                 ),
                                               ),
                                               Text(
                                                 '${transportDetails.data.vehicleData.vehicleModel}',
-                                                style: TextStyle(fontSize: 20.0),
+                                                style: TextStyle(fontSize: 17.0),
                                               ),
                                             ])
                                           ],
@@ -105,13 +105,13 @@ class _TransportRoutesCardState extends State<TransportRoutesCard> {
                                               Text(
                                                 'Made',
                                                 style: TextStyle(
-                                                    fontSize: 20.0,
+                                                    fontSize: 17.0,
                                                     fontWeight: FontWeight.bold
                                                 ),
                                               ),
                                               Text(
                                                 '${transportDetails.data.vehicleData.made}',
-                                                style: TextStyle(fontSize: 20.0),
+                                                style: TextStyle(fontSize: 17.0),
                                               ),
                                             ])
                                           ],
@@ -124,13 +124,13 @@ class _TransportRoutesCardState extends State<TransportRoutesCard> {
                                               Text(
                                                 'Driver Name',
                                                 style: TextStyle(
-                                                    fontSize: 20.0,
+                                                    fontSize: 17.0,
                                                     fontWeight: FontWeight.bold
                                                 ),
                                               ),
                                               Text(
                                                 '${transportDetails.data.vehicleData.driverName}',
-                                                style: TextStyle(fontSize: 20.0),
+                                                style: TextStyle(fontSize: 17.0),
                                               ),
                                             ])
                                           ],
@@ -143,13 +143,13 @@ class _TransportRoutesCardState extends State<TransportRoutesCard> {
                                               Text(
                                                 'Driver License',
                                                 style: TextStyle(
-                                                    fontSize: 20.0,
+                                                    fontSize: 17.0,
                                                     fontWeight: FontWeight.bold
                                                 ),
                                               ),
                                               Text(
                                                 '${transportDetails.data.vehicleData.driverLicence}',
-                                                style: TextStyle(fontSize: 20.0),
+                                                style: TextStyle(fontSize: 17.0),
                                               ),
                                             ])
                                           ],
@@ -162,13 +162,13 @@ class _TransportRoutesCardState extends State<TransportRoutesCard> {
                                               Text(
                                                 'Driver Contact',
                                                 style: TextStyle(
-                                                    fontSize: 20.0,
+                                                    fontSize: 17.0,
                                                     fontWeight: FontWeight.bold
                                                 ),
                                               ),
                                               Text(
                                                 '${transportDetails.data.vehicleData.driverNo}',
-                                                style: TextStyle(fontSize: 5.0),
+                                                style: TextStyle(fontSize: 17.0),
                                               ),
                                             ])
                                           ],
@@ -178,7 +178,7 @@ class _TransportRoutesCardState extends State<TransportRoutesCard> {
                                   )
                               )
                           ),
-                        ) : SizedBox(width: 47.0, height: 47.0,),
+                        ) : SizedBox(width: 47.0, height: 47.0),
                       ),
                     ],
                   ),

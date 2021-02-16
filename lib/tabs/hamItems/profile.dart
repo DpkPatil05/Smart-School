@@ -30,8 +30,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
   Widget build(BuildContext context) {
     var profileProvider = Provider.of<ProfileProvider>(context, listen: false);
     return FutureBuilder<TransportDetailsData>(
-      future: TransportProvider().
-        fetchTransportDetails(TransportProvider().getVehicleData(widget.transportData)),
+      future: TransportProvider()
+          .fetchTransportDetails(TransportProvider().getVehicleData(widget.transportData)),
         builder: (BuildContext context, AsyncSnapshot<TransportDetailsData> transportDetailData) {
         switch (transportDetailData.connectionState) {
           case ConnectionState.waiting: return Center(child: CircularProgressIndicator());
