@@ -54,7 +54,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                height: 150.0,
                                child: ClipOval(
                                  child: CachedNetworkImage(
-                                   imageUrl:'${profileProvider.getImageUrl(widget.studentData.imgurl.replaceAll('\\', ''))}',
+                                   imageUrl:'${profileProvider
+                                       .getImageUrl(widget.studentData.imgurl?.replaceAll('\\', ''))}'?? "",
                                    imageBuilder: (context, imageProvider) => Container(
                                      width: 110.0,
                                      height: 110.0,

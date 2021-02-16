@@ -49,7 +49,7 @@ class _LoginState extends State<Login> {
             userrole : loginData.userrole,
             studentid: loginData.studentid,
             firstlast: loginData.firstlast,
-            imgurl: loginData.imgurl.replaceAll('\\', ''),
+            imgurl: loginData.imgurl?.replaceAll('\\', '')??'',
             classsection: loginData.classsection,
             standard: loginData.loginDataClass
         )),

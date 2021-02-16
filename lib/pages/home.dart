@@ -117,7 +117,7 @@ class _HomeState extends State<Home> {
                                     ),
                                   ),
                                   placeholder: (context, url) => CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) => Icon(Icons.error),
+                                  errorWidget: (context, url, error) => Image.asset('${hamData.defaultProfilePic}'),
                                 ),
                               ),
                               Column(
