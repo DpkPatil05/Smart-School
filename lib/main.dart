@@ -16,6 +16,7 @@ import 'package:smart_school/providers/hostel_provider.dart';
 import 'package:smart_school/providers/lesson_plan_provider.dart';
 import 'package:smart_school/providers/library_provider.dart';
 import 'package:smart_school/providers/login_provider.dart';
+import 'package:smart_school/providers/my_documents_provider.dart';
 import 'package:smart_school/providers/notice_provider.dart';
 import 'package:smart_school/providers/online_exam_provider.dart';
 import 'package:smart_school/providers/syllabus_provider.dart';
@@ -44,6 +45,7 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => WelcomeProvider()),
+        ChangeNotifierProvider(create: (context) => MyDocumentsProvider()),
         ChangeNotifierProvider(create: (context) => LoginProvider()),
         ChangeNotifierProvider(create: (context) => HomeProvider()),
         ChangeNotifierProvider(create: (context) => ProfileProvider()),

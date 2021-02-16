@@ -48,13 +48,12 @@ class _HostelCardState extends State<HostelCard> {
                             child: ListView.builder(
                                 itemCount: widget.hosteldetaildata.length-1??0,
                                 itemBuilder: (context, index) {
-                                  return Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  return ExpansionTile(
+                                    title: Text(
+                                      '${widget.hosteldetaildata[index].roomType}',
+                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                    ),
                                     children: [
-                                      ListTile(
-                                          title: Text('Room Type: ${widget.hosteldetaildata[index].roomType}')
-                                      ),
                                       ListTile(
                                           title: Text('Room No: ${widget.hosteldetaildata[index].roomNo}')
                                       ),
