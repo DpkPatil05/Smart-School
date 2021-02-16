@@ -23,17 +23,25 @@ class AboutUs extends StatelessWidget {
           ),
           SizedBox(height: 50.0),
           Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                  'Developed By',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20.0
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                      'Developed By',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0
+                    ),
+                  ),
+                ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(width: 13.0),
                   ImageIcon(
                       AssetImage(HomeProvider().linkedinlogo)
                   ),
@@ -46,6 +54,7 @@ class AboutUs extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(width: 13.0),
                   ImageIcon(
                       AssetImage(HomeProvider().linkedinlogo)
                   ),
@@ -58,6 +67,7 @@ class AboutUs extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(width: 13.0),
                   ImageIcon(
                       AssetImage(HomeProvider().linkedinlogo)
                   ),
