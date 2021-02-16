@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:ext_storage/ext_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:file_utils/file_utils.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:smart_school/hive_operations.dart';
 import 'package:smart_school/modal/my_documents.dart';
@@ -35,6 +37,7 @@ class MyDocumentsProvider with ChangeNotifier {
       ].request();
       print(statuses[Permission.storage]);
     }
+    if(await Permission.storage.isDenied) toast('Permission denied');
   }
 
   Future<void> startDownload(String doc) async {
@@ -45,9 +48,16 @@ class MyDocumentsProvider with ChangeNotifier {
       // var dir = await getApplicationDocumentsDirectory();
       String path = await ExtStorage.getExternalStoragePublicDirectory(
           ExtStorage.DIRECTORY_DOWNLOADS);
+      FileUtils.mkdir([path]);
       await dio.download(downloadURL, "$path/$doc", onReceiveProgress: (rec, total){
         downloading = true;
         progress = ((rec/total)*100).toStringAsFixed(0) + "%";
+        notifyListeners();
+      }).then((value) {
+        downloading = false;
+        progress = "complete";
+        print("Download Complete");
+        toast("Download Complete");
         notifyListeners();
       });
     } catch(e) {
@@ -56,11 +66,6 @@ class MyDocumentsProvider with ChangeNotifier {
       print("Download error: " + e.toString());
       toast("Download failed");
     }
-    downloading = false;
-    progress = "complete";
-    print("Download Complete");
-    toast("Download Complete");
-    notifyListeners();
   }
 
   // ignore: missing_return
