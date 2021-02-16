@@ -19,7 +19,6 @@ import 'package:smart_school/hive_operations.dart';
 import 'package:smart_school/pages/login.dart';
 import 'package:smart_school/tabs/hamItems/about_us.dart';
 import 'package:smart_school/tabs/hamItems/download_center.dart';
-import 'package:smart_school/tabs/hamItems/my_documents.dart';
 
 
 class HomeProvider with ChangeNotifier {

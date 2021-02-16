@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smart_school/modal/my_documents.dart';
 import 'package:smart_school/providers/my_documents_provider.dart';
 
@@ -11,28 +12,36 @@ class MyDocuments extends StatefulWidget {
 }
 
 class _MyDocumentState extends State<MyDocuments> {
-  void _onDownloading(MyDocumentsProvider prov) {
-    prov.downloading ?
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return Dialog(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CircularProgressIndicator(),
-              Text("Downloaded ${prov.progress}"),
-            ],
-          ),
-        );
-      },
-    ) : Navigator.pop(context);
-  }
+  bool downloadingContent = false;
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return downloadingContent ?
+        ChangeNotifierProvider(
+          create: (context) => MyDocumentsProvider(),
+          child: Consumer<MyDocumentsProvider>(
+            builder: (BuildContext context, data, Widget child) {
+              downloadingContent = data.downloading;
+              return Center(
+                child: Container(
+                  height: 120.0,
+                  width: 200.0,
+                  child: Card(
+                    color: Colors.white70,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        CircularProgressIndicator(),
+                        SizedBox(height: 10.0,),
+                        Text("Downloading ${data.progress}")
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }
+          ),
+        ) : ListView.builder(
         itemCount: widget.documentsdata.length-1??0,
         itemBuilder: (context, index) {
           return Card(
@@ -51,13 +60,15 @@ class _MyDocumentState extends State<MyDocuments> {
                 IconButton(
                     icon: Icon(Icons.download_rounded),
                     onPressed: () {
-                      MyDocumentsProvider().startDownload(widget.documentsdata[index].doc);
+                      MyDocumentsProvider().checkStoragePermission().then((value) =>
+                          MyDocumentsProvider().startDownload(widget.documentsdata[index].doc)
+                      );
                     }
                 ),
               ],
             ),
           );
         }
-    );
+      );
   }
 }
