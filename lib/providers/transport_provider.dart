@@ -23,16 +23,20 @@ class TransportProvider with ChangeNotifier {
     );
   }
 
-  int getVehicleId(List<TransportData> tdata) {
-    int vehicleID;
+  int getVehicleData(List<TransportData> tdata) {
+    int vehicleId;
+    String vehicleNo;
     if (tdata != null) {
       for (int i = 0; i < tdata.length - 1; i++) {
-        if (tdata[i].vehicleAssigned == "assigned")
-          vehicleID = int.parse(tdata[i].id);
+        if (tdata[i].vehicleAssigned == "assigned") {
+          vehicleId = int.parse(tdata[i].id);
+          vehicleNo = tdata[i].vehicleNo;
+        }
       }
     }
-    HiveOperation().studentBox.put('vid', vehicleID);
-    return vehicleID;
+    HiveOperation().studentBox.put('vid', vehicleId);
+    HiveOperation().studentBox.put('vno', vehicleNo);
+    return vehicleId;
   }
 
   // ignore: missing_return
@@ -81,7 +85,7 @@ class TransportProvider with ChangeNotifier {
         }
       } catch (e) {
         print("Problem fetching transport data: ${e.toString()}");
-        toast("Problem fetching transport data");
+        // toast("Problem fetching transport data");
       }
     } else {
       toast("No Data connection");

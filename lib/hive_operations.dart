@@ -4,5 +4,6 @@ class HiveOperation {
   Box studentBox = Hive.box('studentData');
 
   int studentID = Hive.box('studentData').get('sid');
-  int vehicleID = Hive.box('studentData').get('vid');
+  int vehicleId = Hive.box('studentData').get('vid');
+  String vehicleNo = Hive.box('studentData').get('vno');
 }

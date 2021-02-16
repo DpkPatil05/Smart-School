@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_school/modal/transport.dart';
+import 'package:smart_school/providers/transport_provider.dart';
 import 'package:smart_school/templates/transport_routes.dart';
 
 class TransportRoute extends StatefulWidget {
@@ -13,6 +14,7 @@ class TransportRoute extends StatefulWidget {
 class _TransportRouteState extends State<TransportRoute> {
   @override
   Widget build(BuildContext context) {
+    TransportProvider().getVehicleData(widget.transportdata);
     return Container(
         color: Colors.white,
         child: 1 == widget.transportdata.length ?
@@ -26,7 +28,7 @@ class _TransportRouteState extends State<TransportRoute> {
                 ),
               )
           ),
-        ):ListView.builder(
+        ) : ListView.builder(
             itemCount: widget.transportdata.length-1??0,
             itemBuilder: (context, index) {
               return TransportRoutesCard(transportdata: widget.transportdata[index]);
