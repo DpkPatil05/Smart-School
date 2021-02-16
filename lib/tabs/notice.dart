@@ -17,7 +17,19 @@ class _NoticeTabState extends State<NoticeTab> {
         backgroundColor: Colors.transparent,
         body: Container(
           color: Colors.white,
-          child: ListView.builder(
+          child: 1 == widget.noticedata.length ?
+          Card(
+            child: Center(
+                child: Text(
+                  "No notice available",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15.0
+                  ),
+                )
+            ),
+          )
+          : ListView.builder(
               itemCount: widget.noticedata.length-1??0,
               itemBuilder: (context, index) {
                 return NoticeCard(noticedata: widget.noticedata[index]);
