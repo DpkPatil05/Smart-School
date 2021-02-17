@@ -21,14 +21,14 @@ class _HomeworkTabState extends State<HomeworkTab> {
           Card(
             child: Center(
                 child: Text(
-                  "No Homeworks assigned",
+                  "No Homework's assigned",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20.0
                   ),
                 )
             ),
-          ) :ListView.builder(
+          ) : ListView.builder(
               itemCount: widget.hwdata.length-1??0,
               itemBuilder: (context, index) {
                 return HomeworkCard(hwdata: widget.hwdata[index]);

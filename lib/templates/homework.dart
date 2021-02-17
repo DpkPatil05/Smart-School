@@ -33,22 +33,44 @@ class _HomeworkCardState extends State<HomeworkCard> {
                           fontSize: 20.0
                       ),
                     ),
-                    SizedBox(
-                      width: 40.0,
-                      child: FlatButton(
-                        onPressed: () => showModalBottomSheet(
-                            context: context,
-                            builder: (BuildContext context) => Container(
-                              alignment: Alignment.center,
-                              height: 300.0,
-                              child: Text(
-                                '${HomeworkProvider().getDescription(widget.hwdata.description)}',
-                                textAlign: TextAlign.center
-                              ),
-                            )
-                        ),
-                        child: Icon(Icons.preview_outlined),
+                    FlatButton(
+                      onPressed: () => showModalBottomSheet(
+                          context: context,
+                          builder: (BuildContext context) => Container(
+                            alignment: Alignment.center,
+                            height: 300.0,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(height: 10.0),
+                                Text(
+                                  '${HomeworkProvider().getDescription(widget.hwdata.description)}',
+                                  textAlign: TextAlign.center
+                                ),
+                                Container(
+                                  color: Colors.green,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      FlatButton(
+                                          onPressed: () {},
+                                          child: Row(
+                                            children: [
+                                              Text("Attachment",
+                                                  style: TextStyle(color: Colors.white)),
+                                              SizedBox(width: 5.0),
+                                              Icon(Icons.download_rounded),
+                                            ],
+                                          )
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
                       ),
+                      child: Icon(Icons.preview_outlined),
                     ),
                   ],
                 ),

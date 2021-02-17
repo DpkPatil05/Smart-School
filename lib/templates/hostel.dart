@@ -49,11 +49,22 @@ class _HostelCardState extends State<HostelCard> {
                                 itemCount: widget.hosteldetaildata.length-1??0,
                                 itemBuilder: (context, index) {
                                   return ExpansionTile(
-                                    title: Text(
-                                      widget.hosteldetaildata[index].roomAssigned == "assigned" ?
-                                      '${widget.hosteldetaildata[index].roomType} (Assigned)'
-                                      : '${widget.hosteldetaildata[index].roomType}',
-                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                    title: Row(
+                                      children: [
+                                        Text(
+                                          '${widget.hosteldetaildata[index].roomType}',
+                                          style: TextStyle(fontWeight: FontWeight.bold),
+                                        ),
+                                        SizedBox(width: 5.0),
+                                        widget.hosteldetaildata[index].roomAssigned == "assigned" ?
+                                        Text(
+                                          '(Assigned)',
+                                          style: TextStyle(
+                                            color: Colors.green,
+                                            fontWeight: FontWeight.bold
+                                          ),
+                                        ) : SizedBox(width: 10.0)
+                                      ],
                                     ),
                                     children: [
                                       ListTile(
