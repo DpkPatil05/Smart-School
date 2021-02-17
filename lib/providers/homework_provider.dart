@@ -12,8 +12,8 @@ class HomeworkProvider with ChangeNotifier {
   bool downloading = false;
 
   String progress = "";
-  String generalDownloadURL = 'http://www.paperfree-erp.in/college/demo-high-school/uploads/'
-      'school_content/material/';
+  String generalDownloadURL = 'http://www.paperfree-erp.in/college/demo-high-school/'
+      'uploads/homework/';
 
   toast(String msg) {
     return Fluttertoast.showToast(
