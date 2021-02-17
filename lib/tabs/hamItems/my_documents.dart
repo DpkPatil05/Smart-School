@@ -34,7 +34,7 @@ class _MyDocumentState extends State<MyDocuments> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         CircularProgressIndicator(),
-                        SizedBox(height: 10.0,),
+                        SizedBox(height: 10.0),
                         Text("Downloading ${data.progress}")
                       ],
                     ),
