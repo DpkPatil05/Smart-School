@@ -54,7 +54,7 @@ class Payment {
   String paidamt;
   String paymode;
   String discnt;
-  int fine;
+  dynamic fine;
   String paiddt;
   String payid;
   String balanceamt;
