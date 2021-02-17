@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:smart_school/modal/my_documents.dart';
 import 'package:smart_school/providers/my_documents_provider.dart';
 import 'package:smart_school/services/check_permissions.dart';
+import 'package:smart_school/services/download.dart';
 
 class MyDocuments extends StatefulWidget {
   final List<MyDocumentsData> documentsdata;
@@ -19,8 +20,8 @@ class _MyDocumentState extends State<MyDocuments> {
   Widget build(BuildContext context) {
     return downloadingContent ?
         ChangeNotifierProvider(
-          create: (context) => MyDocumentsProvider(),
-          child: Consumer<MyDocumentsProvider>(
+          create: (context) => Download(),
+          child: Consumer<Download>(
             builder: (BuildContext context, data, Widget child) {
               downloadingContent = data.downloading;
               return Center(
@@ -73,7 +74,7 @@ class _MyDocumentState extends State<MyDocuments> {
                             icon: Icon(Icons.download_rounded),
                             onPressed: () {
                               CheckPermissions().checkStoragePermission().then((value) =>
-                                  MyDocumentsProvider().startDownload(widget.documentsdata[index].doc)
+                                  MyDocumentsProvider().generateDownload(widget.documentsdata[index].doc)
                               );
                             }
                         ),

@@ -25,6 +25,7 @@ import 'package:smart_school/providers/transport_provider.dart';
 import 'package:smart_school/providers/welcome_provider.dart';
 import 'package:smart_school/providers/home_provider.dart';
 import 'package:smart_school/providers/profile_provider.dart';
+import 'package:smart_school/services/download.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -63,6 +64,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => LessonPlanProvider()),
         ChangeNotifierProvider(create: (context) => ApplyLeaveProvider()),
         ChangeNotifierProvider(create: (context) => TeachersReviewProvider()),
+        ChangeNotifierProvider(create: (context) => Download()),
       ],
       child: MaterialApp(
           home: FutureBuilder(

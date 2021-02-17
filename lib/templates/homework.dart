@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_school/modal/homework.dart';
 import 'package:smart_school/providers/homework_provider.dart';
-import 'package:smart_school/providers/my_documents_provider.dart';
 import 'package:smart_school/services/check_permissions.dart';
+import 'package:smart_school/services/download.dart';
 
 class HomeworkCard extends StatefulWidget {
   final HomeworkData hwdata;
@@ -20,8 +20,8 @@ class _HomeworkCardState extends State<HomeworkCard> {
   Widget build(BuildContext context) {
     return downloadingContent ?
     ChangeNotifierProvider(
-      create: (context) => MyDocumentsProvider(),
-      child: Consumer<MyDocumentsProvider>(
+      create: (context) => Download(),
+      child: Consumer<Download>(
           builder: (BuildContext context, data, Widget child) {
             downloadingContent = data.downloading;
             return Center(
@@ -34,7 +34,7 @@ class _HomeworkCardState extends State<HomeworkCard> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       CircularProgressIndicator(),
-                      SizedBox(height: 10.0,),
+                      SizedBox(height: 10.0),
                       Text("Downloading ${data.progress}")
                     ],
                   ),
@@ -84,7 +84,7 @@ class _HomeworkCardState extends State<HomeworkCard> {
                                       FlatButton(
                                           onPressed: () {
                                             CheckPermissions().checkStoragePermission().then((value) =>
-                                                HomeworkProvider().startDownload(widget.hwdata.doc)
+                                                HomeworkProvider().generateDownload(widget.hwdata.doc)
                                             );
                                           },
                                           child: Row(
