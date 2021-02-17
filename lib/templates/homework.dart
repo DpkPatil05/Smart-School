@@ -59,7 +59,10 @@ class _HomeworkCardState extends State<HomeworkCard> {
                                               Text("Attachment",
                                                   style: TextStyle(color: Colors.white)),
                                               SizedBox(width: 5.0),
-                                              Icon(Icons.download_rounded),
+                                              Icon(
+                                                Icons.download_rounded,
+                                                color: Colors.white,
+                                              ),
                                             ],
                                           )
                                       ),
