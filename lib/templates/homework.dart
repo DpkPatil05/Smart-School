@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smart_school/modal/homework.dart';
 import 'package:smart_school/providers/homework_provider.dart';
+import 'package:smart_school/providers/my_documents_provider.dart';
 
 class HomeworkCard extends StatefulWidget {
   final HomeworkData hwdata;
@@ -12,9 +14,35 @@ class HomeworkCard extends StatefulWidget {
 }
 
 class _HomeworkCardState extends State<HomeworkCard> {
+  bool downloadingContent = false;
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return downloadingContent ?
+    ChangeNotifierProvider(
+      create: (context) => MyDocumentsProvider(),
+      child: Consumer<MyDocumentsProvider>(
+          builder: (BuildContext context, data, Widget child) {
+            downloadingContent = data.downloading;
+            return Center(
+              child: Container(
+                height: 120.0,
+                width: 200.0,
+                child: Card(
+                  color: Colors.white70,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      CircularProgressIndicator(),
+                      SizedBox(height: 10.0,),
+                      Text("Downloading ${data.progress}")
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }
+      ),
+    ) : Card(
         elevation: 5,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
@@ -53,7 +81,11 @@ class _HomeworkCardState extends State<HomeworkCard> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       FlatButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            MyDocumentsProvider().checkStoragePermission().then((value) =>
+                                                HomeworkProvider().startDownload(widget.hwdata.doc)
+                                            );
+                                          },
                                           child: Row(
                                             children: [
                                               Text("Attachment",
@@ -120,6 +152,15 @@ class _HomeworkCardState extends State<HomeworkCard> {
                         ),
                       ),
                       Text('${widget.hwdata.evaldate}'),
+                    ]),
+                    TableRow(children: [
+                      Text(
+                        'Evaluated By',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      Text('${widget.hwdata.evalby}'),
                     ])
                   ],
                 ),

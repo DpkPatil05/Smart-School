@@ -11,8 +11,8 @@ import 'package:http/http.dart' as http;
 
 class MyDocumentsProvider with ChangeNotifier {
   bool downloading = false;
-  String progress = "";
 
+  String progress = "";
   String generalDownloadURL = 'http://www.paperfree-erp.in/college/demo-high-school/uploads/'
       'student_documents/${HiveOperation().studentID}/';
 
