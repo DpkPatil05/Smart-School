@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:smart_school/modal/homework.dart';
 import 'package:smart_school/providers/homework_provider.dart';
 import 'package:smart_school/providers/my_documents_provider.dart';
+import 'package:smart_school/services/check_permissions.dart';
 
 class HomeworkCard extends StatefulWidget {
   final HomeworkData hwdata;
@@ -82,7 +83,7 @@ class _HomeworkCardState extends State<HomeworkCard> {
                                     children: [
                                       FlatButton(
                                           onPressed: () {
-                                            MyDocumentsProvider().checkStoragePermission().then((value) =>
+                                            CheckPermissions().checkStoragePermission().then((value) =>
                                                 HomeworkProvider().startDownload(widget.hwdata.doc)
                                             );
                                           },

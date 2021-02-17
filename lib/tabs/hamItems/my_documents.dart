@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_school/modal/my_documents.dart';
 import 'package:smart_school/providers/my_documents_provider.dart';
+import 'package:smart_school/services/check_permissions.dart';
 
 class MyDocuments extends StatefulWidget {
   final List<MyDocumentsData> documentsdata;
@@ -71,7 +72,7 @@ class _MyDocumentState extends State<MyDocuments> {
                         IconButton(
                             icon: Icon(Icons.download_rounded),
                             onPressed: () {
-                              MyDocumentsProvider().checkStoragePermission().then((value) =>
+                              CheckPermissions().checkStoragePermission().then((value) =>
                                   MyDocumentsProvider().startDownload(widget.documentsdata[index].doc)
                               );
                             }

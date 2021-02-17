@@ -4,7 +4,6 @@ import 'package:ext_storage/ext_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:file_utils/file_utils.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:smart_school/hive_operations.dart';
 import 'package:smart_school/modal/my_documents.dart';
 import 'package:http/http.dart' as http;
@@ -25,18 +24,6 @@ class MyDocumentsProvider with ChangeNotifier {
         textColor: Colors.white,
         fontSize: 16.0
     );
-  }
-
-  Future<void> checkStoragePermission() async {
-    var status = await Permission.storage.status;
-    if (status.isUndetermined) {
-      // You can request multiple permissions at once.
-      Map<Permission, PermissionStatus> statuses = await [
-        Permission.storage,
-      ].request();
-      print(statuses[Permission.storage]);
-    }
-    if(await Permission.storage.isDenied) toast('Permission denied');
   }
 
   Future<void> startDownload(String doc) async {
