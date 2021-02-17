@@ -81,7 +81,7 @@ class _LeaveDataCardState extends State<LeaveDataCard> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        widget.leavedata.doc == "" ?
+                        widget.leavedata.doc != 'nodata' ?
                         IconButton(
                           tooltip: 'Download',
                           icon: Icon(
