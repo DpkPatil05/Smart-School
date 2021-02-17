@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_school/modal/online_exam.dart';
 
@@ -21,11 +22,153 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                '${widget.examdata.exam}',
-                style: TextStyle(
-                    fontSize: 25.0
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '${widget.examdata.exam}',
+                    style: TextStyle(fontSize: 25.0),
+                  ),
+                  IconButton(
+                    iconSize: 30.0,
+                    icon: Icon(Icons.preview_outlined),
+                    tooltip: "View Details",
+                    onPressed: () => showModalBottomSheet(
+                        context: context,
+                        builder: (BuildContext context) =>
+                        ListTile(
+                          title: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(
+                                          width: 120.0,
+                                          child: Text('Exam')
+                                      ),
+                                      SizedBox(
+                                          width: 250.0,
+                                          child: Text('server data'))
+                                    ],
+                                ),
+                              ),
+                              Divider(height: 2.0, thickness: 2.0),
+                              Expanded(
+                                flex: 1,
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(
+                                          width: 120.0,
+                                          child: Text('Total Attempt')
+                                      ),
+                                      SizedBox(
+                                          width: 250.0,
+                                          child: Text('server data'))
+                                    ],
+                                ),
+                              ),
+                              Divider(height: 2.0, thickness: 2.0),
+                              Expanded(
+                                flex: 1,
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(
+                                          width: 120.0,
+                                          child: Text('Exam From')
+                                      ),
+                                      SizedBox(
+                                          width: 250.0,
+                                          child: Text('server data'))
+                                    ],
+                                ),
+                              ),
+                              Divider(height: 2.0, thickness: 2.0),
+                              Expanded(
+                                flex: 1,
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(
+                                          width: 120.0,
+                                          child: Text('Exam To')
+                                      ),
+                                      SizedBox(
+                                          width: 250.0,
+                                          child: Text('server data'))
+                                    ],
+                                ),
+                              ),
+                              Divider(height: 2.0, thickness: 2.0),
+                              Expanded(
+                                flex: 1,
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(
+                                          width: 120.0,
+                                          child: Text('Duration')
+                                      ),
+                                      SizedBox(
+                                          width: 250.0,
+                                          child: Text('server data'))
+                                    ],
+                                ),
+                              ),
+                              Divider(height: 2.0, thickness: 2.0),
+                              Expanded(
+                                flex: 1,
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(
+                                          width: 120.0,
+                                          child: Text('Passing(%)')
+                                      ),
+                                      SizedBox(
+                                          width: 250.0,
+                                          child: Text('server data'))
+                                    ],
+                                ),
+                              ),
+                              Divider(height: 2.0, thickness: 2.0),
+                              Expanded(
+                                flex: 1,
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(
+                                          width: 120.0,
+                                          child: Text('Total Questions')
+                                      ),
+                                      SizedBox(
+                                          width: 250.0,
+                                          child: Text('server data'))
+                                    ],
+                                ),
+                              ),
+                              Divider(height: 2.0, thickness: 2.0),
+                              Expanded(
+                                flex: 1,
+                                child: SizedBox.expand(
+                                  child: RaisedButton(
+                                    child: Text('Start Exam'),
+                                    color: Colors.red,
+                                    textColor: Colors.white,
+                                    onPressed: () {  }
+                                    ),
+                                )
+                              )
+                            ],
+                          ),
+                        )
+                    ),
+                  ),
+                ],
               ),
               SizedBox(height: 15.0),
               Table(
