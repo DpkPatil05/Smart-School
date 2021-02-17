@@ -52,7 +52,6 @@ class _NoticeCardState extends State<NoticeCard> {
                           ),
                         )
                     ),
-                    // child: const Text('View'),
                   ),
                 ),
               ]
