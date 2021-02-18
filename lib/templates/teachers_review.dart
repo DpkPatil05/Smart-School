@@ -22,35 +22,29 @@ class _TeachersReviewCardState extends State<TeachersReviewCard> {
         ),
         child: ListTile(
           title: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Row(
-                children: [
-                  Icon(Icons.person_sharp),
-                  SizedBox(width: 10.0),
-                  Text(
-                    '${widget.reviewdata.trName}',
-                    style: TextStyle(
-                        fontSize: 15.0
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 10.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+
                   Row(
                     children: [
-                      Icon(Icons.call),
+                      Icon(Icons.person_sharp),
                       SizedBox(width: 10.0),
                       Text(
-                          '${widget.reviewdata.phone}'
+                        '${widget.reviewdata.trName}(${widget.reviewdata.employeeid})',
+                        style: TextStyle(fontSize: 15.0),
                       ),
                     ],
                   ),
-                  Container(
-                    height: 30.0,
-                    child: IconButton(
+                  "Class Teacher" == widget.reviewdata.classteacher.toString() ?
+                  Card(
+                    color: Colors.green,
+                    child: Text("Class Teacher",
+                    style: TextStyle(color: Colors.white)),
+                  ) : SizedBox(width: 5.0),
+                  IconButton(
                       iconSize: 20.0,
                       icon: Icon(Icons.preview_outlined),
                       tooltip: "View Details",
@@ -60,90 +54,59 @@ class _TeachersReviewCardState extends State<TeachersReviewCard> {
                             child: Column(
                               children: [
                                 ListTile(
-                                  title: Text('Day'),
-                                  subtitle: Text('${widget.reviewdata.day}'),
-                                ),
-                                ListTile(
-                                  title: Text('Room Number'),
-                                  subtitle: Text('${widget.reviewdata.roomNumber}'),
-                                ),
-                                ListTile(
-                                  title: Text('From Time'),
-                                  subtitle: Text('${widget.reviewdata.fromTime}'),
-                                ),
-                                ListTile(
-                                  title: Text('To Time'),
-                                  subtitle: Text('${widget.reviewdata.toTime}'),
-                                ),
-                                ExpansionTile(
-                                  expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
-                                  title: Text('Subjects'),
-                                  children: [
-                                    Container(
-                                      child:ListView.builder(
-                                          scrollDirection: Axis.vertical,
-                                          shrinkWrap: true,
-                                        itemCount: 3,
-                                        itemBuilder: (context, index) {
-                                          return ListTile(
-                                            title: Padding(
-                                              padding: const EdgeInsets.only(left: 16.0),
-                                              child: Text('english'),
-                                            ),
-                                          );
-                                        }
-                                      )
-                                    ),
-                                  ],
-                                ),
-                                ListTile(
                                   title: Text('Rating'),
                                   subtitle: '0'==widget.reviewdata.rating?
-                                            Row(
-                                              children: [
-                                                RaisedButton(
-                                                    onPressed: (){
-                                                      showDialog(
-                                                          context: context,
-                                                          barrierDismissible: false,
-                                                          builder: (context) {
-                                                            return RatingDialog(
-                                                              icon: const Icon(
-                                                                Icons.star,
-                                                                size: 100,
-                                                                color: Colors.red,
-                                                              ),
-                                                              title: "Rate Your Teacher",
-                                                              description: "Tap a star to give your rating.",
-                                                              submitButton: "SUBMIT",
-                                                              accentColor: Colors.red,
-                                                              onSubmitPressed: (int rating) {
-                                                                // TeachersReviewProvider().postReview(rating, comment, widget.reviewdata.staffid);
-                                                              },
-                                                            );
-                                                          });
+                                  Row(
+                                    children: [
+                                      RaisedButton(
+                                          onPressed: (){
+                                            showDialog(
+                                                context: context,
+                                                barrierDismissible: false,
+                                                builder: (context) {
+                                                  return RatingDialog(
+                                                    icon: const Icon(
+                                                      Icons.star,
+                                                      size: 100,
+                                                      color: Colors.red,
+                                                    ),
+                                                    title: "Rate Your Teacher",
+                                                    description: "Tap a star to give your rating.",
+                                                    submitButton: "SUBMIT",
+                                                    accentColor: Colors.red,
+                                                    onSubmitPressed: (int rating) {
+                                                      // TeachersReviewProvider()
+                                                      // .postReview(rating, comment, widget.reviewdata.staffid);
                                                     },
-                                                    child: Text('Give Ratings')
-                                                ),
-                                              ],
-                                            ) : Text('${widget.reviewdata.rating}'),
+                                                  );
+                                                }
+                                                );
+                                            },
+                                          child: Text('Give Ratings')
+                                      ),
+                                    ],
+                                  ) : Text('${widget.reviewdata.rating}'),
                                 ),
                               ],
                             ),
                           )
                       )
-                      // child: const Text('View'),
-                    ),
+                    // child: const Text('View'),
                   ),
+                ],
+              ),
+              Row(
+                children: [
+                  Icon(Icons.call),
+                  SizedBox(width: 10.0),
+                  Text('${widget.reviewdata.phone}'),
                 ],
               ),
               Row(
                 children: [
                   Icon(Icons.email),
                   SizedBox(width: 10.0),
-                  Text(
-                      '${widget.reviewdata.email}'
-                  ),
+                  Text('${widget.reviewdata.email}'),
                 ],
               ),
             ],

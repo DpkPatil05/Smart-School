@@ -21,6 +21,17 @@ class LoginProvider with ChangeNotifier{
     return loginMsg;
   }
 
+  toast(String msg) {
+    Fluttertoast.showToast(
+        msg: '$msg',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.blueGrey,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+  }
+
   // ignore: missing_return
   Future<LoginData> fetchUser() async {
     String url = 'http://www.paperfree-erp.in/mobileapp/login/login.php?username=$user&password=$password';
@@ -36,28 +47,13 @@ class LoginProvider with ChangeNotifier{
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          return loginDataFromJson(response.body);
+          toast("Login error");
         }
       } catch(e) {
-        Fluttertoast.showToast(
-            msg: "Login error",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.blueGrey,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
-    }
-    } else {
-      Fluttertoast.showToast(
-          msg: "No Data connection",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.blueGrey,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
-    }
+        toast("Login error");
+        print("Login error: " + e.toString());
+      }
+    } else toast("No Data connection");
   }
 
 }

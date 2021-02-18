@@ -6,52 +6,44 @@ String teacherReviewDataToJson(List<TeacherReviewData> data) => json.encode(List
 
 class TeacherReviewData {
   TeacherReviewData({
-    this.day,
+    this.staffid,
     this.trName,
-    this.trid,
+    this.employeeid,
     this.phone,
     this.email,
-    this.roomNumber,
+    this.classteacher,
     this.rating,
-    this.fromTime,
-    this.toTime,
     this.success,
   });
 
-  String day;
+  String staffid;
   String trName;
-  String trid;
+  String employeeid;
   String phone;
   String email;
-  String roomNumber;
+  String classteacher;
   String rating;
-  String fromTime;
-  String toTime;
   String success;
 
   factory TeacherReviewData.fromJson(Map<String, dynamic> json) => TeacherReviewData(
-    day: json["day"] == null ? null : json["day"],
+    staffid: json["staffid"] == null ? null : json["staffid"],
     trName: json["trName"] == null ? null : json["trName"],
-    trid: json["trid"] == null ? null : json["trid"],
+    employeeid: json["employeeid"] == null ? null : json["employeeid"],
     phone: json["phone"] == null ? null : json["phone"],
     email: json["email"] == null ? null : json["email"],
-    roomNumber: json["roomNumber"] == null ? null : json["roomNumber"],
+    classteacher: json["classteacher"] == null ? null : json["classteacher"],
     rating: json["rating"] == null ? null : json["rating"],
-    fromTime: json["fromTime"] == null ? null : json["fromTime"],
-    toTime: json["toTime"] == null ? null : json["toTime"],
     success: json["success"] == null ? null : json["success"],
   );
 
   Map<String, dynamic> toJson() => {
-    "day": day == null ? null : day,
+    "staffid": staffid == null ? null : staffid,
     "trName": trName == null ? null : trName,
-    "trid": trid == null ? null : trid,
+    "employeeid": employeeid == null ? null : employeeid,
     "phone": phone == null ? null : phone,
     "email": email == null ? null : email,
-    "roomNumber": roomNumber == null ? null : roomNumber,
+    "classteacher": classteacher == null ? null : classteacher,
     "rating": rating == null ? null : rating,
-    "fromTime": fromTime == null ? null : fromTime,
-    "toTime": toTime == null ? null : toTime,
     "success": success == null ? null : success,
   };
 }

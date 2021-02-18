@@ -1,26 +1,32 @@
-/*
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_school/modal/leave_data.dart';
+import 'package:smart_school/modal/teachers_review_response.dart';
 import 'package:smart_school/providers/teachers_review_provider.dart';
-import 'package:smart_school/tabs/hamItems/apply_leave.dart';
 
 class PostReview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<List<LeaveData>>.value(
+    return StreamProvider<PostReviewResponse>.value(
       value: null,
-      child: FutureBuilder<List<LeaveData>>(
+      child: FutureBuilder<PostReviewResponse>(
         future: TeachersReviewProvider().postReviews(),
-        builder: (BuildContext context, AsyncSnapshot<List<LeaveData>> leaveData) {
+        builder: (BuildContext context, AsyncSnapshot<PostReviewResponse> leaveData) {
           switch (leaveData.connectionState) {
             case ConnectionState.waiting: return Center(child: CircularProgressIndicator());
             default:
               return leaveData.hasError? Text('Error: ${leaveData.error}')
-                  : ApplyLeave(leavedata: leaveData.data);
+                  : Fluttertoast.showToast(
+                  msg: 'Review added',
+                  toastLength: Toast.LENGTH_LONG,
+                  gravity: ToastGravity.BOTTOM,
+                  backgroundColor: Colors.blueGrey,
+                  textColor: Colors.white,
+                  fontSize: 16.0
+              );
           }
         },
       ),
     );
   }
-}*/
+}

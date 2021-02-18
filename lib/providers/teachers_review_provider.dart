@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:smart_school/future/post_teacher_review.dart';
 import 'package:smart_school/hive_operations.dart';
 import 'package:smart_school/modal/teachers_review.dart';
+import 'package:smart_school/modal/teachers_review_response.dart';
 
 class TeachersReviewProvider with ChangeNotifier {
   String url = '';
@@ -28,7 +29,7 @@ class TeachersReviewProvider with ChangeNotifier {
     trating = rating;
     tcomment= comment;
     tid = int.parse(staffid);
-    // return PostReview();
+    PostReview();
   }
 
   // ignore: missing_return
@@ -51,12 +52,13 @@ class TeachersReviewProvider with ChangeNotifier {
         }
       } catch(e) {
         toast("Problem fetching data");
+        print("Problem fetching teachers data: " + e.toString());
       }
     } else toast("No Data connection");
   }
 
   // ignore: missing_return
-  Future<List<TeacherReviewData>> postReviews() async {
+  Future<PostReviewResponse> postReviews() async {
     url = 'https://www.paperfree-erp.in/mobileapp/treview/treview.php?'
         'sid=${HiveOperation().studentID}&staffid=$tid&comment=$tcomment&rating=$trating';
     print('Teachers review url: ' + url);
@@ -67,15 +69,16 @@ class TeachersReviewProvider with ChangeNotifier {
         if (response.statusCode == 200) {
           // If the server did return a 200 OK response,
           // then parse the JSON.=
-          final List<TeacherReviewData> reviewData = teacherReviewDataFromJson(response.body);
-          return reviewData;
+          final PostReviewResponse responseData = postReviewResponseFromJson(response.body);
+          return responseData;
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          return List<TeacherReviewData>();
+          toast("Problem fetching data");
         }
       } catch(e) {
         toast("Problem fetching data");
+        print("Problem fetching response: " + e.toString());
       }
     } else toast("No Data connection");
   }
