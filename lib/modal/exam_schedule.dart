@@ -12,7 +12,6 @@ class ExamSchedule {
     this.fullMarks,
     this.date,
     this.start,
-    this.end,
     this.duration,
     this.success,
   });
@@ -23,7 +22,6 @@ class ExamSchedule {
   String fullMarks;
   String date;
   String start;
-  String end;
   String duration;
   String success;
 
@@ -34,7 +32,6 @@ class ExamSchedule {
     fullMarks: json["fullMarks"] == null ? null : json["fullMarks"],
     date: json["date"] == null ? null : json["date"],
     start: json["start"] == null ? null : json["start"],
-    end: json["end"] == null ? null : json["end"],
     duration: json["duration"] == null ? null : json["duration"],
     success: json["success"] == null ? null : json["success"],
   );
@@ -46,7 +43,6 @@ class ExamSchedule {
     "fullMarks": fullMarks == null ? null : fullMarks,
     "date": date == null ? null : date,
     "start": start == null ? null : start,
-    "end": end == null ? null : end,
     "duration": duration == null ? null : duration,
     "success": success == null ? null : success,
   };
