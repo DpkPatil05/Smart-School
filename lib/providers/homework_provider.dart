@@ -78,7 +78,7 @@ class HomeworkProvider with ChangeNotifier {
           // then throw an exception.
           return List<HomeworkData>();
         }
-      } catch(e) toast("Problem fetching data");
+      } catch(e) {toast("Problem fetching data");}
     } else toast("No Data connection");
   }
 }
