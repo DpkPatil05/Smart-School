@@ -13,6 +13,7 @@ class TeachersReviewCard extends StatefulWidget {
 }
 
 class _TeachersReviewCardState extends State<TeachersReviewCard> {
+  final commentController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -27,7 +28,6 @@ class _TeachersReviewCardState extends State<TeachersReviewCard> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-
                   Row(
                     children: [
                       Icon(Icons.person_sharp),
@@ -45,7 +45,7 @@ class _TeachersReviewCardState extends State<TeachersReviewCard> {
                     style: TextStyle(color: Colors.white)),
                   ) : SizedBox(width: 5.0),
                   IconButton(
-                      iconSize: 20.0,
+                      iconSize: 25.0,
                       icon: Icon(Icons.preview_outlined),
                       tooltip: "View Details",
                       onPressed: () => showModalBottomSheet(
@@ -54,11 +54,34 @@ class _TeachersReviewCardState extends State<TeachersReviewCard> {
                             child: Column(
                               children: [
                                 ListTile(
-                                  title: Text('Rating'),
+                                  title: Center(
+                                    child: Text('Rating',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20.0
+                                    )),
+                                  ),
                                   subtitle: '0'==widget.reviewdata.rating?
-                                  Row(
-                                    children: [
-                                      RaisedButton(
+                                  TextFormField(
+                                    controller: commentController,
+                                    textCapitalization: TextCapitalization.words,
+                                    decoration: const InputDecoration(
+                                      border: UnderlineInputBorder(),
+                                      filled: false,
+                                      labelText: 'Enter comment',
+                                      labelStyle: TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ) : SizedBox(width: 10.0),
+                                ),
+                                '0'==widget.reviewdata.rating?
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Center(
+                                      child: RaisedButton(
+                                          color: Colors.red,
                                           onPressed: (){
                                             showDialog(
                                                 context: context,
@@ -72,21 +95,34 @@ class _TeachersReviewCardState extends State<TeachersReviewCard> {
                                                     ),
                                                     title: "Rate Your Teacher",
                                                     description: "Tap a star to give your rating.",
+                                                    positiveComment: "We are so happy to hear :)",
+                                                    negativeComment: "We're sad to hear :(",
                                                     submitButton: "SUBMIT",
                                                     accentColor: Colors.red,
                                                     onSubmitPressed: (int rating) {
-                                                      // TeachersReviewProvider()
-                                                      // .postReview(rating, comment, widget.reviewdata.staffid);
+                                                      TeachersReviewProvider()
+                                                      .postReview(rating, commentController.text, widget.reviewdata.staffid);
                                                     },
                                                   );
                                                 }
-                                                );
-                                            },
-                                          child: Text('Give Ratings')
+                                            );
+                                          },
+                                          child: Center(child: Text('Give Ratings',
+                                            style: TextStyle(color: Colors.white)))
                                       ),
-                                    ],
-                                  ) : Text('${widget.reviewdata.rating}'),
+                                    ),
+                                  ],
+                                )
+                                : Center(
+                                  child: Text('${widget.reviewdata.rating}',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15.0
+                                      )
+                                  ),
                                 ),
+                                SizedBox(height: 15.0),
                               ],
                             ),
                           )
