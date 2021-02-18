@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_school/modal/my_documents.dart';
 import 'package:smart_school/providers/my_documents_provider.dart';
+import 'package:smart_school/services/check_permissions.dart';
+import 'package:smart_school/services/download.dart';
 
 class MyDocuments extends StatefulWidget {
   final List<MyDocumentsData> documentsdata;
@@ -18,8 +20,8 @@ class _MyDocumentState extends State<MyDocuments> {
   Widget build(BuildContext context) {
     return downloadingContent ?
         ChangeNotifierProvider(
-          create: (context) => MyDocumentsProvider(),
-          child: Consumer<MyDocumentsProvider>(
+          create: (context) => Download(),
+          child: Consumer<Download>(
             builder: (BuildContext context, data, Widget child) {
               downloadingContent = data.downloading;
               return Center(
@@ -32,7 +34,7 @@ class _MyDocumentState extends State<MyDocuments> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         CircularProgressIndicator(),
-                        SizedBox(height: 10.0,),
+                        SizedBox(height: 10.0),
                         Text("Downloading ${data.progress}")
                       ],
                     ),
@@ -52,7 +54,8 @@ class _MyDocumentState extends State<MyDocuments> {
                     ),
                   )
               ),
-            ) : ListView.builder(
+            )
+          : ListView.builder(
                 itemCount: widget.documentsdata.length-1??0,
                 itemBuilder: (context, index) {
                   return Card(
@@ -71,8 +74,8 @@ class _MyDocumentState extends State<MyDocuments> {
                         IconButton(
                             icon: Icon(Icons.download_rounded),
                             onPressed: () {
-                              MyDocumentsProvider().checkStoragePermission().then((value) =>
-                                  MyDocumentsProvider().startDownload(widget.documentsdata[index].doc)
+                              CheckPermissions().checkStoragePermission().then((value) =>
+                                  MyDocumentsProvider().generateDownload(widget.documentsdata[index].doc)
                               );
                             }
                         ),

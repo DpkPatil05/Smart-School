@@ -8,11 +8,14 @@ import 'package:smart_school/modal/leave_data.dart';
 import 'package:smart_school/modal/leave_upload_response.dart';
 
 import 'package:smart_school/hive_operations.dart';
+import 'package:smart_school/services/download.dart';
 
 
 
 class ApplyLeaveProvider with ChangeNotifier {
   String url = '';
+  String generalDownloadURL = 'http://www.paperfree-erp.in/college/demo-high-school/'
+      'uploads/student_leavedocuments/';
 
   toast(String msg) {
     Fluttertoast.showToast(
@@ -24,6 +27,8 @@ class ApplyLeaveProvider with ChangeNotifier {
         fontSize: 16.0
     );
   }
+
+  generateDownload(String doc) => Download().startDownload(generalDownloadURL, doc);
 
   Widget saveLeave(DateTime fromdate, DateTime todate, String reason) {
     return FetchAppliedLeaveResponse(fromdate: fromdate, todate: todate, reason: reason);

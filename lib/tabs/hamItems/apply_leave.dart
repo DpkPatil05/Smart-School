@@ -159,7 +159,7 @@ class _ApplyLeaveState extends State<ApplyLeave> {
               ),
             )
         ),
-      ) :ListView.builder(
+      ) : ListView.builder(
           itemCount: widget.leavedata.length-1??0,
           itemBuilder: (context, index) {
             return LeaveDataCard(leavedata: widget.leavedata[index]);

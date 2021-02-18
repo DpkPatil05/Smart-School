@@ -13,6 +13,7 @@ class LeaveData {
     this.todate,
     this.applydate,
     this.reason,
+    this.doc,
     this.success,
   });
 
@@ -23,6 +24,7 @@ class LeaveData {
   String todate;
   String applydate;
   String reason;
+  String doc;
   String success;
 
   factory LeaveData.fromJson(Map<String, dynamic> json) => LeaveData(
@@ -33,6 +35,7 @@ class LeaveData {
     todate: json["todate"] == null ? null : json["todate"],
     applydate: json["applydate"] == null ? null : json["applydate"],
     reason: json["reason"] == null ? null : json["reason"],
+    doc: json["doc"] == null ? null : json["doc"],
     success: json["success"] == null ? null : json["success"],
   );
 
@@ -44,6 +47,7 @@ class LeaveData {
     "todate": todate == null ? null : todate,
     "applydate": applydate == null ? null : applydate,
     "reason": reason == null ? null : reason,
+    "doc": doc == null ? null : doc,
     "success": success == null ? null : success,
   };
 }

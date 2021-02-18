@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_school/modal/leave_data.dart';
 import 'package:smart_school/providers/apply_leave_provider.dart';
+import 'package:smart_school/services/check_permissions.dart';
 
 class LeaveDataCard extends StatefulWidget {
   final LeaveData leavedata;
@@ -16,7 +17,7 @@ class LeaveDataCard extends StatefulWidget {
 class _LeaveDataCardState extends State<LeaveDataCard> {
   @override
   Widget build(BuildContext context) {
-    Future<bool> _onPressed(){
+    Future<bool> _delete(){
       return showDialog(
           context: context,
           builder: (BuildContext context){
@@ -80,20 +81,27 @@ class _LeaveDataCardState extends State<LeaveDataCard> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        RawMaterialButton(
-                          onPressed: () {
-                            _onPressed();
-                          },
-                          elevation: 2.0,
-                          fillColor: Colors.grey,
-                          child: Icon(
-                            Icons.delete,
-                            size: 15.0,
-                            color: Colors.white,
+                        widget.leavedata.doc != 'nodata' ?
+                        IconButton(
+                          tooltip: 'Download',
+                          icon: Icon(
+                            Icons.download_rounded,
+                            size: 25.0,
                           ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
-                        ),
+                          onPressed: () {
+                            CheckPermissions().checkStoragePermission().then((value) =>
+                                ApplyLeaveProvider().generateDownload(widget.leavedata.doc));
+                          })
+                          : SizedBox(width: 5.0),
+                        IconButton(
+                          tooltip: 'Delete',
+                          icon: Icon(
+                            Icons.delete,
+                            size: 25.0,
+                          ),
+                          onPressed: () {
+                            _delete();
+                          }),
                       ],
                     ),
                   ],
@@ -130,7 +138,8 @@ class _LeaveDataCardState extends State<LeaveDataCard> {
                       Text(
                         '${widget.leavedata.status}',
                         style: TextStyle(
-                          color: widget.leavedata.status == "Approved" ? Colors.green : Colors.deepOrange,
+                          color: widget.leavedata.status == "Approved" ?
+                          Colors.green : Colors.deepOrange,
                         ),
                       ),
                     ])
