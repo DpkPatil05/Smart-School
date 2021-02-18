@@ -24,7 +24,7 @@ class _HomeworkTabState extends State<HomeworkTab> {
                   "No Homework's assigned",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 20.0
+                      fontSize: 15.0
                   ),
                 )
             ),
