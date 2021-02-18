@@ -42,35 +42,62 @@ class _ExamCardState extends State<ExamCard> {
                   FlatButton(
                     onPressed: () => showModalBottomSheet(
                         context: context,
-                        builder: (BuildContext context) => ListView.builder(
-                            itemCount: widget.examscheduledata.length-1??0,
-                            itemBuilder: (context, index) {
-                              return ExpansionTile(
-                                expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
-                                title: Text(widget.examresultdata[index].subject),
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 16.0),
-                                    child: Text('Passing marks: ${widget.examresultdata[index].passingMarks}'),
+                        builder: (BuildContext context) => ListTile(
+                          title:Text('${widget.examresultdata[widget.examresultdata.length-2].total}'),
+                          subtitle: ListView.builder(
+                              itemCount: widget.examscheduledata.length-1??0,
+                              itemBuilder: (context, index) {
+                                return ExpansionTile(
+                                  expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
+                                  title: Text(
+                                      widget.examresultdata[index].subject,
+                                    style: TextStyle(color: Colors.black),
                                   ),
-                                  Divider(),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 16.0),
-                                    child: Text('Marks obtained: ${widget.examresultdata[index].marks}'),
-                                  ),
-                                  Divider(),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 16.0),
-                                    child: Text('Note: ${widget.examresultdata[index].result}'),
-                                  ),
-                                  Divider(),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 16.0),
-                                    child: Text('Grade: ${widget.examresultdata[index].note}'),
-                                  ),
-                                ],
-                              );
-                            }
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 16.0),
+                                      child: Text(
+                                          'Passing marks: ${widget.examresultdata[index].passingMarks}',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ),
+                                    Divider(),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 16.0),
+                                      child: Text(
+                                        'Max Marks: ${widget.examresultdata[index].fullMarks}',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ),
+                                    Divider(),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 16.0),
+                                      child: Text(
+                                          'Marks obtained: ${widget.examresultdata[index].marks}',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ),
+                                    Divider(),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 16.0),
+                                      child: Text(
+                                          'Note: ${widget.examresultdata[index].result}',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ),
+                                    Divider(),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 16.0),
+                                      child: Text(
+                                          'Grade: ${widget.examresultdata[index].note}',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ),
+                                    Divider(),
+                                  ],
+                                );
+                              }
+                          ),
                         ),
                     ),
                     child: Row(
@@ -113,11 +140,6 @@ class _ExamCardState extends State<ExamCard> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 16.0),
                                   child: Text('Start Time: ${widget.examscheduledata[index].start}'),
-                                ),
-                                Divider(),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 16.0),
-                                  child: Text('End Time: ${widget.examscheduledata[index].end}'),
                                 ),
                                 Divider(),
                                 Padding(

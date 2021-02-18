@@ -75,10 +75,7 @@ class _HomeState extends State<Home> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             backgroundColor: Colors.red,
-            title: Padding(
-              padding: const EdgeInsets.only(left: 55.0),
-              child: Text("Demo High School"),
-            ),
+            title: Center(child: Text("Demo High School")),
             actions: [
               Builder(
                 builder: (context) => IconButton(
