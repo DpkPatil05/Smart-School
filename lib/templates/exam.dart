@@ -42,8 +42,59 @@ class _ExamCardState extends State<ExamCard> {
                   FlatButton(
                     onPressed: () => showModalBottomSheet(
                         context: context,
-                        builder: (BuildContext context) => ListTile(
-                          title:Text('${widget.examresultdata[widget.examresultdata.length-2].total}'),
+                        builder: (BuildContext context) =>ListTile(
+                          title:Table(
+                            defaultColumnWidth: FixedColumnWidth(25.0),
+                             children:[
+                               TableRow(
+                                   children: [
+                                   TableCell(child: Text(
+                                     'Total Marks Obtained',
+                                     style: TextStyle(
+                                         color: Colors.black,
+                                         fontWeight: FontWeight.bold
+                                     ),
+                                   )),
+                                    TableCell(child: Text(
+                                      'Grand Total',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    )),
+                                     TableCell(child: Text(
+                                       'Percentage',
+                                       style: TextStyle(
+                                           color: Colors.black,
+                                           fontWeight: FontWeight.bold
+                                       ),
+                                     )),
+                                    TableCell(child: Text(
+                                        'result',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    )),
+                                     TableCell(child: Text(
+                                         'Division',
+                                       style: TextStyle(
+                                           color: Colors.black,
+                                           fontWeight: FontWeight.bold
+                                       ),
+                                     )),
+                                   ]),
+                               TableRow(
+                                 children: [
+                                   Text('${widget.examresultdata[widget.examresultdata.length-2].marksObtained}'),
+                                   Text('${widget.examresultdata[widget.examresultdata.length-2].total}'),
+                                   Text('${widget.examresultdata[widget.examresultdata.length-2].perct}'),
+                                   Text('${widget.examresultdata[widget.examresultdata.length-2].result}'),
+                                   Text('${widget.examresultdata[widget.examresultdata.length-2].division}')
+                                 ]
+                               )
+                             ]
+                          ),
                           subtitle: ListView.builder(
                               itemCount: widget.examscheduledata.length-1??0,
                               itemBuilder: (context, index) {
@@ -81,7 +132,7 @@ class _ExamCardState extends State<ExamCard> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 16.0),
                                       child: Text(
-                                          'Note: ${widget.examresultdata[index].result}',
+                                          'Note: ${widget.examresultdata[index].note}',
                                         style: TextStyle(color: Colors.black),
                                       ),
                                     ),
@@ -89,7 +140,7 @@ class _ExamCardState extends State<ExamCard> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 16.0),
                                       child: Text(
-                                          'Grade: ${widget.examresultdata[index].note}',
+                                          'Grade: ${widget.examresultdata[index].grade}',
                                         style: TextStyle(color: Colors.black),
                                       ),
                                     ),
