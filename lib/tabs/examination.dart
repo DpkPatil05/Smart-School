@@ -32,7 +32,7 @@ class _ExaminationTabState extends State<ExaminationTab> {
                     ),
                   )
               ),
-            ) :ListView.builder(
+            ) : ListView.builder(
                 itemCount: widget.examdata.length-1??0,
                 itemBuilder: (context, index) {
                   return StreamProvider<List<ExamSchedule>>.value(

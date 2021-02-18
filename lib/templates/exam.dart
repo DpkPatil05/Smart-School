@@ -42,7 +42,9 @@ class _ExamCardState extends State<ExamCard> {
                   FlatButton(
                     onPressed: () => showModalBottomSheet(
                         context: context,
-                        builder: (BuildContext context) =>ListTile(
+                        builder: (BuildContext context) =>
+                        0 != widget.examresultdata[widget.examresultdata.length-2].total.toInt() ?
+                        ListTile(
                           title:Table(
                             defaultColumnWidth: FixedColumnWidth(25.0),
                              children:[
@@ -70,7 +72,7 @@ class _ExamCardState extends State<ExamCard> {
                                        ),
                                      )),
                                     TableCell(child: Text(
-                                        'result',
+                                        'Result',
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold
@@ -96,7 +98,7 @@ class _ExamCardState extends State<ExamCard> {
                              ]
                           ),
                           subtitle: ListView.builder(
-                              itemCount: widget.examscheduledata.length-1??0,
+                              itemCount: widget.examresultdata.length-2??0,
                               itemBuilder: (context, index) {
                                 return ExpansionTile(
                                   expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
@@ -149,6 +151,8 @@ class _ExamCardState extends State<ExamCard> {
                                 );
                               }
                           ),
+                        ) : ListTile(
+                            title: Center(child: Text('Results not available'))
                         ),
                     ),
                     child: Row(
@@ -161,7 +165,8 @@ class _ExamCardState extends State<ExamCard> {
                   FlatButton(
                     onPressed: () => showModalBottomSheet(
                         context: context,
-                        builder: (BuildContext context) => ListView.builder(
+                        builder: (BuildContext context) =>
+                        ListView.builder(
                           itemCount: widget.examscheduledata.length-1??0,
                           itemBuilder: (context, index) {
                             return ExpansionTile(

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_school/modal/teachers_review.dart';
 import 'package:rating_dialog/rating_dialog.dart';
+import 'package:smart_school/providers/teachers_review_provider.dart';
 
 class TeachersReviewCard extends StatefulWidget {
   final TeacherReviewData reviewdata;
@@ -97,8 +98,7 @@ class _TeachersReviewCardState extends State<TeachersReviewCard> {
                                 ),
                                 ListTile(
                                   title: Text('Rating'),
-                                  subtitle:
-                                  'nodata'==widget.reviewdata.rating?
+                                  subtitle: '0'==widget.reviewdata.rating?
                                             Row(
                                               children: [
                                                 RaisedButton(
@@ -118,7 +118,7 @@ class _TeachersReviewCardState extends State<TeachersReviewCard> {
                                                               submitButton: "SUBMIT",
                                                               accentColor: Colors.red,
                                                               onSubmitPressed: (int rating) {
-                                                                widget.reviewdata.rating = rating.toString();
+                                                                // TeachersReviewProvider().postReview(rating, comment, widget.reviewdata.staffid);
                                                               },
                                                             );
                                                           });
@@ -126,8 +126,7 @@ class _TeachersReviewCardState extends State<TeachersReviewCard> {
                                                     child: Text('Give Ratings')
                                                 ),
                                               ],
-                                            )
-                                            :Text('${widget.reviewdata.rating}'),
+                                            ) : Text('${widget.reviewdata.rating}'),
                                 ),
                               ],
                             ),

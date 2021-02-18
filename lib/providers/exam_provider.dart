@@ -10,6 +10,17 @@ import 'package:smart_school/modal/exam_schedule.dart';
 class ExamProvider with ChangeNotifier {
   String url = '';
 
+  toast(String msg) {
+    Fluttertoast.showToast(
+        msg: "$msg",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.blueGrey,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+  }
+
   // ignore: missing_return
   Future<List<Exam>> fetchExam() async {
     url = 'http://www.paperfree-erp.in/mobileapp/exam/exam.php?studentid=${HiveOperation().studentID}';
@@ -29,25 +40,10 @@ class ExamProvider with ChangeNotifier {
           return List<Exam>();
         }
       } catch(e) {
-        Fluttertoast.showToast(
-            msg: "Problem fetching data",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.blueGrey,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
+        toast("Problem fetching data");
+        print("Problem fetching exam: " + e.toString());
       }
-    } else {
-      Fluttertoast.showToast(
-          msg: "No Data connection",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.blueGrey,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
-    }
+    } else toast("No Data connection");
   }
 
   // ignore: missing_return
@@ -66,28 +62,13 @@ class ExamProvider with ChangeNotifier {
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          return List<ExamSchedule>();
+          toast("Problem fetching data");
         }
       } catch(e) {
-        Fluttertoast.showToast(
-            msg: "Problem fetching data",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.blueGrey,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
+        toast("Problem fetching schedule");
+        print("Problem fetching schedule: " + e.toString());
       }
-    } else {
-      Fluttertoast.showToast(
-          msg: "No Data connection",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.blueGrey,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
-    }
+    } else toast("No Data connection");
   }
 
   // ignore: missing_return
@@ -106,28 +87,13 @@ class ExamProvider with ChangeNotifier {
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          return List<ExamResult>();
+          toast("Problem fetching data");
         }
       } catch(e) {
-        Fluttertoast.showToast(
-            msg: "Problem fetching data",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.blueGrey,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
+        toast("Problem fetching results");
+        print("Problem fetching results: " + e.toString());
       }
-    } else {
-      Fluttertoast.showToast(
-          msg: "No Data connection",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.blueGrey,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
-    }
+    } else toast("No Data connection");
   }
 
 }
