@@ -8,9 +8,21 @@ import 'package:smart_school/modal/syllabus.dart';
 class SyllabusProvider with ChangeNotifier {
   String url = '';
 
+  toast(String msg) {
+    Fluttertoast.showToast(
+        msg: '$msg',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.blueGrey,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+  }
+
   // ignore: missing_return
-  Future<List<SyllabusData>> fetchSyllabus() async {
-    url = 'http://www.paperfree-erp.in/mobileapp/syllabus/syllabus.php?studentid=${HiveOperation().studentID}';
+  Future<List<List<List<SyllabusData>>>> fetchSyllabus() async {
+    url = 'http://www.paperfree-erp.in/mobileapp/syllabus/syllabus.php?'
+        'studentid=${HiveOperation().studentID}';
     print('Syllabus data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {
@@ -19,32 +31,16 @@ class SyllabusProvider with ChangeNotifier {
         if (response.statusCode == 200) {
           // If the server did return a 200 OK response,
           // then parse the JSON.=
-          final List<SyllabusData> feeData = syllabusDataFromJson(response.body);
-          return feeData;
+          final List<dynamic> syllabusData = syllabusDataFromJson(response.body);
+          return syllabusData;
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          return List<SyllabusData>();
+          toast("Problem fetching data");
         }
       } catch(e) {
-        Fluttertoast.showToast(
-            msg: "Problem fetching data",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.blueGrey,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
+        toast("Problem fetching data");
       }
-    } else {
-      Fluttertoast.showToast(
-          msg: "No Data connection",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.blueGrey,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
-    }
+    } else toast("No Data connection");
   }
 }

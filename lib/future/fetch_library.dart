@@ -7,11 +7,11 @@ import 'package:smart_school/tabs/hamItems/library.dart';
 class FetchLibrary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<List<LibraryData>>.value(
+    return StreamProvider< List<List<LibraryData>>>.value(
       value: null,
-      child: FutureBuilder<List<LibraryData>>(
+      child: FutureBuilder< List<List<LibraryData>>>(
         future: LibraryProvider().fetchLibrary(),
-        builder: (BuildContext context, AsyncSnapshot<List<LibraryData>> libraryData) {
+        builder: (BuildContext context, AsyncSnapshot< List<List<LibraryData>>> libraryData) {
           switch (libraryData.connectionState) {
             case ConnectionState.waiting: return Center(child: CircularProgressIndicator());
             default:

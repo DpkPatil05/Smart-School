@@ -7,11 +7,11 @@ import 'package:smart_school/tabs/hamItems/syllabus_status.dart';
 class FetchSyllabus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<List<SyllabusData>>.value(
+    return StreamProvider<List<List<List<SyllabusData>>>>.value(
       value: null,
-      child: FutureBuilder<List<SyllabusData>>(
+      child: FutureBuilder<List<List<List<SyllabusData>>>>(
         future: SyllabusProvider().fetchSyllabus(),
-        builder: (BuildContext context, AsyncSnapshot<List<SyllabusData>> syllabusData) {
+        builder: (BuildContext context, AsyncSnapshot<List<List<List<SyllabusData>>>> syllabusData) {
           switch (syllabusData.connectionState) {
             case ConnectionState.waiting: return Center(child: CircularProgressIndicator());
             default:
