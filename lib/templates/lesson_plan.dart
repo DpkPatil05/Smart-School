@@ -55,7 +55,7 @@ class _LessonPlanCardState extends State<LessonPlanCard> {
                                             RichText(
                                               text:TextSpan(
                                                   text: "${widget.lessonplan[index].subject}",
-                                                    style: TextStyle(fontSize: 20, color: Colors.black),
+                                                    style: TextStyle(fontSize: 17, color: Colors.black),
                                                   recognizer: TapGestureRecognizer()
                                                     ..onTap = (){
                                                       Navigator.push(

@@ -19,7 +19,7 @@ class _LessonPlanState extends State<LessonPlan> {
       Card(
         child: Center(
             child: Text(
-              "No Lesson Plan available",
+              "No Lesson Plan Available",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 15.0
