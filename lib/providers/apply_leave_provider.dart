@@ -30,9 +30,7 @@ class ApplyLeaveProvider with ChangeNotifier {
 
   generateDownload(String doc) => Download().startDownload(generalDownloadURL, doc);
 
-  Widget saveLeave(DateTime fromdate, DateTime todate, String reason) {
-    return FetchAppliedLeaveResponse(fromdate: fromdate, todate: todate, reason: reason);
-  }
+  Widget saveLeave(DateTime fromdate, DateTime todate, String reason) => FetchAppliedLeaveResponse(fromdate: fromdate, todate: todate, reason: reason);
 
   Widget delete(int id) => FetchDeleteLeaveResponse(leaveid: id);
 
@@ -50,6 +48,7 @@ class ApplyLeaveProvider with ChangeNotifier {
         if (response.statusCode == 200) {
           // If the server did return a 200 OK response,
           // then parse the JSON.=
+          toast("Leave Added");
           return leaveUploadMessageFromJson(response.body);
         } else {
           // If the server did not return a 200 OK response,
@@ -59,9 +58,7 @@ class ApplyLeaveProvider with ChangeNotifier {
       } catch(e) {
         toast("Problem uploading data");
       }
-    } else {
-      toast("No Data connection");
-    }
+    } else toast("No Data connection");
   }
 
   // ignore: missing_return

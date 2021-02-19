@@ -9,10 +9,6 @@ import 'package:smart_school/modal/teachers_review_response.dart';
 
 class TeachersReviewProvider with ChangeNotifier {
   String url = '';
-  String tcomment = '';
-
-  int tid;
-  int trating;
 
   toast(String msg) {
     Fluttertoast.showToast(
@@ -25,12 +21,7 @@ class TeachersReviewProvider with ChangeNotifier {
     );
   }
 
-  postReview(int rating, String comment, String staffid) {
-    trating = rating;
-    tcomment= comment;
-    tid = int.parse(staffid);
-    PostReview();
-  }
+  postReview(int rating, String comment, String staffid) => PostReview(rating: rating, comment: comment, staffid: staffid);
 
   // ignore: missing_return
   Future<List<TeacherReviewData>> fetchReviews() async {
@@ -48,7 +39,7 @@ class TeachersReviewProvider with ChangeNotifier {
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          return List<TeacherReviewData>();
+          toast("Problem fetching data");
         }
       } catch(e) {
         toast("Problem fetching data");
@@ -58,9 +49,9 @@ class TeachersReviewProvider with ChangeNotifier {
   }
 
   // ignore: missing_return
-  Future<PostReviewResponse> postReviews() async {
+  Future<PostReviewResponse> postReviews(int rating, int staffid, String comment) async {
     url = 'https://www.paperfree-erp.in/mobileapp/treview/treview.php?'
-        'sid=${HiveOperation().studentID}&staffid=$tid&comment=$tcomment&rating=$trating';
+        'sid=${HiveOperation().studentID}&staffid=$staffid&comment=$comment&rating=$rating';
     print('Teachers review url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {
@@ -70,6 +61,7 @@ class TeachersReviewProvider with ChangeNotifier {
           // If the server did return a 200 OK response,
           // then parse the JSON.=
           final PostReviewResponse responseData = postReviewResponseFromJson(response.body);
+          toast("Review added");
           return responseData;
         } else {
           // If the server did not return a 200 OK response,

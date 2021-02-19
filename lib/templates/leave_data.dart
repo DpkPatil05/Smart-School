@@ -38,15 +38,14 @@ class _LeaveDataCardState extends State<LeaveDataCard> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              Scaffold(
-                                appBar: AppBar(
-                                  backgroundColor: Colors.red,
-                                  title: Text('Apply Leave'),
-                                ),
-                                body: Provider.of<ApplyLeaveProvider>(context)
-                                    .delete(int.parse(widget.leavedata.id)),
-                              ),
+                          builder: (BuildContext context) => Scaffold(
+                            appBar: AppBar(
+                              backgroundColor: Colors.red,
+                              title: Text('Apply Leave'),
+                            ),
+                            body: Provider.of<ApplyLeaveProvider>(context)
+                                .delete(int.parse(widget.leavedata.id)),
+                          ),
                         ),
                     );
                   },

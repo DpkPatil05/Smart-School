@@ -152,7 +152,7 @@ class _ApplyLeaveState extends State<ApplyLeave> {
       Card(
         child: Center(
             child: Text(
-              "No leaves Applied, Press the '+' button to apply leave",
+              "No leaves applied, Press the '+' button to apply leave",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 15.0
