@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_school/modal/lesson_plan.dart';
+import 'package:flutter/gestures.dart';
+import 'lesson_plan_details.dart';
 
 class LessonPlanCard extends StatefulWidget {
   final List<LessonPlanData> lessonplan;
@@ -50,7 +52,24 @@ class _LessonPlanCardState extends State<LessonPlanCard> {
                                               'Subject',
                                               style: TextStyle(fontWeight: FontWeight.bold),
                                             ),
-                                            Text('${widget.lessonplan[index].subject}'),
+                                            RichText(
+                                              text:TextSpan(
+                                                  text: "${widget.lessonplan[index].subject}",
+                                                    style: TextStyle(fontSize: 20, color: Colors.black),
+                                                  recognizer: TapGestureRecognizer()
+                                                    ..onTap = (){
+                                                      Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(builder: (context) => Scaffold(
+                                                          appBar: AppBar(
+                                                            backgroundColor: Colors.red,
+                                                            title: Text('${widget.lessonplan[index].subject}'),
+                                                          ),
+                                                          body: LessonPlanDetails(),
+                                                        )),
+                                                      );
+                                                    }),
+                                                  )
                                           ]),
                                         ],
                                       ),

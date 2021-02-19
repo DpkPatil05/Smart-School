@@ -170,71 +170,71 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                   ),
                 ],
               ),
-              SizedBox(height: 15.0),
-              Table(
-                children: [
-                  TableRow(
-                      children: [
-                        Text(
-                          'Date From',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        Text('${widget.examdata.from}'),
-                      ]),
-                  TableRow(
-                      children: [
-                        Text(
-                          'Date To',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        Text('${widget.examdata.to}'),
-                      ]),
-                  TableRow(
-                      children: [
-                        Text(
-                          'Total Attempts',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        Text('${widget.examdata.attempt}'),
-                      ]),
-                  TableRow(
-                      children: [
-                        Text(
-                          'Attempted',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        Text('${widget.examdata.attempted}'),
-                      ]),
-                  TableRow(
-                      children: [
-                        Text(
-                          'Status',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        Text('${widget.examdata.status}'),
-                      ]),
-                  TableRow(
-                      children: [
-                        Text(
-                          'Description',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        Text('${widget.examdata.description}'),
-                      ]),
-                ],
-              ),
+              // SizedBox(height: 15.0),
+              // Table(
+              //   children: [
+              //     TableRow(
+              //         children: [
+              //           Text(
+              //             'Date From',
+              //             style: TextStyle(
+              //                 fontWeight: FontWeight.bold
+              //             ),
+              //           ),
+              //           Text('${widget.examdata.from}'),
+              //         ]),
+              //     TableRow(
+              //         children: [
+              //           Text(
+              //             'Date To',
+              //             style: TextStyle(
+              //                 fontWeight: FontWeight.bold
+              //             ),
+              //           ),
+              //           Text('${widget.examdata.to}'),
+              //         ]),
+              //     TableRow(
+              //         children: [
+              //           Text(
+              //             'Total Attempts',
+              //             style: TextStyle(
+              //                 fontWeight: FontWeight.bold
+              //             ),
+              //           ),
+              //           Text('${widget.examdata.attempt}'),
+              //         ]),
+              //     TableRow(
+              //         children: [
+              //           Text(
+              //             'Attempted',
+              //             style: TextStyle(
+              //                 fontWeight: FontWeight.bold
+              //             ),
+              //           ),
+              //           Text('${widget.examdata.attempted}'),
+              //         ]),
+              //     TableRow(
+              //         children: [
+              //           Text(
+              //             'Status',
+              //             style: TextStyle(
+              //                 fontWeight: FontWeight.bold
+              //             ),
+              //           ),
+              //           Text('${widget.examdata.status}'),
+              //         ]),
+              //     TableRow(
+              //         children: [
+              //           Text(
+              //             'Description',
+              //             style: TextStyle(
+              //                 fontWeight: FontWeight.bold
+              //             ),
+              //           ),
+              //           Text('${widget.examdata.description}'),
+              //         ]),
+              //   ],
+              // ),
 
               // Row(
               //   children: [

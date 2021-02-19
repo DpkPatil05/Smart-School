@@ -113,14 +113,15 @@ class _TeachersReviewCardState extends State<TeachersReviewCard> {
                                     ),
                                   ],
                                 )
-                                : Center(
-                                  child: Text('${widget.reviewdata.rating}',
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15.0
+                                : Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    for(int i=0; i<int.parse(widget.reviewdata.rating); i++)
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.red,
                                       )
-                                  ),
+                                  ],
                                 ),
                                 SizedBox(height: 15.0),
                               ],
