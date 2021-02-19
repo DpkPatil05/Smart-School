@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smart_school/modal/teachers_review.dart';
 import 'package:rating_dialog/rating_dialog.dart';
 import 'package:smart_school/providers/teachers_review_provider.dart';
@@ -100,8 +101,20 @@ class _TeachersReviewCardState extends State<TeachersReviewCard> {
                                                     submitButton: "SUBMIT",
                                                     accentColor: Colors.red,
                                                     onSubmitPressed: (int rating) {
-                                                      TeachersReviewProvider()
-                                                      .postReview(rating, commentController.text, widget.reviewdata.staffid);
+                                                      Navigator.of(context).pop(false);
+                                                      Navigator.pushReplacement(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (BuildContext context) => Scaffold(
+                                                            appBar: AppBar(
+                                                              backgroundColor: Colors.red,
+                                                              title: Text('Apply Leave'),
+                                                            ),
+                                                            body: Provider.of<TeachersReviewProvider>(context)
+                                                                .postReview(rating, commentController.text, widget.reviewdata.staffid),
+                                                          ),
+                                                        ),
+                                                      );
                                                     },
                                                   );
                                                 }
