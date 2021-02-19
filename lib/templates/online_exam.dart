@@ -51,23 +51,7 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                       ),
                                       SizedBox(
                                           width: 250.0,
-                                          child: Text('server data'))
-                                    ],
-                                ),
-                              ),
-                              Divider(height: 2.0, thickness: 2.0),
-                              Expanded(
-                                flex: 1,
-                                child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SizedBox(
-                                          width: 120.0,
-                                          child: Text('Total Attempt')
-                                      ),
-                                      SizedBox(
-                                          width: 250.0,
-                                          child: Text('server data'))
+                                          child: Text('${widget.examdata.exam}'))
                                     ],
                                 ),
                               ),
@@ -83,7 +67,7 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                       ),
                                       SizedBox(
                                           width: 250.0,
-                                          child: Text('server data'))
+                                          child: Text('${widget.examdata.from}'))
                                     ],
                                 ),
                               ),
@@ -99,8 +83,40 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                       ),
                                       SizedBox(
                                           width: 250.0,
-                                          child: Text('server data'))
+                                          child: Text('${widget.examdata.to}'))
                                     ],
+                                ),
+                              ),
+                              Divider(height: 2.0, thickness: 2.0),
+                              Expanded(
+                                flex: 1,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                        width: 120.0,
+                                        child: Text('Total Attempt')
+                                    ),
+                                    SizedBox(
+                                        width: 250.0,
+                                        child: Text('${widget.examdata.totalAttempt}'))
+                                  ],
+                                ),
+                              ),
+                              Divider(height: 2.0, thickness: 2.0),
+                              Expanded(
+                                flex: 1,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                        width: 120.0,
+                                        child: Text('Attempted')
+                                    ),
+                                    SizedBox(
+                                        width: 250.0,
+                                        child: Text('${widget.examdata.attempted}'))
+                                  ],
                                 ),
                               ),
                               Divider(height: 2.0, thickness: 2.0),
@@ -115,7 +131,7 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                       ),
                                       SizedBox(
                                           width: 250.0,
-                                          child: Text('server data'))
+                                          child: Text('${widget.examdata.duration}'))
                                     ],
                                 ),
                               ),
@@ -131,7 +147,7 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                       ),
                                       SizedBox(
                                           width: 250.0,
-                                          child: Text('server data'))
+                                          child: Text('${widget.examdata.passing}'))
                                     ],
                                 ),
                               ),
@@ -139,16 +155,32 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                               Expanded(
                                 flex: 1,
                                 child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SizedBox(
-                                          width: 120.0,
-                                          child: Text('Total Questions')
-                                      ),
-                                      SizedBox(
-                                          width: 250.0,
-                                          child: Text('server data'))
-                                    ],
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                        width: 120.0,
+                                        child: Text('Status')
+                                    ),
+                                    SizedBox(
+                                        width: 250.0,
+                                        child: Text('${widget.examdata.status}'))
+                                  ],
+                                ),
+                              ),
+                              Divider(height: 2.0, thickness: 2.0),
+                              Expanded(
+                                flex: 1,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                        width: 120.0,
+                                        child: Text('Description')
+                                    ),
+                                    SizedBox(
+                                        width: 250.0,
+                                        child: Text('${widget.examdata.description}'))
+                                  ],
                                 ),
                               ),
                               Divider(height: 2.0, thickness: 2.0),
@@ -170,171 +202,6 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                   ),
                 ],
               ),
-              // SizedBox(height: 15.0),
-              // Table(
-              //   children: [
-              //     TableRow(
-              //         children: [
-              //           Text(
-              //             'Date From',
-              //             style: TextStyle(
-              //                 fontWeight: FontWeight.bold
-              //             ),
-              //           ),
-              //           Text('${widget.examdata.from}'),
-              //         ]),
-              //     TableRow(
-              //         children: [
-              //           Text(
-              //             'Date To',
-              //             style: TextStyle(
-              //                 fontWeight: FontWeight.bold
-              //             ),
-              //           ),
-              //           Text('${widget.examdata.to}'),
-              //         ]),
-              //     TableRow(
-              //         children: [
-              //           Text(
-              //             'Total Attempts',
-              //             style: TextStyle(
-              //                 fontWeight: FontWeight.bold
-              //             ),
-              //           ),
-              //           Text('${widget.examdata.attempt}'),
-              //         ]),
-              //     TableRow(
-              //         children: [
-              //           Text(
-              //             'Attempted',
-              //             style: TextStyle(
-              //                 fontWeight: FontWeight.bold
-              //             ),
-              //           ),
-              //           Text('${widget.examdata.attempted}'),
-              //         ]),
-              //     TableRow(
-              //         children: [
-              //           Text(
-              //             'Status',
-              //             style: TextStyle(
-              //                 fontWeight: FontWeight.bold
-              //             ),
-              //           ),
-              //           Text('${widget.examdata.status}'),
-              //         ]),
-              //     TableRow(
-              //         children: [
-              //           Text(
-              //             'Description',
-              //             style: TextStyle(
-              //                 fontWeight: FontWeight.bold
-              //             ),
-              //           ),
-              //           Text('${widget.examdata.description}'),
-              //         ]),
-              //   ],
-              // ),
-
-              // Row(
-              //   children: [
-              //     Table(
-              //       defaultColumnWidth: FixedColumnWidth(85.0),
-              //       children: [
-              //         TableRow(
-              //             children: [
-              //               Column(
-              //                   children:[
-              //                     Text(
-              //                         'Date From',
-              //                         style: TextStyle(fontSize: 15.0)
-              //                     )
-              //                   ]
-              //               ),
-              //               Column(
-              //                   children:[
-              //                     Text('from server')
-              //                   ]
-              //               ),
-              //             ]),
-              //         TableRow(
-              //             children: [
-              //               Column(
-              //                   children:[
-              //                     Text(
-              //                         'Attempts',
-              //                         style: TextStyle(fontSize: 15.0)
-              //                     )
-              //                   ]),
-              //               Column(
-              //                   children:[
-              //                     Text('from server')
-              //                   ]),
-              //             ]),
-              //         TableRow(
-              //             children: [
-              //               Column(
-              //                   children:[
-              //                     Text(
-              //                         'Duration',
-              //                         style: TextStyle(fontSize: 15.0)
-              //                     )
-              //                   ]),
-              //               Column(
-              //                   children:[
-              //                     Text('from server')
-              //                   ]),
-              //             ]),
-              //       ],
-              //     ),
-              //     Table(
-              //       defaultColumnWidth: FixedColumnWidth(85.0),
-              //       children: [
-              //         TableRow(
-              //             children: [
-              //               Column(
-              //                   children:[
-              //                     Text(
-              //                         'Date To',
-              //                         style: TextStyle(fontSize: 15.0)
-              //                     )
-              //                   ]),
-              //               Column(
-              //                   children:[
-              //                     Text('from server')
-              //                   ]),
-              //             ]),
-              //         TableRow(
-              //             children: [
-              //               Column(
-              //                   children:[
-              //                     Text(
-              //                         'Attempted',
-              //                         style: TextStyle(fontSize: 15.0)
-              //                     )
-              //                   ]),
-              //               Column(
-              //                   children:[
-              //                     Text('from server')
-              //                   ]),
-              //             ]),
-              //         TableRow(
-              //             children: [
-              //               Column(
-              //                   children:[
-              //                     Text('Status',
-              //                         style: TextStyle(fontSize: 15.0)
-              //                     )
-              //                   ]),
-              //               Column(
-              //                   children:[
-              //                     Text('from server')
-              //                   ]),
-              //             ]),
-              //       ],
-              //     ),
-              //   ],
-              // ),
             ],
           ),
         )
