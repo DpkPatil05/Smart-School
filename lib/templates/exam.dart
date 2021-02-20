@@ -49,6 +49,33 @@ class _ExamCardState extends State<ExamCard> {
                             child: Column(
                               children: [
                                 Table(
+                                    columnWidths: { 0: FlexColumnWidth(2), 2: FlexColumnWidth(3),},
+                                    children: [
+                                      TableRow(
+                                          children: [
+                                            TableCell(child: Text(
+                                              'Grand Total:',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold
+                                              ),
+                                            )),
+                                            TableCell(child:  Text('${widget.examresultdata[widget.examresultdata.length-2].total}'),),
+                                            TableCell(child: Text(
+                                              'Total Marks Obtained:',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold
+                                              ),
+                                            )),
+                                            TableCell(child: Text('${widget.examresultdata[widget.examresultdata.length-2].marksObtained}'),)
+                                          ]
+                                      ),
+                                    ]
+                                ),
+                                Divider(),
+                                SizedBox(height: 10.0),
+                                Table(
                                   columnWidths: { 0: FlexColumnWidth(2), 1: FlexColumnWidth(2), 2: FlexColumnWidth(2)},
                                   children: [
                                     TableRow(
@@ -88,32 +115,7 @@ class _ExamCardState extends State<ExamCard> {
                                     )
                                   ],
                                 ),
-                                SizedBox(height: 15.0),
-                                    Table(
-                                        columnWidths: { 0: FlexColumnWidth(2), 2: FlexColumnWidth(3),},
-                                        children: [
-                                          TableRow(
-                                            children: [
-                                              TableCell(child: Text(
-                                                'Grand Total:',
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold
-                                                ),
-                                              )),
-                                              TableCell(child:  Text('${widget.examresultdata[widget.examresultdata.length-2].total}'),),
-                                              TableCell(child: Text(
-                                                'Total Marks Obtained:',
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold
-                                                ),
-                                              )),
-                                              TableCell(child: Text('${widget.examresultdata[widget.examresultdata.length-2].marksObtained}'),)
-                                            ]
-                                          ),
-                                        ]
-                                    ),
+                                Divider()
                               ],
                             )
                           ),
