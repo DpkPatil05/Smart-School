@@ -106,7 +106,7 @@ class _AttendanceCalenderState extends State<AttendanceCalender> with TickerProv
   @override
   Widget build(BuildContext context) {
     _calendarCarousel = CalendarCarousel<Event>(
-      todayBorderColor: Colors.green,
+      todayBorderColor: Colors.blue,
       onDayPressed: (DateTime date, List<Event> events) {
         this.setState(() => _currentDate2 = date);
         events.forEach((event) => print(event.title));

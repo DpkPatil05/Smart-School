@@ -279,13 +279,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.3"
-  flutter_launcher_icons:
+  flutter_launcher_name:
     dependency: "direct dev"
     description:
-      name: flutter_launcher_icons
+      name: flutter_launcher_name
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.1"
+    version: "0.0.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
