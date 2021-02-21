@@ -44,137 +44,134 @@ class _ExamCardState extends State<ExamCard> {
                         context: context,
                         builder: (BuildContext context) =>
                         0 != widget.examresultdata[widget.examresultdata.length-2].total.toInt() ?
-                        SingleChildScrollView(
-                          child: Container(
-                            height: 400.0,
-                            child: ListTile(
-                              title: Column(
-                                children: [
-                                  Table(
-                                      columnWidths: { 0: FlexColumnWidth(2), 2: FlexColumnWidth(3),},
-                                      children: [
-                                        TableRow(
-                                            children: [
-                                              TableCell(child: Text(
-                                                'Grand Total:',
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold
-                                                ),
-                                              )),
-                                              TableCell(child:  Text('${widget.examresultdata[widget.examresultdata.length-2].total}'),),
-                                              TableCell(child: Text(
-                                                'Total Marks Obtained:',
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold
-                                                ),
-                                              )),
-                                              TableCell(child: Text('${widget.examresultdata[widget.examresultdata.length-2].marksObtained}'),)
-                                            ]
-                                        ),
-                                      ]
-                                  ),
-                                  Divider(),
-                                  SizedBox(height: 10.0),
-                                  Table(
-                                    columnWidths: { 0: FlexColumnWidth(2), 1: FlexColumnWidth(2), 2: FlexColumnWidth(2)},
+                        ListTile(
+                          title: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Table(
+                                    columnWidths: { 0: FlexColumnWidth(2), 2: FlexColumnWidth(3),},
                                     children: [
                                       TableRow(
                                           children: [
-                                            TableCell(
-                                                child: Text(
-                                              'Percentage',
+                                            TableCell(child: Text(
+                                              'Grand Total:',
                                               style: TextStyle(
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold
                                               ),
                                             )),
-                                            TableCell(
-                                                child: Text(
-                                              'Result',
+                                            TableCell(child:  Text('${widget.examresultdata[widget.examresultdata.length-2].total}'),),
+                                            TableCell(child: Text(
+                                              'Total Marks Obtained:',
                                               style: TextStyle(
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold
                                               ),
                                             )),
-                                            TableCell(
-                                                child: Text(
-                                              'Division',
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold
-                                              ),
-                                            )),
+                                            TableCell(child: Text('${widget.examresultdata[widget.examresultdata.length-2].marksObtained}'),)
                                           ]
                                       ),
-                                      TableRow(
-                                          children: [
-                                            Text('${widget.examresultdata[widget.examresultdata.length-2].perct}'),
-                                            Text('${widget.examresultdata[widget.examresultdata.length-2].result}'),
-                                            Text('${widget.examresultdata[widget.examresultdata.length-2].division}')
-                                          ]
-                                      )
-                                    ],
+                                    ]
+                                ),
+                                Divider(),
+                                SizedBox(height: 10.0),
+                                Table(
+                                  columnWidths: { 0: FlexColumnWidth(2), 1: FlexColumnWidth(2), 2: FlexColumnWidth(2)},
+                                  children: [
+                                    TableRow(
+                                        children: [
+                                          TableCell(
+                                              child: Text(
+                                            'Percentage',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold
+                                            ),
+                                          )),
+                                          TableCell(
+                                              child: Text(
+                                            'Result',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold
+                                            ),
+                                          )),
+                                          TableCell(
+                                              child: Text(
+                                            'Division',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold
+                                            ),
+                                          )),
+                                        ]
+                                    ),
+                                    TableRow(
+                                        children: [
+                                          Text('${widget.examresultdata[widget.examresultdata.length-2].perct}'),
+                                          Text('${widget.examresultdata[widget.examresultdata.length-2].result}'),
+                                          Text('${widget.examresultdata[widget.examresultdata.length-2].division}')
+                                        ]
+                                    )
+                                  ],
+                                ),
+                                Divider()
+                              ],
+                            )
+                          ),
+                          subtitle: ListView.builder(
+                              itemCount: widget.examresultdata.length-2??0,
+                              itemBuilder: (context, index) {
+                                return ExpansionTile(
+                                  expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
+                                  title: Text(
+                                      widget.examresultdata[index].subject,
+                                    style: TextStyle(color: Colors.black),
                                   ),
-                                  Divider()
-                                ],
-                              ),
-                              subtitle: ListView.builder(
-                                  itemCount: widget.examresultdata.length-2??0,
-                                  itemBuilder: (context, index) {
-                                    return ExpansionTile(
-                                      expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
-                                      title: Text(
-                                          widget.examresultdata[index].subject,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 16.0),
+                                      child: Text(
+                                          'Passing marks: ${widget.examresultdata[index].passingMarks}',
                                         style: TextStyle(color: Colors.black),
                                       ),
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 16.0),
-                                          child: Text(
-                                              'Passing marks: ${widget.examresultdata[index].passingMarks}',
-                                            style: TextStyle(color: Colors.black),
-                                          ),
-                                        ),
-                                        Divider(),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 16.0),
-                                          child: Text(
-                                            'Max Marks: ${widget.examresultdata[index].fullMarks}',
-                                            style: TextStyle(color: Colors.black),
-                                          ),
-                                        ),
-                                        Divider(),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 16.0),
-                                          child: Text(
-                                              'Marks obtained: ${widget.examresultdata[index].marks}',
-                                            style: TextStyle(color: Colors.black),
-                                          ),
-                                        ),
-                                        Divider(),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 16.0),
-                                          child: Text(
-                                              'Note: ${widget.examresultdata[index].note}',
-                                            style: TextStyle(color: Colors.black),
-                                          ),
-                                        ),
-                                        Divider(),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 16.0),
-                                          child: Text(
-                                              'Grade: ${widget.examresultdata[index].grade}',
-                                            style: TextStyle(color: Colors.black),
-                                          ),
-                                        ),
-                                        Divider(),
-                                      ],
-                                    );
-                                  }
-                              ),
-                            ),
+                                    ),
+                                    Divider(),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 16.0),
+                                      child: Text(
+                                        'Max Marks: ${widget.examresultdata[index].fullMarks}',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ),
+                                    Divider(),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 16.0),
+                                      child: Text(
+                                          'Marks obtained: ${widget.examresultdata[index].marks}',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ),
+                                    Divider(),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 16.0),
+                                      child: Text(
+                                          'Note: ${widget.examresultdata[index].note}',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ),
+                                    Divider(),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 16.0),
+                                      child: Text(
+                                          'Grade: ${widget.examresultdata[index].grade}',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ),
+                                    Divider(),
+                                  ],
+                                );
+                              }
                           ),
                         ) : ListTile(
                             title: Center(child: Text('Results not available'))
