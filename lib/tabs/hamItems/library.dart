@@ -38,25 +38,27 @@ class _LibraryState extends State<Library>  with SingleTickerProviderStateMixin{
               ),
               SingleChildScrollView(
                 child: Container(
-                  height: 1000,
+                  height: 750.0,
                   child: TabBarView(
                       controller: _controller,
                       children: <Widget>[
-                        ListView.builder(
-                            itemCount: widget.librarydata[0]?.length??0,
-                            itemBuilder: (context, index) {
-                              return 1 == widget.librarydata.length ?
-                              Center(
-                                  child: Text(
-                                    "No Books available",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15.0
-                                    ),
-                                  )
-                              ) :
-                              LibraryBooksCard(librarydata: widget.librarydata[0][index]);
-                            }
+                        Container(
+                          child: ListView.builder(
+                              itemCount: widget.librarydata[0]?.length??0,
+                              itemBuilder: (context, index) {
+                                return 1 == widget.librarydata.length ?
+                                Center(
+                                    child: Text(
+                                      "No Books available",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15.0
+                                      ),
+                                    )
+                                ) :
+                                LibraryBooksCard(librarydata: widget.librarydata[0][index]);
+                              }
+                          ),
                         ),
                         Container(
                           child: ListView.builder(
