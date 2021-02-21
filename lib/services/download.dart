@@ -3,6 +3,7 @@ import 'package:ext_storage/ext_storage.dart';
 import 'package:file_utils/file_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:path/path.dart';
 
 class Download with ChangeNotifier{
   bool downloading = false;
@@ -22,6 +23,13 @@ class Download with ChangeNotifier{
 
   Future<void> startDownload(String url, String doc) async {
     String downloadURL = url + doc;
+    String docName = '';
+
+    if(doc.contains('/'))
+      docName = basename(doc);
+    else
+      docName = doc;
+
     print('Download url: ' + downloadURL);
     Dio dio = Dio();
     try {
@@ -30,7 +38,7 @@ class Download with ChangeNotifier{
       String path = await ExtStorage.getExternalStoragePublicDirectory(
           ExtStorage.DIRECTORY_DOWNLOADS);
       FileUtils.mkdir([path]);
-      await dio.download(downloadURL, "$path/$doc", onReceiveProgress: (rec, total){
+      await dio.download(downloadURL, "$path/$docName", onReceiveProgress: (rec, total){
         progress = ((rec/total)*100).toStringAsFixed(0) + "%";
       }).then((value) {
         progress = "complete";

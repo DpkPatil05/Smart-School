@@ -51,7 +51,7 @@ class _TeachersReviewCardState extends State<TeachersReviewCard> {
                       tooltip: "View Details",
                       onPressed: () => showModalBottomSheet(
                           context: context,
-                          builder: (BuildContext context) => SingleChildScrollView(
+                          builder: (BuildContext context) => Center(
                             child: Column(
                               children: [
                                 ListTile(
@@ -69,7 +69,7 @@ class _TeachersReviewCardState extends State<TeachersReviewCard> {
                                     decoration: const InputDecoration(
                                       border: UnderlineInputBorder(),
                                       filled: false,
-                                      labelText: 'Enter comment',
+                                      labelText: 'Enter comment (Optional)',
                                       labelStyle: TextStyle(
                                         color: Colors.black,
                                       ),
@@ -125,8 +125,7 @@ class _TeachersReviewCardState extends State<TeachersReviewCard> {
                                       ),
                                     ),
                                   ],
-                                )
-                                : Row(
+                                ) : Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     for(int i=0; i<int.parse(widget.reviewdata.rating); i++)
