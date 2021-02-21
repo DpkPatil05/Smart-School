@@ -92,7 +92,7 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                                       ],
                                     ),
                                     RaisedButton(
-                                        child: Text('From date'),
+                                        child: Text('To date'),
                                         onPressed: () {
                                           showDatePicker(
                                               context: context,

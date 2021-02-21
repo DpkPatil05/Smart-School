@@ -45,57 +45,79 @@ class _ExamCardState extends State<ExamCard> {
                         builder: (BuildContext context) =>
                         0 != widget.examresultdata[widget.examresultdata.length-2].total.toInt() ?
                         ListTile(
-                          title:Table(
-                            defaultColumnWidth: FixedColumnWidth(25.0),
-                             children:[
-                               TableRow(
-                                   children: [
-                                   TableCell(child: Text(
-                                     'Total Marks Obtained',
-                                     style: TextStyle(
-                                         color: Colors.black,
-                                         fontWeight: FontWeight.bold
-                                     ),
-                                   )),
-                                    TableCell(child: Text(
-                                      'Grand Total',
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold
+                          title: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Table(
+                                    columnWidths: { 0: FlexColumnWidth(2), 2: FlexColumnWidth(3),},
+                                    children: [
+                                      TableRow(
+                                          children: [
+                                            TableCell(child: Text(
+                                              'Grand Total:',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold
+                                              ),
+                                            )),
+                                            TableCell(child:  Text('${widget.examresultdata[widget.examresultdata.length-2].total}'),),
+                                            TableCell(child: Text(
+                                              'Total Marks Obtained:',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold
+                                              ),
+                                            )),
+                                            TableCell(child: Text('${widget.examresultdata[widget.examresultdata.length-2].marksObtained}'),)
+                                          ]
                                       ),
-                                    )),
-                                     TableCell(child: Text(
-                                       'Percentage',
-                                       style: TextStyle(
-                                           color: Colors.black,
-                                           fontWeight: FontWeight.bold
-                                       ),
-                                     )),
-                                    TableCell(child: Text(
-                                        'Result',
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold
-                                      ),
-                                    )),
-                                     TableCell(child: Text(
-                                         'Division',
-                                       style: TextStyle(
-                                           color: Colors.black,
-                                           fontWeight: FontWeight.bold
-                                       ),
-                                     )),
-                                   ]),
-                               TableRow(
-                                 children: [
-                                   Text('${widget.examresultdata[widget.examresultdata.length-2].marksObtained}'),
-                                   Text('${widget.examresultdata[widget.examresultdata.length-2].total}'),
-                                   Text('${widget.examresultdata[widget.examresultdata.length-2].perct}'),
-                                   Text('${widget.examresultdata[widget.examresultdata.length-2].result}'),
-                                   Text('${widget.examresultdata[widget.examresultdata.length-2].division}')
-                                 ]
-                               )
-                             ]
+                                    ]
+                                ),
+                                Divider(),
+                                SizedBox(height: 10.0),
+                                Table(
+                                  columnWidths: { 0: FlexColumnWidth(2), 1: FlexColumnWidth(2), 2: FlexColumnWidth(2)},
+                                  children: [
+                                    TableRow(
+                                        children: [
+                                          TableCell(
+                                              child: Text(
+                                            'Percentage',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold
+                                            ),
+                                          )),
+                                          TableCell(
+                                              child: Text(
+                                            'Result',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold
+                                            ),
+                                          )),
+                                          TableCell(
+                                              child: Text(
+                                            'Division',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold
+                                            ),
+                                          )),
+                                        ]
+                                    ),
+                                    TableRow(
+                                        children: [
+                                          Text('${widget.examresultdata[widget.examresultdata.length-2].perct}'),
+                                          Text('${widget.examresultdata[widget.examresultdata.length-2].result}'),
+                                          Text('${widget.examresultdata[widget.examresultdata.length-2].division}')
+                                        ]
+                                    )
+                                  ],
+                                ),
+                                Divider()
+                              ],
+                            )
                           ),
                           subtitle: ListView.builder(
                               itemCount: widget.examresultdata.length-2??0,
