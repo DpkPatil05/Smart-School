@@ -21,70 +21,65 @@ class _LibraryState extends State<Library>  with SingleTickerProviderStateMixin{
   }
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: SingleChildScrollView(
-        child: Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(color: Colors.red),
-                child: TabBar(
-                  controller: _controller,
-                  tabs: [
-                    Tab(text: 'Books'),
-                    Tab(text: 'Books Issued'),
-                  ],
-                ),
+    return SingleChildScrollView(
+      child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(color: Colors.red),
+              child: TabBar(
+                controller: _controller,
+                tabs: [
+                  Tab(text: 'Books'),
+                  Tab(text: 'Books Issued'),
+                ],
               ),
-              SingleChildScrollView(
-                child: Container(
-                  height: 750.0,
-                  child: TabBarView(
-                      controller: _controller,
-                      children: <Widget>[
-                        Container(
-                          child: ListView.builder(
-                              itemCount: widget.librarydata[0]?.length??0,
-                              itemBuilder: (context, index) {
-                                return 1 == widget.librarydata.length ?
-                                Center(
-                                    child: Text(
-                                      "No Books available",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15.0
-                                      ),
-                                    )
-                                ) :
-                                LibraryBooksCard(librarydata: widget.librarydata[0][index]);
-                              }
-                          ),
-                        ),
-                        Container(
-                          child: ListView.builder(
-                              itemCount:  widget.librarydata[1]?.length??0,
-                              itemBuilder: (context, index) {
-                                return 1 == widget.librarydata.length ?
-                                Center(
-                                    child: Text(
-                                      "No Books Issued",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15.0
-                                      ),
-                                    )
-                                ) :
-                                LibraryBooksIssuedCard(librarydata:
-                                widget.librarydata[1][index]);
-                              }
-                          ),
-                        ),
-                      ]
-                  ),
-                ),
-              )
-            ]
-        ),
+            ),
+            Container(
+              height: 650.0,
+              child: TabBarView(
+                  controller: _controller,
+                  children: <Widget>[
+                    Container(
+                      child: ListView.builder(
+                          itemCount: widget.librarydata[0]?.length??0,
+                          itemBuilder: (context, index) {
+                            return 1 == widget.librarydata.length ?
+                            Center(
+                                child: Text(
+                                  "No Books available",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15.0
+                                  ),
+                                )
+                            ) :
+                            LibraryBooksCard(librarydata: widget.librarydata[0][index]);
+                          }
+                      ),
+                    ),
+                    Container(
+                      child: ListView.builder(
+                          itemCount:  widget.librarydata[1]?.length??0,
+                          itemBuilder: (context, index) {
+                            return 1 == widget.librarydata.length ?
+                            Center(
+                                child: Text(
+                                  "No Books Issued",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15.0
+                                  ),
+                                )
+                            ) :
+                            LibraryBooksIssuedCard(librarydata:
+                            widget.librarydata[1][index]);
+                          }
+                      ),
+                    ),
+                  ]
+              ),
+            )
+          ]
       ),
     );
 

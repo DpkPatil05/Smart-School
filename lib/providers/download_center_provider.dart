@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:smart_school/hive_operations.dart';
-import 'package:smart_school/modal/homework.dart';
+import 'package:smart_school/modal/download_center.dart';
 import 'package:smart_school/services/download.dart';
 
-class HomeworkProvider with ChangeNotifier {
-  String generalDownloadURL = 'http://www.paperfree-erp.in/college/demo-high-school/'
-      'uploads/homework/';
+class DownloadCenterProvider with ChangeNotifier {
+  String generalDownloadURL = 'http://www.paperfree-erp.in/college/demo-high-school/';
 
   toast(String msg) {
     return Fluttertoast.showToast(
@@ -21,18 +20,12 @@ class HomeworkProvider with ChangeNotifier {
     );
   }
 
-  String getDescription(String description) {
-    String description1 = description.replaceAll('<p>', '');
-    description1 = description1.replaceAll('<br>', '');
-    return description1.replaceAll('</p>', '');
-  }
-
   generateDownload(String doc) => Download().startDownload(generalDownloadURL, doc);
 
   // ignore: missing_return
-  Future<List<HomeworkData>> fetchHomework() async {
-    String url = 'http://www.paperfree-erp.in/mobileapp/homework/homework.php?studentid=${HiveOperation().studentID}';
-    print('Homework url: ' + url);
+  Future<List<List<DownloadCenterData>>> fetchDownloadContent() async {
+    String url = 'https://www.paperfree-erp.in/mobileapp/downloadcenter/assignment.php?studentid=${HiveOperation().studentID}';
+    print('Download url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {
       try {
@@ -40,14 +33,15 @@ class HomeworkProvider with ChangeNotifier {
         if (response.statusCode == 200) {
           // If the server did return a 200 OK response,
           // then parse the JSON.=
-          final List<HomeworkData> hwData = homeworkDataFromJson(response.body);
-          return hwData;
+          final List<List<DownloadCenterData>> downloadData = downloadCenterDataFromJson(response.body);
+          return downloadData;
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          return List<HomeworkData>();
+          toast("Problem fetching data");
         }
       } catch(e) {toast("Problem fetching data");}
     } else toast("No Data connection");
   }
+
 }
