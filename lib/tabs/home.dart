@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_school/future/fetch_attendance.dart';
-import 'package:smart_school/future/fetch_calender_data.dart';
 import 'package:smart_school/future/fetch_homework.dart';
+import 'package:smart_school/utils/events_calender.dart';
 
 class HomeTab extends StatefulWidget {
   @override
@@ -17,8 +17,8 @@ class _HomeTabState extends State<HomeTab> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-              height: 400.0,
-              child: FetchCalender()
+              height: 460.0,
+              child: EventsCalender()
           ),
           SizedBox(height: 50.0),
          Column(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_school/modal/attendance.dart';
-import 'package:smart_school/utils/calender_view.dart';
+import 'package:smart_school/utils/attendance_calender.dart';
 
 class Attendance extends StatefulWidget {
   final AttendanceData attendancedata;
@@ -19,8 +19,8 @@ class _AttendanceState extends State<Attendance> {
         child: Column(
             children: [
               Container(
-                  height: 400.0,
-                  child: Calender(attendance: widget.attendancedata)
+                  height: 460.0,
+                  child: AttendanceCalender(attendance: widget.attendancedata)
               ),
               SizedBox(height: 30.0),
               Row(
@@ -116,7 +116,7 @@ class _AttendanceState extends State<Attendance> {
                               Icon(
                                 Icons.circle,
                                 size: 30.0,
-                                color: Colors.brown,
+                                color: Colors.red,
                               ),
                               SizedBox(width: 20.0,),
                               Text(
@@ -133,7 +133,7 @@ class _AttendanceState extends State<Attendance> {
                               Icon(
                                 Icons.circle,
                                 size: 30.0,
-                                color: Colors.deepOrange,
+                                color: Colors.orange,
                               ),
                               SizedBox(width: 20.0),
                               Text(

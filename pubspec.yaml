@@ -33,6 +33,7 @@ dependencies:
   table_calendar: ^2.3.3
   url_launcher: ^5.7.10
   rating_dialog: ^1.0.0
+  flutter_calendar_carousel: ^1.5.3
 
   data_connection_checker: ^0.3.4
   http: ^0.12.2
