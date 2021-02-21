@@ -50,7 +50,8 @@ void initState() {
               controller: _controller,
               children: <Widget>[
                 Container(
-                  child: ListView.builder(
+                  child: 'nodata'!=widget.downloadcenterdata[0][0].title?
+                  ListView.builder(
                       itemCount: widget.downloadcenterdata[0]?.length??0,
                       itemBuilder: (context, index) {
                         return Card(
@@ -79,10 +80,21 @@ void initState() {
                             )
                         );
                       }
-                  ),
+                  ) : Card(
+                    child: Center(
+                        child: Text(
+                          "No data available",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15.0
+                          ),
+                        )
+                    ),
+                  )
                 ),
                 Container(
-                  child: ListView.builder(
+                  child: 'nodata'!=widget.downloadcenterdata[0][0].title?
+                  ListView.builder(
                       itemCount: widget.downloadcenterdata[1]?.length??0,
                       itemBuilder: (context, index) {
                         return Card(
@@ -111,10 +123,21 @@ void initState() {
                             )
                         );
                       }
+                  ) : Card(
+                    child: Center(
+                        child: Text(
+                          "No data available",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15.0
+                          ),
+                        )
+                    ),
                   ),
                 ),
                 Container(
-                  child: ListView.builder(
+                  child: 'nodata'!=widget.downloadcenterdata[0][0].title?
+                  ListView.builder(
                       itemCount: widget.downloadcenterdata[2]?.length??0,
                       itemBuilder: (context, index) {
                         return Card(
@@ -143,10 +166,21 @@ void initState() {
                             )
                         );
                       }
+                  ) : Card(
+                    child: Center(
+                        child: Text(
+                          "No data available",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15.0
+                          ),
+                        )
+                    ),
                   ),
                 ),
                 Container(
-                  child: ListView.builder(
+                  child: 'nodata'!=widget.downloadcenterdata[0][0].title?
+                  ListView.builder(
                       itemCount: widget.downloadcenterdata[3]?.length??0,
                       itemBuilder: (context, index) {
                         return Card(
@@ -175,6 +209,16 @@ void initState() {
                             )
                         );
                       }
+                  ) : Card(
+                    child: Center(
+                        child: Text(
+                          "No data available",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15.0
+                          ),
+                        )
+                    ),
                   ),
                 ),
               ],
