@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_school/future/fetch_attendance.dart';
 import 'package:smart_school/future/fetch_homework.dart';
+import 'package:smart_school/pages/todo.dart';
 import 'package:smart_school/utils/events_calender.dart';
 
 class HomeTab extends StatefulWidget {
@@ -59,14 +60,14 @@ class _HomeTabState extends State<HomeTab> {
                    MaterialPageRoute(builder: (context) => Scaffold(
                      appBar: AppBar(
                        backgroundColor: Colors.red,
-                       title: Text('Homework'),
+                       title: Text('To Do'),
                      ),
-                     body: FetchHomework(),
+                     body: Todo(),
                    ),
                    ),
                  );},
                child: const Text(
-                   'Homework',
+                   'To Do',
                    style: TextStyle(
                        fontSize: 25.0,
                        color: Colors.white
