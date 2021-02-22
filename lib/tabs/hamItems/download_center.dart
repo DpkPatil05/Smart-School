@@ -64,7 +64,7 @@ void initState() {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
-                                    width: 230.0,
+                                    width: 200.0,
                                     child: Text('${widget.downloadcenterdata[0][index].title}')
                                   ),
                                   Text('${widget.downloadcenterdata[0][index].date}'),
@@ -74,7 +74,8 @@ void initState() {
                                         CheckPermissions().checkStoragePermission().then((value) =>
                                             DownloadCenterProvider().generateDownload(widget.downloadcenterdata[0][index].link));
                                       }
-                                  )
+                                  ),
+                                  SizedBox(width: 5)
                                 ],
                               )
                             )
@@ -107,7 +108,7 @@ void initState() {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     SizedBox(
-                                      width: 230.0,
+                                      width: 200.0,
                                       child: Text('${widget.downloadcenterdata[1][index].title}')
                                     ),
                                     Text('${widget.downloadcenterdata[1][index].date}'),
@@ -117,7 +118,8 @@ void initState() {
                                           CheckPermissions().checkStoragePermission().then((value) =>
                                               DownloadCenterProvider().generateDownload(widget.downloadcenterdata[1][index].link));
                                         }
-                                    )
+                                    ),
+                                    SizedBox(width: 5)
                                   ],
                                 )
                             )
@@ -150,7 +152,7 @@ void initState() {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     SizedBox(
-                                      width: 230.0,
+                                      width: 200.0,
                                       child: Text('${widget.downloadcenterdata[2][index].title}')
                                     ),
                                     Text('${widget.downloadcenterdata[2][index].date}'),
@@ -160,7 +162,8 @@ void initState() {
                                           CheckPermissions().checkStoragePermission().then((value) =>
                                               DownloadCenterProvider().generateDownload(widget.downloadcenterdata[2][index].link));
                                         }
-                                    )
+                                    ),
+                                    SizedBox(width: 5)
                                   ],
                                 )
                             )
@@ -193,7 +196,7 @@ void initState() {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     SizedBox(
-                                      width: 230.0,
+                                      width: 200.0,
                                       child: Text('${widget.downloadcenterdata[3][index].title}')
                                     ),
                                     Text('${widget.downloadcenterdata[3][index].date}'),
@@ -203,7 +206,8 @@ void initState() {
                                           CheckPermissions().checkStoragePermission().then((value) =>
                                               DownloadCenterProvider().generateDownload(widget.downloadcenterdata[3][index].link));
                                         }
-                                    )
+                                    ),
+                                    SizedBox(width: 5)
                                   ],
                                 )
                             )

@@ -12,7 +12,7 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:icon="@mipmap/ic_launcher"
-        android:label="smart_school"
+        android:label="Smart School"
         android:requestLegacyExternalStorage="true">
         <activity
             android:name=".MainActivity"

@@ -59,13 +59,18 @@ dev_dependencies:
   hive_generator: ^0.8.2
   build_runner: ^1.11.1
 
-  flutter_launcher_icons:
+  flutter_launcher_name: ^0.0.1
+flutter_launcher_name:
+  name: "Smart School"
 
+  flutter_launcher_icons: 0.8.1
 flutter_icons:
   image_path: "assets/launcher/icon.png"
   adaptive_icon_background: "assets/launcher/background.png"
   android: true
   ios: true
+
+
 
 
 
