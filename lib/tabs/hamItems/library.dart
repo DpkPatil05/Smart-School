@@ -35,7 +35,7 @@ class _LibraryState extends State<Library>  with SingleTickerProviderStateMixin{
               ),
             ),
             Container(
-              height: 650.0,
+              height: 620.0,
               child: TabBarView(
                   controller: _controller,
                   children: <Widget>[
@@ -82,9 +82,6 @@ class _LibraryState extends State<Library>  with SingleTickerProviderStateMixin{
           ]
       ),
     );
-
-
-
   }
 }
 

@@ -6,7 +6,6 @@ class LibraryBooksCard extends StatefulWidget {
 
   const LibraryBooksCard({this.librarydata});
 
-
   @override
   _LibraryBooksCardState createState() => _LibraryBooksCardState();
 }
