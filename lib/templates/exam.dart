@@ -115,63 +115,65 @@ class _ExamCardState extends State<ExamCard> {
                                     )
                                   ],
                                 ),
-                                Divider()
+                                Divider(),
+                                ListView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount: widget.examresultdata.length-2??0,
+                                    itemBuilder: (context, index) {
+                                      return ExpansionTile(
+                                        expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
+                                        title: Text(
+                                          widget.examresultdata[index].subject,
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 16.0),
+                                            child: Text(
+                                              'Passing marks: ${widget.examresultdata[index].passingMarks}',
+                                              style: TextStyle(color: Colors.black),
+                                            ),
+                                          ),
+                                          Divider(),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 16.0),
+                                            child: Text(
+                                              'Max Marks: ${widget.examresultdata[index].fullMarks}',
+                                              style: TextStyle(color: Colors.black),
+                                            ),
+                                          ),
+                                          Divider(),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 16.0),
+                                            child: Text(
+                                              'Marks obtained: ${widget.examresultdata[index].marks}',
+                                              style: TextStyle(color: Colors.black),
+                                            ),
+                                          ),
+                                          Divider(),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 16.0),
+                                            child: Text(
+                                              'Note: ${widget.examresultdata[index].note}',
+                                              style: TextStyle(color: Colors.black),
+                                            ),
+                                          ),
+                                          Divider(),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 16.0),
+                                            child: Text(
+                                              'Grade: ${widget.examresultdata[index].grade}',
+                                              style: TextStyle(color: Colors.black),
+                                            ),
+                                          ),
+                                          Divider(),
+                                        ],
+                                      );
+                                    }
+                                ),
                               ],
                             )
-                          ),
-                          subtitle: ListView.builder(
-                              itemCount: widget.examresultdata.length-2??0,
-                              itemBuilder: (context, index) {
-                                return ExpansionTile(
-                                  expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
-                                  title: Text(
-                                      widget.examresultdata[index].subject,
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 16.0),
-                                      child: Text(
-                                          'Passing marks: ${widget.examresultdata[index].passingMarks}',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                    ),
-                                    Divider(),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 16.0),
-                                      child: Text(
-                                        'Max Marks: ${widget.examresultdata[index].fullMarks}',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                    ),
-                                    Divider(),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 16.0),
-                                      child: Text(
-                                          'Marks obtained: ${widget.examresultdata[index].marks}',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                    ),
-                                    Divider(),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 16.0),
-                                      child: Text(
-                                          'Note: ${widget.examresultdata[index].note}',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                    ),
-                                    Divider(),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 16.0),
-                                      child: Text(
-                                          'Grade: ${widget.examresultdata[index].grade}',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                    ),
-                                    Divider(),
-                                  ],
-                                );
-                              }
                           ),
                         ) : ListTile(
                             title: Center(child: Text('Results not available'))
