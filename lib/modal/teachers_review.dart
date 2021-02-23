@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-List<TeacherReviewData> teacherReviewDataFromJson(String str) => List<TeacherReviewData>.from(json.decode(str).map((x) => TeacherReviewData.fromJson(x)));
+List<TeacherReviewData> teacherReviewDataFromJson(String str) =>
+    List<TeacherReviewData>.from(json.decode(str).map((x) => TeacherReviewData.fromJson(x)));
 
-String teacherReviewDataToJson(List<TeacherReviewData> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String teacherReviewDataToJson(List<TeacherReviewData> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class TeacherReviewData {
   TeacherReviewData({
