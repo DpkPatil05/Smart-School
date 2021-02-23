@@ -76,7 +76,7 @@ class _TodoState extends State<Todo> {
                           children:[
                             ListTile(
                               title: Text('title'),
-                              subtitle: Text('describtion'),
+                              subtitle: Text('description'),
                             )
                           ]
                       ),
