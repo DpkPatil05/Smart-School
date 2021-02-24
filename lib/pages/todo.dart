@@ -1,25 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
+import 'package:smart_school/modal/todo.dart';
 
 class Todo extends StatefulWidget {
   @override
   _TodoState createState() => _TodoState();
 }
 class _TodoState extends State<Todo> {
+
+  Box<TodoModel> todoBox;
+
   final textEditingController = TextEditingController();
   final _controller = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    todoBox = Hive.box<TodoModel>('todos');
+  }
+
   Widget _buildMultilineTextField() {
-    return TextField(
-      controller: this._controller,
-      maxLines: 5,
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-        counterText: '${this._controller.text.split(' ').length}',
-        labelText: 'Description',
-        hintText: 'Add your description',
-        border: const OutlineInputBorder(),
+    return SizedBox(
+      width: 390.0,
+      child: TextField(
+        controller: _controller,
+        maxLines: 5,
+        textCapitalization: TextCapitalization.sentences,
+        decoration: InputDecoration(
+          counterText: '${this._controller.text.split(' ').length}',
+          labelText: 'Description',
+          hintText: 'Add your description',
+          border: const OutlineInputBorder(),
+        ),
       ),
-      onChanged: (text) => setState(() {}),
     );
   }
   @override
@@ -45,13 +60,34 @@ class _TodoState extends State<Todo> {
                               ),
                               controller: textEditingController,
                             ),
-                            SizedBox(
-                              height: 20.0,
-                            ),
+                            SizedBox(height: 20.0),
                             _buildMultilineTextField()
                           ],
                         ),
-                      )
+                      ),
+                      SizedBox(height: 40.0),
+                      Center(
+                        child: ButtonTheme(
+                          child: RaisedButton(
+                              color: Colors.red,
+                              child: Text(
+                                  'Add Todo',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white
+                                  )
+                              ),
+                              onPressed: () {
+                                final String title = textEditingController.text;
+                                final String description = _controller.text;
+
+                                TodoModel todo = TodoModel(title: title, description: description);
+                                todoBox.add(todo);
+                                Navigator.pop(context);
+                              }
+                          ),
+                        ),
+                      ),
                     ],
                   ),
               ),
@@ -62,28 +98,38 @@ class _TodoState extends State<Todo> {
         backgroundColor: Colors.transparent,
         body: Container(
           color: Colors.white,
-          child:ListView.builder(
-              itemCount: 2,
-              itemBuilder: (context, index) {
-                return Card(
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    child: ListTile(
-                      title: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children:[
-                            ListTile(
-                              title: Text('title'),
-                              subtitle: Text('description'),
-                            )
-                          ]
+          child: ValueListenableBuilder(
+            valueListenable: todoBox.listenable(),
+            builder: (BuildContext context, Box<TodoModel> todos, _) {
+              List<int> keys = todos.keys.cast<int>().toList();
+              return ListView.separated(
+                  itemBuilder: (_, index) {
+                    final int key = keys[index];
+                    final TodoModel todo = todos.get(key);
+                    return ListTile(
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(todo.title,
+                              style: TextStyle(fontSize: 22.0)),
+                          IconButton(
+                              icon: Icon(Icons.delete),
+                              onPressed: () {
+                                todoBox.deleteAt(index);
+                              }
+                          ),
+                        ],
                       ),
-                    )
-                );
-              }
-          ),
+                      subtitle: Text(todo.description,
+                          style: TextStyle(fontSize: 18.0)),
+                    );
+                  },
+                  separatorBuilder: (_, index) => Divider(),
+                  itemCount: keys.length,
+                shrinkWrap: true,
+              );
+            },
+          )
         )
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:smart_school/future/fetch_attendance.dart';
-import 'package:smart_school/future/fetch_homework.dart';
 import 'package:smart_school/pages/todo.dart';
 import 'package:smart_school/utils/events_calender.dart';
 
@@ -36,7 +35,7 @@ class _HomeTabState extends State<HomeTab> {
                      body: FetchAttendance(),
                    )),
                  );
-                 },
+                },
                child: const Text(
                    'Attendance',
                    style: TextStyle(
@@ -65,7 +64,8 @@ class _HomeTabState extends State<HomeTab> {
                      body: Todo(),
                    ),
                    ),
-                 );},
+                 );
+                 },
                child: const Text(
                    'To Do',
                    style: TextStyle(

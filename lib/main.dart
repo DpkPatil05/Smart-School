@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_school/modal/todo.dart';
 
 import 'package:smart_school/pages/welcome.dart';
 import 'package:smart_school/providers/apply_leave_provider.dart';
@@ -33,6 +34,8 @@ void main() async {
   Directory document = await getApplicationDocumentsDirectory();
   Hive.init(document.path);
   Hive.openBox('student');
+  Hive.registerAdapter(TodoAdapter());
+  Hive.openBox<TodoModel>('todos');
   runApp(MyApp());
 }
 
