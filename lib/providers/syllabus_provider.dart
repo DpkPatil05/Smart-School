@@ -2,7 +2,6 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'package:smart_school/hive_operations.dart';
 import 'package:smart_school/modal/syllabus.dart';
 
 class SyllabusProvider with ChangeNotifier {
@@ -19,10 +18,27 @@ class SyllabusProvider with ChangeNotifier {
     );
   }
 
+  int lessonsCount(String subject, List<SyllabusData> lessons) {
+    int count=0;
+    for(int i=0; i<lessons.length; i++) {
+      if(lessons[i].subject == subject) count = count+1;
+    }
+    print("Lesson count for $subject = $count");
+    return count;
+  }
+
+  int topicsCount(String subject, String lesson, List<SyllabusData> topics) {
+    int count=0;
+    for(int i=0; i<topics.length; i++) {
+      if(topics[i].subject == subject && topics[i].lesson == lesson) count = count+1;
+    }
+    print("topic count for $lesson = $count");
+    return count;
+  }
+
+
   // ignore: missing_return
-  Future<List<List<List<SyllabusData>>>> fetchSyllabus() async {
-    url = 'http://www.paperfree-erp.in/mobileapp/syllabus/syllabus.php?'
-        'studentid=${HiveOperation().studentID}';
+  Future<List<SyllabusData>> fetchSyllabus(String url) async {
     print('Syllabus data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {
@@ -31,7 +47,7 @@ class SyllabusProvider with ChangeNotifier {
         if (response.statusCode == 200) {
           // If the server did return a 200 OK response,
           // then parse the JSON.=
-          final List<dynamic> syllabusData = syllabusDataFromJson(response.body);
+          final List<SyllabusData> syllabusData = syllabusDataFromJson(response.body);
           return syllabusData;
         } else {
           // If the server did not return a 200 OK response,
