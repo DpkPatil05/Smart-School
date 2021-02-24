@@ -21,6 +21,33 @@ class _TodoState extends State<Todo> {
     todoBox = Hive.box<TodoModel>('todos');
   }
 
+  Future<bool> _onPressed(int index, Box<TodoModel> todoBox){
+    return showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return AlertDialog(
+            title: Text('Are You Sure?'),
+            content: Text('You are going to delete todo!'),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('NO'),
+                onPressed: (){
+                  Navigator.of(context).pop(false);
+                },
+              ),
+              FlatButton(
+                child: Text('YES'),
+                onPressed: (){
+                  todoBox.deleteAt(index);
+                  Navigator.of(context).pop(false);
+                },
+              )
+            ],
+          );
+        }
+    );
+  }
+
   Widget _buildMultilineTextField() {
     return SizedBox(
       width: 390.0,
@@ -102,7 +129,18 @@ class _TodoState extends State<Todo> {
             valueListenable: todoBox.listenable(),
             builder: (BuildContext context, Box<TodoModel> todos, _) {
               List<int> keys = todos.keys.cast<int>().toList();
-              return ListView.separated(
+              return 0 == keys.length?
+              Card(
+                child: Center(
+                    child: Text(
+                      "Press + button to add new todo",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.0
+                      ),
+                    )
+                ),
+              ) : ListView.separated(
                   itemBuilder: (_, index) {
                     final int key = keys[index];
                     final TodoModel todo = todos.get(key);
@@ -115,7 +153,7 @@ class _TodoState extends State<Todo> {
                           IconButton(
                               icon: Icon(Icons.delete),
                               onPressed: () {
-                                todoBox.deleteAt(index);
+                                _onPressed(index, todoBox);
                               }
                           ),
                         ],
