@@ -23,17 +23,36 @@ class SyllabusProvider with ChangeNotifier {
     for(int i=0; i<lessons.length; i++) {
       if(lessons[i].subject == subject) count = count+1;
     }
-    print("Lesson count for $subject = $count");
     return count;
   }
 
   int topicsCount(String subject, String lesson, List<SyllabusData> topics) {
     int count=0;
     for(int i=0; i<topics.length; i++) {
-      if(topics[i].subject == subject && topics[i].lesson == lesson) count = count+1;
+      if(topics[i].subject == subject && topics[i].lesson == lesson
+      && !(topics[i].topic == "" || topics[i].topic == null)) count = count+1;
     }
-    print("topic count for $lesson = $count");
     return count;
+  }
+
+  String getTopic(String subject, String lesson, List<SyllabusData> topics, List topicData) {
+    for(int i=0; i<topics.length; i++) {
+      if (topics[i].subject == subject && topics[i].lesson == lesson && !topicData.contains(topics[i].topic)) {
+        return topics[i].topic.toString();
+      }
+    }
+  }
+
+  List getDetails(String subject, String lesson, List<SyllabusData> topics, List topicData) {
+    List data = [];
+    for(int i=0; i<topics.length; i++) {
+      if (topics[i].subject == subject && topics[i].lesson == lesson && !topicData.contains(topics[i].topic)) {
+        data.add(topics[i].topic);
+        data.add(topics[i].completion);
+        data.add(topics[i].date);
+      }
+    }
+    return data;
   }
 
 

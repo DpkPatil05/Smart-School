@@ -15,6 +15,7 @@ class SyllabusCard extends StatefulWidget {
 }
 
 class _SyllabusCardState extends State<SyllabusCard> {
+  List topicData = [];
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -55,57 +56,88 @@ class _SyllabusCardState extends State<SyllabusCard> {
                                   Expanded(
                                     child: SizedBox(
                                       height: 160.0,
-                                      child: ListView.builder(
+                                      child: 0 == SyllabusProvider()
+                                          .topicsCount(widget.subject.subject, widget.lessons[index0].lesson, widget.topics)?
+                                          Center(child: Text('No data',
+                                          style: TextStyle(
+                                              fontSize: 17.0,
+                                              fontWeight: FontWeight.bold)
+                                          ))
+                                        : ListView.builder(
                                           itemCount: SyllabusProvider()
                                               .topicsCount(widget.subject.subject, widget.lessons[index0].lesson, widget.topics),
-                                          itemBuilder: (BuildContext context, int index1) =>
-                                          ListBody(
+                                          itemBuilder: (BuildContext context, int index1) {
+                                            topicData.add(SyllabusProvider().getTopic(widget.subject.subject,
+                                                widget.lessons[index0].lesson,
+                                                widget.topics, topicData));
+                                            List data = SyllabusProvider().getDetails(
+                                                widget.subject.subject,
+                                                widget.lessons[index0].lesson,
+                                                widget.topics, topicData);
+                                            return ListBody(
                                               children: [
                                                 Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  mainAxisAlignment: MainAxisAlignment
+                                                      .spaceBetween,
                                                   children: [
                                                     Padding(
-                                                      padding: const EdgeInsets.only(left: 14.0),
-                                                      child: SizedBox(width: 180.0,
-                                                          child: Text('Topic:')),
+                                                      padding: const EdgeInsets
+                                                          .only(left: 14.0),
+                                                      child: SizedBox(
+                                                          width: 160.0,
+                                                          child: Text(
+                                                              'Topic:')),
                                                     ),
-                                                    Text('${widget.topics[index1].topic}'),
+                                                    Text('${data[0]}'),
                                                     SizedBox(width: 5.0),
                                                   ],
                                                 ),
                                                 SizedBox(height: 5.0),
                                                 Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  mainAxisAlignment: MainAxisAlignment
+                                                      .spaceBetween,
                                                   children: [
                                                     Padding(
-                                                      padding: const EdgeInsets.only(left: 14.0),
-                                                      child: SizedBox(width: 180.0,
-                                                          child: Text('Status:')),
+                                                      padding: const EdgeInsets
+                                                          .only(left: 14.0),
+                                                      child: SizedBox(
+                                                          width: 180.0,
+                                                          child: Text(
+                                                              'Status:')),
                                                     ),
-                                                    'Complete' == widget.topics[index1].completion ?
-                                                    Text('${widget.topics[index1].completion}',
-                                                    style: TextStyle(color: Colors.green))
-                                                    : Text('${widget.topics[index1].completion}',
-                                                        style: TextStyle(color: Colors.red)),
+                                                    'Complete' == data[1] ?
+                                                    Text('${data[1]}',
+                                                        style: TextStyle(
+                                                            color: Colors
+                                                                .green))
+                                                        : Text(
+                                                        '${data[1]}',
+                                                        style: TextStyle(
+                                                            color: Colors.red)),
                                                     SizedBox(width: 5.0),
                                                   ],
                                                 ),
                                                 SizedBox(height: 5.0),
                                                 Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  mainAxisAlignment: MainAxisAlignment
+                                                      .spaceBetween,
                                                   children: [
                                                     Padding(
-                                                      padding: const EdgeInsets.only(left: 14.0),
-                                                      child: SizedBox(width: 180.0,
-                                                          child: Text('Completion Date:')),
+                                                      padding: const EdgeInsets
+                                                          .only(left: 14.0),
+                                                      child: SizedBox(
+                                                          width: 180.0,
+                                                          child: Text(
+                                                              'Completion Date:')),
                                                     ),
-                                                    Text('${widget.topics[index1].date}'),
+                                                    Text('${data[2]}'),
                                                     SizedBox(width: 5.0),
                                                   ],
                                                 ),
                                                 Divider(thickness: 3.0),
                                               ],
-                                            ),
+                                            );
+                                          }
                                       ),
                                     ),
                                   ),
