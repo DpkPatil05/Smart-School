@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_school/modal/online_exam.dart';
+import 'package:smart_school/providers/online_exam_provider.dart';
 
 class OnlineExamCard extends StatefulWidget {
-  final OnlineExamData examdata;
+  final List<OnlineExamData> examdata;
 
   const OnlineExamCard({this.examdata});
   @override
@@ -26,7 +27,7 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '${widget.examdata.exam}',
+                    '${widget.examdata[widget.examdata.length-1].exam}',
                     style: TextStyle(fontSize: 17.0),
                   ),
                   IconButton(
@@ -51,7 +52,7 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                       ),
                                       SizedBox(
                                           width: 250.0,
-                                          child: Text('${widget.examdata.from}'))
+                                          child: Text('${widget.examdata[widget.examdata.length-1].from}'))
                                     ],
                                 ),
                               ),
@@ -67,7 +68,7 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                       ),
                                       SizedBox(
                                           width: 250.0,
-                                          child: Text('${widget.examdata.to}'))
+                                          child: Text('${widget.examdata[widget.examdata.length-1].to}'))
                                     ],
                                 ),
                               ),
@@ -83,7 +84,7 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                     ),
                                     SizedBox(
                                         width: 250.0,
-                                        child: Text('${widget.examdata.totalAttempt}'))
+                                        child: Text('${widget.examdata[widget.examdata.length-1].totalAttempt}'))
                                   ],
                                 ),
                               ),
@@ -99,7 +100,7 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                     ),
                                     SizedBox(
                                         width: 250.0,
-                                        child: Text('${widget.examdata.attempted}'))
+                                        child: Text('${widget.examdata[widget.examdata.length-1].attempted}'))
                                   ],
                                 ),
                               ),
@@ -115,7 +116,7 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                       ),
                                       SizedBox(
                                           width: 250.0,
-                                          child: Text('${widget.examdata.duration}'))
+                                          child: Text('${widget.examdata[widget.examdata.length-1].duration}'))
                                     ],
                                 ),
                               ),
@@ -131,7 +132,7 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                       ),
                                       SizedBox(
                                           width: 250.0,
-                                          child: Text('${widget.examdata.passing}'))
+                                          child: Text('${widget.examdata[widget.examdata.length-1].passing}'))
                                     ],
                                 ),
                               ),
@@ -147,7 +148,7 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                     ),
                                     SizedBox(
                                         width: 250.0,
-                                        child: Text('${widget.examdata.status}'))
+                                        child: Text('${widget.examdata[widget.examdata.length-1].status}'))
                                   ],
                                 ),
                               ),
@@ -163,12 +164,17 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                     ),
                                     SizedBox(
                                         width: 250.0,
-                                        child: Text('${widget.examdata.description}'))
+                                        child: Text('${widget.examdata[widget.examdata.length-1].description}')
+                                    )
                                   ],
                                 ),
                               ),
                               Divider(height: 2.0, thickness: 2.0),
-                              widget.examdata.attempted < int.parse(widget.examdata.totalAttempt) ?
+                              widget.examdata[widget.examdata.length-1].attempted
+                                  < int.parse(widget.examdata[widget.examdata.length-1].totalAttempt) ?
+                              OnlineExamProvider()
+                                  .checkDate(widget.examdata[widget.examdata.length-1].from,
+                                  widget.examdata[widget.examdata.length-1].to) ?
                               Expanded(
                                 flex: 1,
                                 child: SizedBox.expand(
@@ -179,7 +185,8 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                     onPressed: () {  }
                                     ),
                                 )
-                              ) : SizedBox(height: 5.0),
+                              ) : SizedBox(height: 5.0)
+                              : SizedBox(height: 5.0)
                             ],
                           ),
                         )

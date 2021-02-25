@@ -7,11 +7,11 @@ import 'package:smart_school/tabs/hamItems/online_exam.dart';
 class FetchOnlineExam extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<List<OnlineExamData>>.value(
+    return StreamProvider<List<List<OnlineExamData>>>.value(
       value: null,
-      child: FutureBuilder<List<OnlineExamData>>(
+      child: FutureBuilder<List<List<OnlineExamData>>>(
         future: OnlineExamProvider().fetchOnlineExam(),
-        builder: (BuildContext context, AsyncSnapshot<List<OnlineExamData>> olExamData) {
+        builder: (BuildContext context, AsyncSnapshot<List<List<OnlineExamData>>> olExamData) {
           switch (olExamData.connectionState) {
             case ConnectionState.waiting: return Center(child: CircularProgressIndicator());
             default:

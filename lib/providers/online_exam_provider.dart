@@ -8,8 +8,56 @@ import 'package:smart_school/modal/online_exam.dart';
 class OnlineExamProvider with ChangeNotifier {
   String url = '';
 
+  static const Map<String, int> monthsInYear = {
+    "Jan": 01,
+    "Feb": 02,
+    "Mar": 03,
+    "Apr": 04,
+    "May": 05,
+    "Jun": 06,
+    "Jul": 07,
+    "Aug": 08,
+    "Sep": 09,
+    "Oct": 10,
+    "Nov": 11,
+    "Dec": 12,
+  };
+
+  toast(String msg) {
+    Fluttertoast.showToast(
+        msg: "$msg",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.blueGrey,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+  }
+
+  bool checkDate(String fromDate, String toDate) {
+    int fromDay = int.parse(fromDate.substring(0, 2));
+    int toDay = int.parse(toDate.substring(0, 2));
+    int fromMonth = monthsInYear[fromDate.substring(3, 6)];
+    int toMonth = monthsInYear[toDate.substring(3, 6)];
+    int fromYear = int.parse(fromDate.substring(8, 12));
+    int toYear = int.parse(toDate.substring(8, 12));
+
+    var startDate = DateTime(fromYear, fromMonth, fromDay);
+    var endDate = DateTime(toYear, toMonth, toDay);
+
+    // DateTime startDate = DateTime.parse('$fromYear-$fromMonth-$fromDay');
+    // DateTime endDate = DateTime.parse('$toYear-$toMonth-$toDay');
+
+    DateTime now = DateTime.now();
+
+    if(startDate.isBefore(now) && endDate.isAfter(now))
+      return true;
+    else
+      return false;
+  }
+
   // ignore: missing_return
-  Future<List<OnlineExamData>> fetchOnlineExam() async {
+  Future<List<List<OnlineExamData>>> fetchOnlineExam() async {
     url = 'http://www.paperfree-erp.in/mobileapp/onlineexam/exam.php?studentid=${HiveOperation().studentID}';
     print('Online exam data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
@@ -19,32 +67,16 @@ class OnlineExamProvider with ChangeNotifier {
         if (response.statusCode == 200) {
           // If the server did return a 200 OK response,
           // then parse the JSON.=
-          final List<OnlineExamData> olexamData = onlineExamDataFromJson(response.body);
+          final List<List<OnlineExamData>> olexamData = onlineExamDataFromJson(response.body);
           return olexamData;
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          return List<OnlineExamData>();
+          toast("Problem fetching data");
         }
       } catch(e) {
-        Fluttertoast.showToast(
-            msg: "Problem fetching data",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.blueGrey,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
+        toast("Problem fetching data");
       }
-    } else {
-      Fluttertoast.showToast(
-          msg: "No Data connection",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.blueGrey,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
-    }
+    } else toast("No Data connection");
   }
 }

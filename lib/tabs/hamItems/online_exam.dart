@@ -3,7 +3,7 @@ import 'package:smart_school/modal/online_exam.dart';
 import 'package:smart_school/templates/online_exam.dart';
 
 class OnlineExam extends StatefulWidget {
-  final List<OnlineExamData> onlineexamdata;
+  final List<List<OnlineExamData>> onlineexamdata;
 
   const OnlineExam({this.onlineexamdata});
   @override
@@ -26,8 +26,8 @@ class _OnlineExamState extends State<OnlineExam> {
               ),
             )
         ),
-      ):ListView.builder(
-          itemCount: widget.onlineexamdata.length-1??0,
+      ) : ListView.builder(
+          itemCount: widget.onlineexamdata.length??0,
           itemBuilder: (context, index) {
             return OnlineExamCard(examdata: widget.onlineexamdata[index]);
           }

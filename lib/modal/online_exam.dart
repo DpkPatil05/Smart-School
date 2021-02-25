@@ -1,11 +1,18 @@
 import 'dart:convert';
 
-List<OnlineExamData> onlineExamDataFromJson(String str) => List<OnlineExamData>.from(json.decode(str).map((x) => OnlineExamData.fromJson(x)));
+List<List<OnlineExamData>> onlineExamDataFromJson(String str) => List<List<OnlineExamData>>.from(json.decode(str).map((x) => List<OnlineExamData>.from(x.map((x) => OnlineExamData.fromJson(x)))));
 
-String onlineExamDataToJson(List<OnlineExamData> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String onlineExamDataToJson(List<List<OnlineExamData>> data) => json.encode(List<dynamic>.from(data.map((x) => List<dynamic>.from(x.map((x) => x.toJson())))));
 
 class OnlineExamData {
   OnlineExamData({
+    this.optA,
+    this.optB,
+    this.optC,
+    this.optD,
+    this.optE,
+    this.question,
+    this.answer,
     this.exam,
     this.from,
     this.to,
@@ -15,9 +22,15 @@ class OnlineExamData {
     this.attempted,
     this.status,
     this.passing,
-    this.success,
   });
 
+  String optA;
+  String optB;
+  String optC;
+  String optD;
+  String optE;
+  String question;
+  Answer answer;
   String exam;
   String from;
   String to;
@@ -27,9 +40,15 @@ class OnlineExamData {
   int attempted;
   String status;
   String passing;
-  String success;
 
   factory OnlineExamData.fromJson(Map<String, dynamic> json) => OnlineExamData(
+    optA: json["optA"] == null ? null : json["optA"],
+    optB: json["optB"] == null ? null : json["optB"],
+    optC: json["optC"] == null ? null : json["optC"],
+    optD: json["optD"] == null ? null : json["optD"],
+    optE: json["optE"] == null ? null : json["optE"],
+    question: json["question"] == null ? null : json["question"],
+    answer: json["answer"] == null ? null : answerValues.map[json["answer"]],
     exam: json["exam"] == null ? null : json["exam"],
     from: json["from"] == null ? null : json["from"],
     to: json["to"] == null ? null : json["to"],
@@ -39,10 +58,16 @@ class OnlineExamData {
     attempted: json["attempted"] == null ? null : json["attempted"],
     status: json["status"] == null ? null : json["status"],
     passing: json["passing"] == null ? null : json["passing"],
-    success: json["success"] == null ? null : json["success"],
   );
 
   Map<String, dynamic> toJson() => {
+    "optA": optA == null ? null : optA,
+    "optB": optB == null ? null : optB,
+    "optC": optC == null ? null : optC,
+    "optD": optD == null ? null : optD,
+    "optE": optE == null ? null : optE,
+    "question": question == null ? null : question,
+    "answer": answer == null ? null : answerValues.reverse[answer],
     "exam": exam == null ? null : exam,
     "from": from == null ? null : from,
     "to": to == null ? null : to,
@@ -52,6 +77,28 @@ class OnlineExamData {
     "attempted": attempted == null ? null : attempted,
     "status": status == null ? null : status,
     "passing": passing == null ? null : passing,
-    "success": success == null ? null : success,
   };
+}
+
+enum Answer { OPT_B, OPT_D, OPT_A, OPT_C }
+
+final answerValues = EnumValues({
+  "opt_a": Answer.OPT_A,
+  "opt_b": Answer.OPT_B,
+  "opt_c": Answer.OPT_C,
+  "opt_d": Answer.OPT_D
+});
+
+class EnumValues<T> {
+  Map<String, T> map;
+  Map<T, String> reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    if (reverseMap == null) {
+      reverseMap = map.map((k, v) => new MapEntry(v, k));
+    }
+    return reverseMap;
+  }
 }
