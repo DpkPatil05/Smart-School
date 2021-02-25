@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_school/modal/online_exam.dart';
 import 'package:smart_school/providers/online_exam_provider.dart';
+import 'package:smart_school/templates/online_test.dart';
 
 class OnlineExamCard extends StatefulWidget {
   final List<OnlineExamData> examdata;
@@ -182,8 +183,15 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                     child: Text('Start Exam'),
                                     color: Colors.red,
                                     textColor: Colors.white,
-                                    onPressed: () {  }
-                                    ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) =>
+                                            OnlineTest(exam: widget.examdata[widget.examdata.length-1].exam,
+                                                examdata: widget.examdata)
+                                        ),
+                                      );
+                                    }),
                                 )
                               ) : SizedBox(height: 5.0)
                               : SizedBox(height: 5.0)

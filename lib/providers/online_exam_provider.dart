@@ -45,15 +45,17 @@ class OnlineExamProvider with ChangeNotifier {
     var startDate = DateTime(fromYear, fromMonth, fromDay);
     var endDate = DateTime(toYear, toMonth, toDay);
 
-    // DateTime startDate = DateTime.parse('$fromYear-$fromMonth-$fromDay');
-    // DateTime endDate = DateTime.parse('$toYear-$toMonth-$toDay');
-
     DateTime now = DateTime.now();
 
     if(startDate.isBefore(now) && endDate.isAfter(now))
       return true;
     else
       return false;
+  }
+  
+  String clearData(String data) {
+    String clearPTag = data.replaceAll('<p>', '');
+    return clearPTag.replaceAll('</p>', '');
   }
 
   // ignore: missing_return
