@@ -187,8 +187,11 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(builder: (context) =>
-                                            OnlineTest(exam: widget.examdata[widget.examdata.length-1].exam,
-                                                examdata: widget.examdata)
+                                            OnlineTest(
+                                                exam: widget.examdata[widget.examdata.length-1].exam,
+                                                duration: widget.examdata[widget.examdata.length-1].duration,
+                                                examdata: widget.examdata
+                                            )
                                         ),
                                       );
                                     }),

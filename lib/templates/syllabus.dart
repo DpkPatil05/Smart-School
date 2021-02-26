@@ -68,8 +68,7 @@ class _SyllabusCardState extends State<SyllabusCard> {
                                               style: TextStyle(
                                                   fontSize: 17.0,
                                                   fontWeight: FontWeight.bold)
-                                          ))
-                                          : ListView.builder(
+                                          )) : ListView.builder(
                                           itemCount: SyllabusProvider().topicsCount(
                                               widget.subject.subject,
                                               widget.lessons[index0].lesson,

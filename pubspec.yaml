@@ -24,9 +24,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_countdown_timer: ^3.0.1
   rounded_loading_button: ^1.0.0
   cached_network_image: ^2.5.0
-
   provider: ^4.3.3
   convex_bottom_bar:
   fluttertoast: ^7.1.6
