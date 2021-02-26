@@ -37,24 +37,28 @@ class SyllabusProvider with ChangeNotifier {
 
   String getTopic(String subject, String lesson, List<SyllabusData> topics, List topicData) {
     for(int i=0; i<topics.length; i++) {
-      if (topics[i].subject == subject && topics[i].lesson == lesson && !topicData.contains(topics[i].topic)) {
+      if (topics[i].subject == subject && topics[i].lesson == lesson
+          && !topicData.contains(topics[i].topic)) {
         return topics[i].topic.toString();
       }
     }
   }
 
-  List getDetails(String subject, String lesson, List<SyllabusData> topics, List topicData) {
-    List data = [];
+  getDetails(String subject, String lesson,
+      List<SyllabusData>topics) {
+    List topicsData = [];
+
     for(int i=0; i<topics.length; i++) {
-      if (topics[i].subject == subject && topics[i].lesson == lesson && !topicData.contains(topics[i].topic)) {
-        data.add(topics[i].topic);
-        data.add(topics[i].completion);
-        data.add(topics[i].date);
+      if (topics[i].subject == subject && topics[i].lesson == lesson) {
+        var topicDetails = {};
+        topicDetails[0] = topics[i].topic;
+        topicDetails[1] = topics[i].completion;
+        topicDetails[2] = topics[i].date;
+        topicsData.add(topicDetails);
       }
     }
-    return data;
+    return topicsData;
   }
-
 
   // ignore: missing_return
   Future<List<SyllabusData>> fetchSyllabus(String url) async {
@@ -78,4 +82,6 @@ class SyllabusProvider with ChangeNotifier {
       }
     } else toast("No Data connection");
   }
+
+
 }
