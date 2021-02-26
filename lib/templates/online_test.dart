@@ -16,11 +16,14 @@ class OnlineTest extends StatefulWidget {
 
 class _OnlineTestState extends State<OnlineTest> {
   String _option = '';
-  int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 1800;
   bool _load = false;
 
   @override
   Widget build(BuildContext context) {
+    int endTime = DateTime.now().millisecondsSinceEpoch + 1000
+        * (widget.duration.substring(0, 2) == '00' ?
+          int.parse(widget.duration.substring(3, 5)) * 60
+          : int.parse(widget.duration.substring(0, 2)) * 60 * 60);
     return !_load ?
         Scaffold(
           appBar: AppBar(
@@ -54,7 +57,6 @@ class _OnlineTestState extends State<OnlineTest> {
                       ),
                     ),
                     onPressed: () {
-                      // _startTime();
                      setState(() {
                        _load = true;
                      });
@@ -197,4 +199,5 @@ class _OnlineTestState extends State<OnlineTest> {
       ),
     );
   }
+
 }
