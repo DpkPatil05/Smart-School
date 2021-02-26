@@ -301,7 +301,6 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                 ),
                                 Divider(color: Colors.black),
                                 Container(
-                                  height: 50,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -310,7 +309,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                         style: TextStyle(fontWeight: FontWeight.bold),
                                       ),
                                       SizedBox(
-                                          width:150.0,
+                                          width: 150.0,
                                           child: Text('${widget.studentData.caddress}')
                                       ),
                                     ],
@@ -318,7 +317,6 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                 ),
                                 Divider(color: Colors.black),
                                 Container(
-                                  height: 50,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
