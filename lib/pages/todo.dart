@@ -15,6 +15,8 @@ class _TodoState extends State<Todo> {
   final textEditingController = TextEditingController();
   final _controller = TextEditingController();
 
+  DateTime _taskDate;
+
   @override
   void initState() {
     super.initState();
@@ -48,6 +50,26 @@ class _TodoState extends State<Todo> {
     );
   }
 
+  Future<bool> _addValidation(){
+    return showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return AlertDialog(
+            title: Text('Warning'),
+            content: Text('Please fill in all the details!'),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Ok'),
+                onPressed: (){
+                  Navigator.of(context).pop(false);
+                },
+              ),
+            ],
+          );
+        }
+    );
+  }
+
   Widget _buildMultilineTextField() {
     return SizedBox(
       width: 390.0,
@@ -64,6 +86,75 @@ class _TodoState extends State<Todo> {
       ),
     );
   }
+
+  Widget _buildDateField() {
+    return SizedBox(
+        width: 390.0,
+        child: Table(
+          children: [
+            TableRow(
+                children: [
+                  Column(
+                    children: [
+                      SizedBox(height: 10.0),
+                      Row(
+                        children: [
+                          Icon(Icons.calendar_today),
+                          SizedBox(width: 10.0),
+                          Text(
+                            _taskDate == null? 'Task Date'
+                                :_taskDate.toString().substring(0,10),
+                            style: TextStyle(
+                              fontSize: 20.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  RaisedButton(
+                      color: Colors.white70,
+                      child: Text('Task date'),
+                      onPressed: () {
+                        showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime(2050)
+                        ).then((date){
+                          setState(() {
+                            _taskDate = date;
+                          });
+                        });
+                      }
+                  )
+                ]
+            ),
+          ],
+        ),
+    );
+  }
+
+  void _addNewTodo(Box<TodoModel> todoBox, String title, String description, DateTime taskDate) {
+    String taskDate = '${_taskDate.month}/${_taskDate.day}/${_taskDate.year}';
+
+    TodoModel todo = TodoModel(
+        title: title,
+        description: description,
+        taskDate: taskDate
+    );
+
+    todoBox.add(todo);
+
+    setState(() {
+      textEditingController.text = '';
+      _controller.text = '';
+      _taskDate = null;
+    });
+
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +179,9 @@ class _TodoState extends State<Todo> {
                               controller: textEditingController,
                             ),
                             SizedBox(height: 20.0),
-                            _buildMultilineTextField()
+                            _buildMultilineTextField(),
+                            SizedBox(height: 5.0),
+                            _buildDateField(),
                           ],
                         ),
                       ),
@@ -108,9 +201,10 @@ class _TodoState extends State<Todo> {
                                 final String title = textEditingController.text;
                                 final String description = _controller.text;
 
-                                TodoModel todo = TodoModel(title: title, description: description);
-                                todoBox.add(todo);
-                                Navigator.pop(context);
+                                null == _taskDate ? _addValidation()
+                                    : '' == title ? _addValidation()
+                                    : '' == description ? _addValidation()
+                                : _addNewTodo(todoBox, title, description, _taskDate);
                               }
                           ),
                         ),
@@ -148,8 +242,12 @@ class _TodoState extends State<Todo> {
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(todo.title,
-                              style: TextStyle(fontSize: 22.0)),
+                          SizedBox(
+                            width: 300.0,
+                            child: Text('${todo.title} (${todo.taskDate})',
+                                style: TextStyle(fontSize: 20.0)
+                            ),
+                          ),
                           IconButton(
                               icon: Icon(Icons.delete),
                               onPressed: () {
@@ -158,8 +256,10 @@ class _TodoState extends State<Todo> {
                           ),
                         ],
                       ),
-                      subtitle: Text(todo.description,
-                          style: TextStyle(fontSize: 18.0)),
+                      subtitle: Text(
+                          todo.description,
+                          style: TextStyle(fontSize: 17.0)
+                      ),
                     );
                   },
                   separatorBuilder: (_, index) => Divider(),

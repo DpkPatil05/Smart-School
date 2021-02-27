@@ -55,6 +55,7 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                                       ],
                                     ),
                                     RaisedButton(
+                                        color: Colors.white70,
                                         child: Text('From date'),
                                         onPressed: () {
                                           showDatePicker(
@@ -92,19 +93,20 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                                       ],
                                     ),
                                     RaisedButton(
-                                        child: Text('To date'),
-                                        onPressed: () {
-                                          showDatePicker(
-                                              context: context,
-                                              initialDate: DateTime.now(),
-                                              firstDate: DateTime.now(),
-                                              lastDate: DateTime(2050)
-                                          ).then((date){
-                                            setState(() {
-                                              _todate = date;
-                                            });
+                                      color: Colors.white70,
+                                      child: Text('To date'),
+                                      onPressed: () {
+                                        showDatePicker(
+                                            context: context,
+                                            initialDate: DateTime.now(),
+                                            firstDate: DateTime.now(),
+                                            lastDate: DateTime(2050)
+                                        ).then((date){
+                                          setState(() {
+                                            _todate = date;
                                           });
-                                        }
+                                        });
+                                      }
                                     )
                                   ]
                                 ),
@@ -127,7 +129,9 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                         )
                     ),
                     RaisedButton(
-                        child: Text('Submit'),
+                        color: Colors.red,
+                        child: Text('Submit',
+                        style: TextStyle(color: Colors.white)),
                         onPressed: (){
                           Navigator.of(context).pop(false);
                           Navigator.pushReplacement(

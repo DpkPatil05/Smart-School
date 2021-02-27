@@ -8,7 +8,9 @@ class TodoModel {
   final String title;
   @HiveField(1)
   final String description;
+  @HiveField(2)
+  final String taskDate;
 
-  TodoModel({this.title, this.description});
+  TodoModel({this.title, this.description, this.taskDate});
 
 }
