@@ -196,8 +196,8 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                       );
                                     }),
                                 )
-                              ) : SizedBox(height: 5.0)
-                              : SizedBox(height: 5.0),
+                              ) : SizedBox(height: 7.5)
+                              : SizedBox(height: 7.5),
                               SizedBox(height: 15.0)
                             ],
                           ),
