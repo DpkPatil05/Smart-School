@@ -46,12 +46,14 @@ class _LoginState extends State<Login> {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Home(
-            userrole : loginData.userrole,
-            studentid: loginData.studentid,
-            firstlast: loginData.firstlast,
-            imgurl: loginData.imgurl?.replaceAll('\\', '')??'',
-            classsection: loginData.classsection,
-            standard: loginData.loginDataClass
+          site: loginData.sitename,
+          school: loginData.schoolname,
+          userrole : loginData.userrole,
+          studentid: loginData.studentid,
+          firstlast: loginData.firstlast,
+          imgurl: loginData.imgurl?.replaceAll('\\', '')??'',
+          classsection: loginData.classsection,
+          standard: loginData.loginDataClass
         )),
       );
     }

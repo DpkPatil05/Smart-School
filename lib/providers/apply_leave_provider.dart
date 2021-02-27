@@ -14,7 +14,7 @@ import 'package:smart_school/services/download.dart';
 
 class ApplyLeaveProvider with ChangeNotifier {
   String url = '';
-  String generalDownloadURL = 'http://www.paperfree-erp.in/college/demo-high-school/'
+  String generalDownloadURL = 'http://www.paperfree-erp.in/college/${HiveOperation().schoolSite}/'
       'uploads/student_leavedocuments/';
 
   toast(String msg) {

@@ -123,9 +123,13 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin{
                                         ),
                                       ),
                                       SizedBox(width: 10.0),
-                                      Text(
-                                        widget.studentData.admissionno,
-                                        style: TextStyle(fontSize: 13.0),
+                                      SizedBox(
+                                        width: 132.0,
+                                        child: Text(
+                                          widget.studentData.admissionno,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13.0),
+                                        ),
                                       ),
                                     ],
                                   ),

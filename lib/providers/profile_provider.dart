@@ -10,7 +10,7 @@ import 'package:smart_school/modal/timeline.dart';
 
 class ProfileProvider with ChangeNotifier {
   final String defaultProfilePic = 'assets/profile.png';
-  final String fetchPics = 'http://www.paperfree-erp.in/college/demo-high-school/';
+  final String fetchPics = 'http://www.paperfree-erp.in/college/${HiveOperation().schoolSite}/';
 
   String url = '';
 

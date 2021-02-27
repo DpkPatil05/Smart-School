@@ -30,8 +30,10 @@ dynamic pageWidgets = <String, Widget>{
 };
 
 class Home extends StatefulWidget {
-  final String userrole, studentid, firstlast, imgurl, classsection, standard;
-  const Home({this.userrole, this.studentid, this.firstlast, this.imgurl, this.classsection,this.standard});
+  final String userrole, studentid, firstlast, imgurl, classsection, standard,
+  site, school;
+  const Home({this.userrole, this.studentid, this.firstlast, this.imgurl,
+    this.classsection,this.standard, this.site, this.school});
   @override
   _HomeState createState() => _HomeState();
 }
@@ -65,6 +67,8 @@ class _HomeState extends State<Home> {
   }
   @override
   Widget build(BuildContext context) {
+    HiveOperation().studentBox.put('site', widget.site);
+    HiveOperation().studentBox.put('school', widget.school);
     HiveOperation().studentBox.put('sid', int.parse(widget.studentid));
     return DefaultTabController(
       length: 5,
@@ -75,7 +79,7 @@ class _HomeState extends State<Home> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             backgroundColor: Colors.red,
-            title: Center(child: Text("Demo High School")),
+            title: Center(child: Text('${widget.school}')),
             actions: [
               Builder(
                 builder: (context) => IconButton(
@@ -113,8 +117,10 @@ class _HomeState extends State<Home> {
                                           image: imageProvider, fit: BoxFit.cover),
                                     ),
                                   ),
-                                  placeholder: (context, url) => CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) => Image.asset('${hamData.defaultProfilePic}'),
+                                  placeholder: (context, url) =>
+                                      CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      Image.asset('${hamData.defaultProfilePic}'),
                                 ),
                               ),
                               Column(

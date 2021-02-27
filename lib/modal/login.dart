@@ -13,6 +13,8 @@ class LoginData {
     this.imgurl,
     this.classsection,
     this.loginDataClass,
+    this.schoolname,
+    this.sitename,
   });
 
   String success;
@@ -22,6 +24,8 @@ class LoginData {
   String imgurl;
   String classsection;
   String loginDataClass;
+  String schoolname;
+  String sitename;
 
   factory LoginData.fromJson(Map<String, dynamic> json) => LoginData(
     success: json["success"],
@@ -31,6 +35,8 @@ class LoginData {
     imgurl: json["imgurl"],
     classsection: json["classsection"],
     loginDataClass: json["class"],
+    schoolname: json["schoolname"],
+    sitename: json["sitename"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -41,5 +47,7 @@ class LoginData {
     "imgurl": imgurl,
     "classsection": classsection,
     "class": loginDataClass,
+    "schoolname": schoolname,
+    "sitename": sitename,
   };
 }
