@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -9,8 +11,7 @@ import 'package:smart_school/modal/leave_upload_response.dart';
 
 import 'package:smart_school/hive_operations.dart';
 import 'package:smart_school/services/download.dart';
-
-
+import 'package:smart_school/services/upload.dart';
 
 class ApplyLeaveProvider with ChangeNotifier {
   String url = '';
@@ -30,7 +31,10 @@ class ApplyLeaveProvider with ChangeNotifier {
 
   generateDownload(String doc) => Download().startDownload(generalDownloadURL, doc);
 
-  Widget saveLeave(DateTime fromdate, DateTime todate, String reason) => FetchAppliedLeaveResponse(fromdate: fromdate, todate: todate, reason: reason);
+  Widget saveLeave(DateTime fromdate, DateTime todate, String reason) =>
+      FetchAppliedLeaveResponse(fromdate: fromdate, todate: todate, reason: reason);
+
+  uploadAttachment(File imageFile) async => Upload().upload(imageFile);
 
   Widget delete(int id) => FetchDeleteLeaveResponse(leaveid: id);
 

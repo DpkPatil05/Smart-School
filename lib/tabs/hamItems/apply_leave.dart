@@ -163,20 +163,27 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                         child: Text('Submit',
                         style: TextStyle(color: Colors.white)),
                         onPressed: (){
+                          var leaveProv = Provider.of<ApplyLeaveProvider>(context, listen: false);
+
                           Navigator.of(context).pop(false);
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  Scaffold(
-                                    appBar: AppBar(
-                                      backgroundColor: Colors.red,
-                                      title: Text('Apply Leave'),
-                                    ),
-                                    body: Provider.of<ApplyLeaveProvider>(context, listen: false)
-                                        .saveLeave(_fromdate, _todate, textEditingController.text),
-                                  ),
-                            ),
+
+                          null == _imageFile ?
+                          _imageFile = null :
+                          leaveProv.uploadAttachment(_imageFile).then(
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      Scaffold(
+                                        appBar: AppBar(
+                                          backgroundColor: Colors.red,
+                                          title: Text('Apply Leave'),
+                                        ),
+                                        body: leaveProv
+                                            .saveLeave(_fromdate, _todate, textEditingController.text),
+                                      ),
+                                ),
+                              )
                           );
                         }
                     ),
