@@ -23,6 +23,8 @@ class Upload {
     String uploadURL = 'http://www.paperfree-erp.in/college/'
         '${HiveOperation().schoolSite}/uploads/student_leavedocuments/';
 
+    print('Attachment url: $uploadURL');
+
     toast('Uploading leave...');
 
     var stream  = new http.ByteStream(imageFile.openRead());
