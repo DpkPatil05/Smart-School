@@ -11,6 +11,7 @@ class SyllabusData {
     this.topic,
     this.completion,
     this.date,
+    this.subperct,
   });
 
   String subject;
@@ -18,6 +19,7 @@ class SyllabusData {
   String topic;
   String completion;
   String date;
+  int subperct;
 
   factory SyllabusData.fromJson(Map<String, dynamic> json) => SyllabusData(
     subject: json["subject"],
@@ -25,6 +27,7 @@ class SyllabusData {
     topic: json["topic"],
     completion: json["completion"],
     date: json["date"],
+    subperct: json["subperct"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -33,5 +36,6 @@ class SyllabusData {
     "topic": topic,
     "completion": completion,
     "date": date,
+    "subperct": subperct,
   };
 }

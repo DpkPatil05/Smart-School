@@ -30,7 +30,7 @@ class _SyllabusCardState extends State<SyllabusCard> {
             title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children:[
-                  Text('${widget.subject.subject} (%)',
+                  Text('${widget.subject.subject} (${widget.subject.subperct}%)',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 17.0
