@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path/path.dart';
-import 'package:async/async.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:smart_school/hive_operations.dart';
@@ -12,7 +11,7 @@ class Upload {
   toast(String msg) {
     Fluttertoast.showToast(
         msg: "$msg",
-        toastLength: Toast.LENGTH_SHORT,
+        toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
         backgroundColor: Colors.blueGrey,
         textColor: Colors.white,
@@ -25,8 +24,10 @@ class Upload {
         '${HiveOperation().schoolSite}/uploads/student_leavedocuments/';
 
     toast('Uploading leave...');
-    // ignore: deprecated_member_use
-    var stream = new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+
+    var stream  = new http.ByteStream(imageFile.openRead());
+    stream.cast();
+
     var length = await imageFile.length();
 
     var uri = Uri.parse(uploadURL);
