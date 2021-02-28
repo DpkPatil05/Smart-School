@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_school/modal/leave_data.dart';
 import 'package:smart_school/providers/apply_leave_provider.dart';
@@ -14,87 +17,61 @@ class ApplyLeave extends StatefulWidget {
 }
 
 class _ApplyLeaveState extends State<ApplyLeave> {
-  DateTime _fromdate;
-  DateTime _todate;
+  DateTime _fromdate, _todate;
   final textEditingController = TextEditingController();
+  File _imageFile;
+  final _picker = ImagePicker();
+
+  Future<void> _pickImageFromGallery() async {
+    final PickedFile pickedFile =
+    await _picker.getImage(source: ImageSource.gallery);
+    setState(() => this._imageFile = File(pickedFile.path));
+  }
+
+  Future<void> _pickImageFromCamera() async {
+    final PickedFile pickedFile =
+    await _picker.getImage(source: ImageSource.camera);
+    setState(() => this._imageFile = File(pickedFile.path));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () => showModalBottomSheet(
               context: context,
-              builder: (BuildContext context) => Container(
-                alignment: Alignment.center,
-                height: 800.0,
+              builder: (BuildContext context) => SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(height: 10),
-                    Form(
-                        child: Column(
-                          children: [
-                            Table(
-                              children: [
-                                TableRow(
-                                  children: [
-                                    Column(
-                                      children: [
-                                        SizedBox(height: 10.0),
-                                        Row(
-                                          children: [
-                                            Icon(Icons.calendar_today),
-                                            SizedBox(width: 10.0),
-                                            Text(
-                                              _fromdate == null? 'From Date'
-                                                  :_fromdate.toString().substring(0,10),
-                                              style: TextStyle(
-                                                fontSize: 20.0,
-                                              ),
+                    Form(child: Column(
+                        children: [
+                          Table(
+                            children: [
+                              TableRow(
+                                children: [
+                                  Column(
+                                    children: [
+                                      SizedBox(height: 10.0),
+                                      Row(
+                                        children: [
+                                          Icon(Icons.calendar_today),
+                                          SizedBox(width: 10.0),
+                                          Text(
+                                            _fromdate == null? 'From Date'
+                                                :_fromdate.toString().substring(0,10),
+                                            style: TextStyle(
+                                              fontSize: 20.0,
                                             ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    RaisedButton(
-                                        color: Colors.white70,
-                                        child: Text('From date'),
-                                        onPressed: () {
-                                          showDatePicker(
-                                              context: context,
-                                              initialDate: DateTime.now(),
-                                              firstDate: DateTime.now(),
-                                              lastDate: DateTime(2050)
-                                          ).then((date){
-                                            setState(() {
-                                              _fromdate = date;
-                                            });
-                                          });
-                                        }
-                                    )
-                                  ]
-                                ),
-                                TableRow(
-                                  children: [
-                                    Column(
-                                      children: [
-                                        SizedBox(height: 10.0),
-                                        Row(
-                                          children: [
-                                            Icon(Icons.calendar_today),
-                                            SizedBox(width: 10.0),
-                                            Text(
-                                              _todate == null? 'To Date'
-                                                  :_todate.toString().substring(0, 10),
-                                              style: TextStyle(
-                                                fontSize: 20.0,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    RaisedButton(
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  RaisedButton(
                                       color: Colors.white70,
-                                      child: Text('To date'),
+                                      child: Text('From date'),
                                       onPressed: () {
                                         showDatePicker(
                                             context: context,
@@ -103,31 +80,84 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                                             lastDate: DateTime(2050)
                                         ).then((date){
                                           setState(() {
-                                            _todate = date;
+                                            _fromdate = date;
                                           });
                                         });
                                       }
-                                    )
-                                  ]
-                                ),
-                              ],
-                            ),
-                            TextFormField(
-                              decoration: const InputDecoration(
-                                icon: const Icon(Icons.notes),
-                                hintText: 'Reason for leave',
-                                labelText: 'Reason',
+                                  )
+                                ]
                               ),
-                              controller: textEditingController,
+                              TableRow(
+                                children: [
+                                  Column(
+                                    children: [
+                                      SizedBox(height: 10.0),
+                                      Row(
+                                        children: [
+                                          Icon(Icons.calendar_today),
+                                          SizedBox(width: 10.0),
+                                          Text(
+                                            _todate == null? 'To Date'
+                                                :_todate.toString().substring(0, 10),
+                                            style: TextStyle(
+                                              fontSize: 20.0,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  RaisedButton(
+                                    color: Colors.white70,
+                                    child: Text('To date'),
+                                    onPressed: () {
+                                      showDatePicker(
+                                          context: context,
+                                          initialDate: DateTime.now(),
+                                          firstDate: DateTime.now(),
+                                          lastDate: DateTime(2050)
+                                      ).then((date){
+                                        setState(() {
+                                          _todate = date;
+                                        });
+                                      });
+                                    }
+                                  )
+                                ]
+                              ),
+                            ],
+                          ),
+                          TextFormField(
+                            decoration: const InputDecoration(
+                              icon: const Icon(Icons.notes),
+                              hintText: 'Reason for leave',
+                              labelText: 'Reason',
                             ),
-                            FlatButton(
-                                onPressed: () {
-                                },
-                                child: Text('Attach Files')
-                            )
-                          ],
-                        )
-                    ),
+                            controller: textEditingController,
+                          ),
+                          SizedBox(height: 10.0),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 45.0),
+                                child: IconButton(
+                                  icon: Icon(Icons.photo_camera, size: 57.0),
+                                  onPressed: () async => _pickImageFromCamera(),
+                                  tooltip: 'Shoot picture',
+                                ),
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.photo, size: 57.0),
+                                onPressed: () async => _pickImageFromGallery(),
+                                tooltip: 'Pick from gallery',
+                              ),
+                              SizedBox(width: 5.0)
+                            ],
+                          )
+                        ]
+                    )),
+                    SizedBox(height: 35.0),
                     RaisedButton(
                         color: Colors.red,
                         child: Text('Submit',
@@ -149,10 +179,17 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                             ),
                           );
                         }
+                    ),
+                    SizedBox(height: 10.0),
+                    Container(
+                      height: 750.0,
+                      width: 750.0,
+                      child: this._imageFile == null ?
+                      SizedBox(height: 10.0) : Image.file(this._imageFile),
                     )
                   ],
-                )
-          ),
+                ),
+              ),
         ),
         child: Icon(Icons.add),
         backgroundColor: Colors.red,
