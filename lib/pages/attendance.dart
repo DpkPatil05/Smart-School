@@ -107,7 +107,7 @@ class _AttendanceState extends State<Attendance> {
                     ),
                   ),
                   SizedBox(
-                    width: 130.0,
+                    width: 140.0,
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
