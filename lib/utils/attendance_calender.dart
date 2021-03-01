@@ -3,7 +3,6 @@ import 'package:smart_school/modal/attendance.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart' show CalendarCarousel;
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/classes/event_list.dart';
-// import 'package:intl/intl.dart' show DateFormat;
 
 class AttendanceCalender extends StatefulWidget {
   final AttendanceData attendance;
@@ -16,22 +15,19 @@ class _AttendanceCalenderState extends State<AttendanceCalender> with TickerProv
 
   DateTime _currentDate2 = DateTime.now();
   DateTime _targetDateTime = DateTime.now();
-    EventList<Event> _markedDateMap = new EventList<Event>(
-      events: {},
-    );
+  EventList<Event> _markedDateMap = EventList<Event>(events: {});
 
   CalendarCarousel _calendarCarousel;
 
   @override
   void initState() {
-    for(final d in widget.attendance.attendence.attendancearray)
-    {
+    for(final d in widget.attendance.attendence.attendancearray) {
       var year = int.parse(d[2]);
       var month = int.parse(d[1]);
       var day = int.parse(d[0]);
-      var date= DateTime(year,month,day);
+      var date= DateTime(year, month, day);
 
-      'green'==d[5].toString()?
+      'green' == d[5].toString()?
       _markedDateMap.add(date, Event(
         date: date,
         title: 'Present',
@@ -44,7 +40,8 @@ class _AttendanceCalenderState extends State<AttendanceCalender> with TickerProv
             ),
           ),
         ),
-      )): '#FFFF00'==d[5].toString()?
+      )):
+      '#FFFF00' == d[5].toString()?
       _markedDateMap.add(date, Event(
         date: date,
         title: 'Late',
@@ -58,7 +55,7 @@ class _AttendanceCalenderState extends State<AttendanceCalender> with TickerProv
           ),
         ),
       )):
-      '#FF8C00'==d[5].toString()?
+      '#FF8C00' == d[5].toString()?
       _markedDateMap.add(date, Event(
         date: date,
         title: 'Half Day',
@@ -72,7 +69,7 @@ class _AttendanceCalenderState extends State<AttendanceCalender> with TickerProv
           ),
         ),
       )):
-      '#800000'==d[5]?
+      '#800000' == d[5]?
       _markedDateMap.add(date, Event(
         date: date,
         title: 'Absent',
@@ -124,9 +121,7 @@ class _AttendanceCalenderState extends State<AttendanceCalender> with TickerProv
       selectedDateTime: _currentDate2,
       targetDateTime: _targetDateTime,
       customGridViewPhysics: NeverScrollableScrollPhysics(),
-      markedDateIconBuilder: (event) {
-        return event.icon;
-      },
+      markedDateIconBuilder: (event) => event.icon,
       todayTextStyle: TextStyle(
         color: Colors.blue,
       ),
@@ -152,6 +147,6 @@ class _AttendanceCalenderState extends State<AttendanceCalender> with TickerProv
       },
     );
 
-    return  Scaffold(body: _calendarCarousel);
+    return Scaffold(body: _calendarCarousel);
   }
 }
