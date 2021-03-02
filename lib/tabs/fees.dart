@@ -3,7 +3,7 @@ import 'package:smart_school/modal/fees.dart';
 import 'package:smart_school/templates/fees.dart';
 
 class FeesTab extends StatefulWidget {
-  final List<FeeData> feedata;
+  final List<List<FeesData>> feedata;
 
   const FeesTab({this.feedata});
   @override
@@ -25,7 +25,7 @@ class _FeesTabState extends State<FeesTab> {
                ),
              )
          ),
-       ) :ListView.builder(
+       ) : ListView.builder(
          itemCount: widget.feedata.length-1??0,
          itemBuilder: (BuildContext context, int index) {
            return FeesCard(feedata: widget.feedata[index]);

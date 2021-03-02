@@ -7,11 +7,11 @@ import 'package:smart_school/tabs/fees.dart';
 class FetchFees extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<List<FeeData>>.value(
+    return StreamProvider<List<List<FeesData>>>.value(
       value: null,
-      child: FutureBuilder<List<FeeData>>(
+      child: FutureBuilder<List<List<FeesData>>>(
         future: FeesProvider().fetchFees(),
-        builder: (BuildContext context, AsyncSnapshot<List<FeeData>> feeData) {
+        builder: (BuildContext context, AsyncSnapshot<List<List<FeesData>>> feeData) {
           switch (feeData.connectionState) {
             case ConnectionState.waiting: return Center(child: CircularProgressIndicator());
             default:
