@@ -106,22 +106,23 @@ class _AttendanceCalenderState extends State<AttendanceCalender> with TickerProv
       todayBorderColor: Colors.blue,
       onDayPressed: (DateTime date, List<Event> events) {
         this.setState(() => _currentDate2 = date);
-        events.forEach((event) => showModalBottomSheet(
+        events.forEach((event) => showDialog(
             context: context,
-            builder: (BuildContext context) => Container(
-              height: 100.0,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(child: Text('${event.title}',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20.0
-                  ))),
+            builder: (BuildContext context){
+              return AlertDialog(
+                title: Text('Attendance'),
+                content: Text('${event.title}'),
+                actions: <Widget>[
+                  FlatButton(
+                    child: Text('Ok'),
+                    onPressed: (){
+                      Navigator.of(context).pop(false);
+                    },
+                  ),
                 ],
-              ),
-            ),
-        ));
+              );
+            })
+        );
       },
       // daysHaveCircularBorder: true,
       showOnlyCurrentMonthDate: false,
