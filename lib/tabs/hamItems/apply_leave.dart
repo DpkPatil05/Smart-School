@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_school/modal/leave_data.dart';
 import 'package:smart_school/providers/apply_leave_provider.dart';
+import 'package:smart_school/services/upload.dart';
 import 'package:smart_school/templates/leave_data.dart';
 
 class ApplyLeave extends StatefulWidget {
@@ -168,8 +169,20 @@ class _ApplyLeaveState extends State<ApplyLeave> {
                           Navigator.of(context).pop(false);
 
                           null == _imageFile ?
-                          _imageFile = null :
-                          leaveProv.uploadAttachment(_imageFile).then(
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  Scaffold(
+                                    appBar: AppBar(
+                                      backgroundColor: Colors.red,
+                                      title: Text('Apply Leave'),
+                                    ),
+                                    body: leaveProv
+                                        .saveLeave(_fromdate, _todate, textEditingController.text),
+                                  ),
+                            ),
+                          ) : Upload().upload(_imageFile).then(
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(

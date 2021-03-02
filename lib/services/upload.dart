@@ -21,7 +21,8 @@ class Upload {
 
   upload(File imageFile) async {
     String uploadURL = 'http://www.paperfree-erp.in/college/'
-        '${HiveOperation().schoolSite}/uploads/student_leavedocuments/';
+        '${HiveOperation().schoolSite}/uploads/student_leavedocuments/'
+        '${basename(imageFile.path).replaceAll("image_picker", "")}/';
 
     print('Attachment url: $uploadURL');
 
