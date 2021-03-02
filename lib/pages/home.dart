@@ -40,7 +40,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   TabStyle _tabStyle = TabStyle.flip;
-  Future<bool> _onPressed(){
+  Future<bool> _onPressed() {
     return showDialog(
       context: context,
       builder: (BuildContext context){
@@ -163,19 +163,20 @@ class _HomeState extends State<Home> {
                               Expanded(child: Text('${hamItem[0]}')),
                             ],
                           ),
-                          onTap: () => "Logout" == hamItem[0] ? hamData.logoutFunction(context)
-                              : Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) =>
-                                    Scaffold(
-                                      appBar: AppBar(
-                                        backgroundColor: Colors.red,
-                                        title: Text('${hamItem[0]}'),
-                                      ),
-                                      body: hamData.openPage(int.parse(hamItem[2])),
+                          onTap: () =>
+                          "Logout" == hamItem[0] ? hamData.logoutFunction(context)
+                            : Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>
+                                  Scaffold(
+                                    appBar: AppBar(
+                                      backgroundColor: Colors.red,
+                                      title: Text('${hamItem[0]}'),
                                     ),
-                                ),
+                                    body: hamData.openPage(int.parse(hamItem[2])),
+                                  ),
                               ),
+                            ),
                         ),
                     ],
                   ),

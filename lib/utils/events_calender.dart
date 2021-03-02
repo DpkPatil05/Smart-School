@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart' show CalendarCarousel;
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/classes/event_list.dart';
+import 'package:smart_school/modal/calender_events.dart';
 
 class EventsCalender extends StatefulWidget {
+  final List<EventData> eventsdata;
+  const EventsCalender({this.eventsdata});
   @override
   _EventsCalenderState createState() => _EventsCalenderState();
 }
@@ -12,9 +15,7 @@ class _EventsCalenderState extends State<EventsCalender> with TickerProviderStat
 
   DateTime _currentDate2 = DateTime.now();
   DateTime _targetDateTime = DateTime.now();
-  EventList<Event> _markedDateMap = new EventList<Event>(
-    events: {},
-  );
+  EventList<Event> _markedDateMap = EventList<Event>(events: {});
 
   CalendarCarousel _calendarCarousel;
 
