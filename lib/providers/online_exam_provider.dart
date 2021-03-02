@@ -4,24 +4,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:smart_school/hive_operations.dart';
 import 'package:smart_school/modal/online_exam.dart';
+import 'package:smart_school/utils/months_in_number.dart';
 
 class OnlineExamProvider with ChangeNotifier {
-  String url = '';
-
-  static const Map<String, int> monthsInYear = {
-    "Jan": 01,
-    "Feb": 02,
-    "Mar": 03,
-    "Apr": 04,
-    "May": 05,
-    "Jun": 06,
-    "Jul": 07,
-    "Aug": 08,
-    "Sep": 09,
-    "Oct": 10,
-    "Nov": 11,
-    "Dec": 12,
-  };
 
   toast(String msg) {
     Fluttertoast.showToast(
@@ -37,8 +22,8 @@ class OnlineExamProvider with ChangeNotifier {
   bool checkDate(String fromDate, String toDate) {
     int fromDay = int.parse(fromDate.substring(0, 2));
     int toDay = int.parse(toDate.substring(0, 2));
-    int fromMonth = monthsInYear[fromDate.substring(3, 6)];
-    int toMonth = monthsInYear[toDate.substring(3, 6)];
+    int fromMonth = MonthsToNumber().monthsInYear[fromDate.substring(3, 6)];
+    int toMonth = MonthsToNumber().monthsInYear[toDate.substring(3, 6)];
     int fromYear = int.parse(fromDate.substring(8, 12));
     int toYear = int.parse(toDate.substring(8, 12));
 
@@ -60,7 +45,7 @@ class OnlineExamProvider with ChangeNotifier {
 
   // ignore: missing_return
   Future<List<List<OnlineExamData>>> fetchOnlineExam() async {
-    url = 'http://www.paperfree-erp.in/mobileapp/onlineexam/exam.php?studentid=${HiveOperation().studentID}';
+    String url = 'http://www.paperfree-erp.in/mobileapp/onlineexam/exam.php?studentid=${HiveOperation().studentID}';
     print('Online exam data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {

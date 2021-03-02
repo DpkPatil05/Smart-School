@@ -108,7 +108,7 @@ class _AttendanceCalenderState extends State<AttendanceCalender> with TickerProv
         this.setState(() => _currentDate2 = date);
         events.forEach((event) => showDialog(
             context: context,
-            builder: (BuildContext context){
+            builder: (BuildContext context) {
               return AlertDialog(
                 title: Text('Attendance'),
                 content: Text('${event.title}'),
