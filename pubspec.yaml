@@ -59,6 +59,11 @@ dev_dependencies:
   hive_generator: ^0.8.2
   build_runner: ^1.11.1
 
+  flutter_native_splash: ^0.3.1+1
+flutter_native_splash:
+  image: assets/graduated.png
+  color: "#EE4B2B"
+
   flutter_launcher_name: ^0.0.1
 flutter_launcher_name:
   name: "Smart School"
@@ -69,8 +74,6 @@ flutter_icons:
   adaptive_icon_background: "assets/launcher/background.png"
   android: true
   ios: true
-
-
 
 
 
