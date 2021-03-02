@@ -35,6 +35,8 @@ class Download with ChangeNotifier{
     try {
       // var dir = await getApplicationDocumentsDirectory();
       toast("Downloading");
+      downloading = true;
+      notifyListeners();
       String path = await ExtStorage.getExternalStoragePublicDirectory(
           ExtStorage.DIRECTORY_DOWNLOADS);
       FileUtils.mkdir([path]);
@@ -42,10 +44,14 @@ class Download with ChangeNotifier{
         progress = ((rec/total)*100).toStringAsFixed(0) + "%";
       }).then((value) {
         progress = "complete";
+        downloading = false;
         print("Download Complete");
         toast("Download Complete");
+        notifyListeners();
       });
     } catch(e) {
+      downloading = false;
+      notifyListeners();
       print("Download error: " + e.toString());
       toast("Download failed");
     }
