@@ -14,8 +14,10 @@ class Attendance extends StatefulWidget {
 class _AttendanceState extends State<Attendance> {
   @override
   void initState() {
-    Provider.of<AttendanceProvider>(context, listen: false)
-        .dateChangeEvent(DateTime.now(), widget.attendancedata);
+    Future.delayed(Duration.zero, () async {
+      Provider.of<AttendanceProvider>(context, listen: false)
+          .dateChangeEvent(DateTime.now(), widget.attendancedata);
+    });
     super.initState();
   }
 
