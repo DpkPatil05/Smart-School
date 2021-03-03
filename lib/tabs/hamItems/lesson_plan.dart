@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:smart_school/modal/lesson_plan.dart';
-import 'package:smart_school/templates/lesson_plan.dart';
+import 'package:smart_school/utils/lesson_plan_calender.dart';
 
 class LessonPlan extends StatefulWidget {
-  final List<List<LessonPlanData>> lessonplandata;
+  final List<LessonPlanData> lessonplandata;
 
   const LessonPlan({this.lessonplandata});
   @override
@@ -15,23 +15,29 @@ class _LessonPlanState extends State<LessonPlan> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: 1 == widget.lessonplandata.length ?
-      Card(
-        child: Center(
-            child: Text(
-              "No Lesson Plan Available",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15.0
-              ),
-            )
-        ),
-      ) :ListView.builder(
-          itemCount: widget.lessonplandata.length??0,
-          itemBuilder: (context, index) {
-            return LessonPlanCard(lessonplan: widget.lessonplandata[index]);
-          }
-      ),
+      child: Column(
+        children: [
+          Expanded(
+              flex: 1,
+              child: Card(
+                child: LessonPlanCalender(lessonplan: widget.lessonplandata)
+              )
+          ),
+          Expanded(
+              flex: 3,
+              child: ListTile(
+                title: Center(child: Text(
+                  'Select date to see the lesson plan',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17.0
+                  ),
+                )),
+              )
+          ),
+        ],
+      )
     );
   }
 }

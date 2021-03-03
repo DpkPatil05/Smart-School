@@ -1,37 +1,69 @@
 import 'dart:convert';
 
-List<List<LessonPlanData>> lessonPlanDataFromJson(String str) => List<List<LessonPlanData>>.from(json.decode(str).map((x) => List<LessonPlanData>.from(x.map((x) => LessonPlanData.fromJson(x)))));
+List<LessonPlanData> lessonPlanDataFromJson(String str) => List<LessonPlanData>.from(json.decode(str).map((x) => LessonPlanData.fromJson(x)));
 
-String lessonPlanDataToJson(List<List<LessonPlanData>> data) => json.encode(List<dynamic>.from(data.map((x) => List<dynamic>.from(x.map((x) => x.toJson())))));
+String lessonPlanDataToJson(List<LessonPlanData> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class LessonPlanData {
   LessonPlanData({
-    this.day,
     this.subject,
-    this.roomno,
-    this.timeFrom,
-    this.timeTo,
+    this.subCode,
+    this.date,
+    this.fromTime,
+    this.toTime,
+    this.lesson,
+    this.topic,
+    this.subTopic,
+    this.generalObjectives,
+    this.teachingMethod,
+    this.previousKnowledge,
+    this.comprehensiveQuestions,
+    this.presentation,
   });
 
-  String day;
   String subject;
-  String roomno;
-  String timeFrom;
-  String timeTo;
+  String subCode;
+  String date;
+  String fromTime;
+  String toTime;
+  String lesson;
+  String topic;
+  String subTopic;
+  String generalObjectives;
+  String teachingMethod;
+  String previousKnowledge;
+  String comprehensiveQuestions;
+  String presentation;
 
   factory LessonPlanData.fromJson(Map<String, dynamic> json) => LessonPlanData(
-    day: json["day"],
     subject: json["subject"],
-    roomno: json["roomno"],
-    timeFrom: json["time_from"],
-    timeTo: json["time_to"],
+    subCode: json["subCode"],
+    date: json["date"],
+    fromTime: json["fromTime"],
+    toTime: json["toTime"],
+    lesson: json["lesson"],
+    topic: json["topic"],
+    subTopic: json["subTopic"],
+    generalObjectives: json["generalObjectives"],
+    teachingMethod: json["teachingMethod"],
+    previousKnowledge: json["previousKnowledge"],
+    comprehensiveQuestions: json["comprehensiveQuestions"],
+    presentation: json["presentation"],
   );
 
   Map<String, dynamic> toJson() => {
-    "day": day,
     "subject": subject,
-    "roomno": roomno,
-    "time_from": timeFrom,
-    "time_to": timeTo,
+    "subCode": subCode,
+    "date": date,
+    "fromTime": fromTime,
+    "toTime": toTime,
+    "lesson": lesson,
+    "topic": topic,
+    "subTopic": subTopic,
+    "generalObjectives": generalObjectives,
+    "teachingMethod": teachingMethod,
+    "previousKnowledge": previousKnowledge,
+    "comprehensiveQuestions": comprehensiveQuestions,
+    "presentation": presentation,
   };
 }

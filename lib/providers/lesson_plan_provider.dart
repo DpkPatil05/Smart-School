@@ -8,8 +8,19 @@ import 'package:smart_school/modal/lesson_plan.dart';
 class LessonPlanProvider with ChangeNotifier {
   String url = '';
 
+  toast(String msg) {
+    Fluttertoast.showToast(
+        msg: '$msg',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.blueGrey,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+  }
+
   // ignore: missing_return
-  Future<List<List<LessonPlanData>>> fetchLessonPlan() async {
+  Future<List<LessonPlanData>> fetchLessonPlan() async {
     url = 'https://www.paperfree-erp.in/mobileapp/lessonplan/lessonplan.php?studentid=${HiveOperation().studentID}';
     print('Lesson data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
@@ -19,32 +30,27 @@ class LessonPlanProvider with ChangeNotifier {
         if (response.statusCode == 200) {
           // If the server did return a 200 OK response,
           // then parse the JSON.=
-          final List<List<LessonPlanData>> lessonplanData = lessonPlanDataFromJson(response.body);
+          final List<LessonPlanData> lessonplanData = lessonPlanDataFromJson(response.body);
           return lessonplanData;
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          return List<List<LessonPlanData>>();
+          toast("Problem fetching data");
         }
       } catch(e) {
-        Fluttertoast.showToast(
-            msg: "Problem fetching data",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            backgroundColor: Colors.blueGrey,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
+        toast("Problem fetching data");
       }
-    } else {
-      Fluttertoast.showToast(
-          msg: "No Data connection",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.blueGrey,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
-    }
+    } else toast("No Data connection");
   }
+
+  int getCount(List<LessonPlanData> lessonplan, DateTime date) {
+    int count = 0;
+    String selectedDate = '${date.year}-${date.month}-${date.day}';
+    for(final data in lessonplan) {
+      if(data.date == selectedDate)
+        count = ++count;
+    }
+    return count;
+  }
+
 }
