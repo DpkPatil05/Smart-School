@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smart_school/modal/attendance.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart' show CalendarCarousel;
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/classes/event_list.dart';
+import 'package:smart_school/providers/attendance_provider.dart';
 
 class AttendanceCalender extends StatefulWidget {
   final AttendanceData attendance;
@@ -156,6 +158,8 @@ class _AttendanceCalenderState extends State<AttendanceCalender> with TickerProv
       onCalendarChanged: (DateTime date) {
         this.setState(() {
           _targetDateTime = date;
+          Provider.of<AttendanceProvider>(context, listen: false)
+              .dateChangeEvent(date, widget.attendance);
         });
       },
       onDayLongPressed: (DateTime date) {
