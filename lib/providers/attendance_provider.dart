@@ -45,7 +45,7 @@ class AttendanceProvider with ChangeNotifier {
     } else toast("No Data connection");
   }
 
-  double dateChangeEvent(DateTime date, AttendanceData attendanceData) {
+  dateChangeEvent(DateTime date, AttendanceData attendanceData) {
     int month = date.month;
     int year = date.year;
     int total = 0;
@@ -68,7 +68,6 @@ class AttendanceProvider with ChangeNotifier {
         : attendancePercentage = (attended / total) * 100;
 
     notifyListeners();
-    return attendancePercentage;
   }
 
 }
