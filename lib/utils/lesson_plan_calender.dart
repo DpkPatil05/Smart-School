@@ -1,4 +1,4 @@
-import 'dart:typed_data';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart' show CalendarCarousel;
@@ -22,6 +22,8 @@ class _LessonPlanCalenderState extends State<LessonPlanCalender> with TickerProv
   EventList<Event> _markedDateMap = EventList<Event>(events: {});
 
   CalendarCarousel _calendarCarousel;
+
+  bool imageData = false;
 
   @override
   void initState() {
@@ -50,15 +52,23 @@ class _LessonPlanCalenderState extends State<LessonPlanCalender> with TickerProv
     super.initState();
   }
 
+  _showImage(String bytes) {
+    List<String> images = bytes.split('IMAGEDATASPLTR');
+    for(int i=0; i<images.length; i++)
+      return Row(
+        children: [
+          SizedBox(
+            width: 330.0,
+            child: Image.memory(base64Decode(LessonPlanProvider().imageByte64Data(images[i]).trim())),
+          )
+        ],
+      );
+  }
+
   @override
   Widget build(BuildContext context) {
-    bool imageData = false;
-    Uint8List bytes;
-    var lessonPlanProv = Provider.of<LessonPlanProvider>(context, listen: true);
-    setState(() {
-      imageData = lessonPlanProv.imageData;
-      bytes = lessonPlanProv.bytes;
-    });
+    var lessonPlanProv = Provider.of<LessonPlanProvider>(context, listen: false);
+
     _calendarCarousel = CalendarCarousel<Event>(
       todayBorderColor: Colors.blue,
       onDayPressed: (DateTime date, List<Event> events) {
@@ -265,12 +275,15 @@ class _LessonPlanCalenderState extends State<LessonPlanCalender> with TickerProv
                                   ),
                                 ],
                               ),
-                              Row(
+                              lessonPlanProv.getImageCheck(lessonPlanProv
+                                  .getTitleNPresentation(events[index].title, 'PRESENTATIONSPLTR', 1)) ?
+                              _showImage(lessonPlanProv
+                                  .getTitleNPresentation(events[index].title, 'PRESENTATIONSPLTR', 1))
+                              : Row(
                                 children: [
                                   SizedBox(
                                     width: 330.0,
-                                    child: imageData ? Image.memory(bytes)
-                                        : Text('${lessonPlanProv
+                                    child: Text('${lessonPlanProv
                                         .getTitleNPresentation(events[index].title, 'PRESENTATIONSPLTR', 1)}'
                                     ),
                                   ),

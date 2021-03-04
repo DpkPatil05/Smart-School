@@ -12,6 +12,9 @@ class Attendance extends StatefulWidget {
 }
 
 class _AttendanceState extends State<Attendance> {
+
+  double displayPercentage;
+
   @override
   void initState() {
     Future.delayed(Duration.zero, () async {
@@ -20,8 +23,6 @@ class _AttendanceState extends State<Attendance> {
     });
     super.initState();
   }
-
-  double displayPercentage;
 
   @override
   Widget build(BuildContext context) {

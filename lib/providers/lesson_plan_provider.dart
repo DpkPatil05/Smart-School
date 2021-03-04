@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:typed_data';
-
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,10 +7,6 @@ import 'package:smart_school/modal/lesson_plan.dart';
 
 class LessonPlanProvider with ChangeNotifier {
   String url = '';
-  
-  bool imageData = false;
-
-  Uint8List bytes;
 
   toast(String msg) {
     Fluttertoast.showToast(
@@ -107,16 +100,6 @@ class LessonPlanProvider with ChangeNotifier {
         .replaceAll('&gt;', '>');
     _presentation = _presentation
         .replaceAll('&lt;', '<');
-    
-    if(_presentation.contains('<img alt="" src="data:image/png;base64,')) {
-      imageData = true;
-      String _imageByte64Data = _presentation
-          .replaceAll('<img alt="" src="data:image/png;base64,', '');
-      _imageByte64Data = _imageByte64Data
-          .replaceAll('" />', '');
-      bytes = base64Decode(_imageByte64Data.trimRight());
-      notifyListeners();
-    }
 
     return '${lessonPlan.subject} (${lessonPlan.subCode})'
         'SUBJECTSPLTR${lessonPlan.fromTime} To ${lessonPlan.toTime}'
@@ -140,6 +123,37 @@ class LessonPlanProvider with ChangeNotifier {
     List<String> splitedString = lessonPlanData.split('$splitter1');
     List<String> requiredString = splitedString[0].split('$splitter2');
     return requiredString[1];
+  }
+
+  bool getImageCheck(String _presentation) {
+    if(_presentation.contains('<img alt="" src="data:image/png;base64,'))
+      return true;
+    else
+      return false;
+  }
+
+  String imageByte64Data(String image) {
+    String _imageByte64Data = image.replaceAll('<img', '');
+    _imageByte64Data = _imageByte64Data.replaceAll('alt=""', '');
+    _imageByte64Data = _imageByte64Data.replaceAll('src="data:image/png;base64,', '');
+    _imageByte64Data = _imageByte64Data.replaceAll('\\r', '');
+    _imageByte64Data = _imageByte64Data.replaceAll('\\n', '');
+    _imageByte64Data = _imageByte64Data.replaceAll('"', '');
+    _imageByte64Data = _imageByte64Data.replaceAll('</p>', '');
+    _imageByte64Data = _imageByte64Data.replaceAll('/>', '');
+    return _imageByte64Data;
+  }
+
+  String getImageData(String _presentation) {
+    List<String> images = _presentation.split('<p><img alt="" src="data:image/png;base64,');
+
+    String finalImageData = '';
+    for(String image in images) {
+      print(image);
+      image = image.trim();
+      finalImageData = finalImageData + 'IMAGEDATASPLTR' + imageByte64Data(image);
+    }
+    return finalImageData;
   }
 
 }
