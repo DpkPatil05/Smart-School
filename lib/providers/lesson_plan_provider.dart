@@ -59,11 +59,11 @@ class LessonPlanProvider with ChangeNotifier {
     _presentation = _presentation
         .replaceAll('</p>', '');
     _presentation = _presentation
-        .replaceAll('\\r\\n\\r\\n<p><span style=\\"font-family:serif; font-size:18.4px\\">', '\n\n');
+        .replaceAll('\r\n\r\n<p><span style="font-family:serif; font-size:18.4px">', '\n\n');
     _presentation = _presentation
-        .replaceAll('<span style=\\"font-family:serif; font-size:18.4px\\">', '');
+        .replaceAll('<span style="font-family:serif; font-size:18.4px">', '');
     _presentation = _presentation
-        .replaceAll('\\r\\n\\r\\n<p>', ' ');
+        .replaceAll('\r\n\r\n<p>', ' ');
     _presentation = _presentation
         .replaceAll('<span style="font-family:serif; font-size:11.6px">', '');
     _presentation = _presentation
@@ -134,14 +134,18 @@ class LessonPlanProvider with ChangeNotifier {
 
   String imageByte64Data(String image) {
     String _imageByte64Data = image.replaceAll('<img', '');
-    _imageByte64Data = _imageByte64Data.replaceAll('alt=""', '');
+    _imageByte64Data = _imageByte64Data.trim();
+    _imageByte64Data = _imageByte64Data.replaceAll('alt=', '');
     _imageByte64Data = _imageByte64Data.replaceAll('src="data:image/png;base64,', '');
-    _imageByte64Data = _imageByte64Data.replaceAll('\\r', '');
-    _imageByte64Data = _imageByte64Data.replaceAll('\\n', '');
+    _imageByte64Data = _imageByte64Data.replaceAll('\r', '');
+    _imageByte64Data = _imageByte64Data.replaceAll('\n', '');
     _imageByte64Data = _imageByte64Data.replaceAll('"', '');
+    _imageByte64Data = _imageByte64Data.replaceAll('""', '');
     _imageByte64Data = _imageByte64Data.replaceAll('</p>', '');
+    _imageByte64Data = _imageByte64Data.replaceAll('<p>', '');
     _imageByte64Data = _imageByte64Data.replaceAll('/>', '');
-    return _imageByte64Data;
+    _imageByte64Data = _imageByte64Data.replaceAll(' ', '');
+    return _imageByte64Data.trimRight();
   }
 
   String getImageData(String _presentation) {

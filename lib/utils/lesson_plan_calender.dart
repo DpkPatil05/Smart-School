@@ -59,7 +59,8 @@ class _LessonPlanCalenderState extends State<LessonPlanCalender> with TickerProv
         children: [
           SizedBox(
             width: 330.0,
-            child: Image.memory(base64Decode(LessonPlanProvider().imageByte64Data(images[i]).trim())),
+            child: Image.memory(base64Decode(base64.normalize(LessonPlanProvider()
+                .imageByte64Data(images[i]).trimRight()))),
           )
         ],
       );
@@ -158,7 +159,7 @@ class _LessonPlanCalenderState extends State<LessonPlanCalender> with TickerProv
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: 330.0,
+                                    width: 320.0,
                                     child: Text('${lessonPlanProv
                                         .getData(events[index].title, 'GENOBJECTIVESSPLTR', 'SUBTOPICSPLTR')}'
                                     ),
@@ -182,7 +183,7 @@ class _LessonPlanCalenderState extends State<LessonPlanCalender> with TickerProv
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: 330.0,
+                                    width: 320.0,
                                     child: Text('${lessonPlanProv
                                         .getData(events[index].title, 'TEACHINGMETHODSPLTR', 'GENOBJECTIVESSPLTR')}'
                                     ),
@@ -206,7 +207,7 @@ class _LessonPlanCalenderState extends State<LessonPlanCalender> with TickerProv
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: 330.0,
+                                    width: 320.0,
                                     child: Text('${lessonPlanProv
                                         .getData(events[index].title, 'PREVKNOWLEDGESPLTR', 'TEACHINGMETHODSPLTR')}'
                                     ),
@@ -230,7 +231,7 @@ class _LessonPlanCalenderState extends State<LessonPlanCalender> with TickerProv
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: 330.0,
+                                    width: 320.0,
                                     child: Text('${lessonPlanProv
                                         .getData(events[index].title, 'COMPREHENSIVEQUESTSPLTR', 'PREVKNOWLEDGESPLTR')}'
                                     ),
@@ -254,7 +255,7 @@ class _LessonPlanCalenderState extends State<LessonPlanCalender> with TickerProv
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: 330.0,
+                                    width: 320.0,
                                     child: Text('${lessonPlanProv
                                         .getData(events[index].title, 'PRESENTATIONSPLTR', 'COMPREHENSIVEQUESTSPLTR')}'
                                     ),
@@ -282,7 +283,7 @@ class _LessonPlanCalenderState extends State<LessonPlanCalender> with TickerProv
                               : Row(
                                 children: [
                                   SizedBox(
-                                    width: 330.0,
+                                    width: 320.0,
                                     child: Text('${lessonPlanProv
                                         .getTitleNPresentation(events[index].title, 'PRESENTATIONSPLTR', 1)}'
                                     ),
