@@ -29,7 +29,7 @@ class _HomeworkTabState extends State<HomeworkTab> {
                 )
             ),
           ) : ListView.builder(
-              itemCount: widget.hwdata?.length??0,
+              itemCount: widget.hwdata.length-1,
               itemBuilder: (context, index) {
                 return HomeworkCard(hwdata: widget.hwdata[index]);
               }

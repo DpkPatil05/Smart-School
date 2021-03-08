@@ -14,7 +14,7 @@ class _FeesTabState extends State<FeesTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       body: 'nodata' == widget.feedata[0][0].type ?
+       body: 0 == widget.feedata.length ?
        Card(
          child: Center(
              child: Text(
