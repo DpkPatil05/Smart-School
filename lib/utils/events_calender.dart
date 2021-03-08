@@ -22,31 +22,34 @@ class _EventsCalenderState extends State<EventsCalender> with TickerProviderStat
 
   @override
   void initState() {
-    for (final data in widget.eventsdata) {
-      var year = int.parse(data.startdate.substring(8, 12));
-      var month = MonthsToNumber().monthsInYear[data.startdate.substring(3, 6)];
-      var day = int.parse(data.startdate.substring(0, 2));
-      var date = DateTime(year, month, day);
+    if("nodata" != widget.eventsdata[0].title) {
+      for (final data in widget.eventsdata) {
+        var year = int.parse(data.startdate.substring(8, 12));
+        var month = MonthsToNumber().monthsInYear[data.startdate.substring(
+            3, 6)];
+        var day = int.parse(data.startdate.substring(0, 2));
+        var date = DateTime(year, month, day);
 
-      var _endyear = int.parse(data.enddate.substring(8, 12));
-      var _endmonth = MonthsToNumber().monthsInYear[data.enddate.substring(3, 6)];
-      var _endday = int.parse(data.enddate.substring(0, 2));
-      var _enddate = DateTime(_endyear, _endmonth, _endday);
+        var _endyear = int.parse(data.enddate.substring(8, 12));
+        var _endmonth = MonthsToNumber().monthsInYear[data.enddate.substring(
+            3, 6)];
+        var _endday = int.parse(data.enddate.substring(0, 2));
+        var _enddate = DateTime(_endyear, _endmonth, _endday);
 
-      _markedDateMap.add(date, Event(
-        date: _enddate,
-        title: '${data.title}',
-        icon: CircleAvatar(
-          backgroundColor: Colors.blue,
-          child: Text('${date.day}',
-            style: TextStyle(
-              color: Colors.black,
+        _markedDateMap.add(date, Event(
+          date: _enddate,
+          title: '${data.title}',
+          icon: CircleAvatar(
+            backgroundColor: Colors.blue,
+            child: Text('${date.day}',
+              style: TextStyle(
+                color: Colors.black,
+              ),
             ),
           ),
-        ),
-      ));
-
-      super.initState();
+        ));
+        super.initState();
+      }
     }
   }
 
