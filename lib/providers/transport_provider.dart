@@ -55,7 +55,7 @@ class TransportProvider with ChangeNotifier {
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          return List<TransportData>();
+          toast("Problem fetching data");
         }
       } catch (e) {
         toast("Problem fetching data");
@@ -81,10 +81,10 @@ class TransportProvider with ChangeNotifier {
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          return null;
+          toast("Problem fetching data");
         }
       } catch (e) {
-        print("Problem fetching transport data: ${e.toString()}");
+        print("Problem fetching transport details: ${e.toString()}");
       }
     } else {
       toast("No Data connection");

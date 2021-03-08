@@ -15,7 +15,7 @@ class _OnlineExamState extends State<OnlineExam> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: 1 == widget.onlineexamdata.length ?
+      child: 0 == widget.onlineexamdata.length ?
       Card(
         child: Center(
             child: Text(

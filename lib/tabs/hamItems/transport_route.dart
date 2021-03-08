@@ -17,7 +17,7 @@ class _TransportRouteState extends State<TransportRoute> {
     TransportProvider().getVehicleData(widget.transportdata);
     return Container(
         color: Colors.white,
-        child: 1 == widget.transportdata.length ?
+        child: 'nodata' == widget.transportdata[0].id ?
         Card(
           child: Center(
               child: Text(

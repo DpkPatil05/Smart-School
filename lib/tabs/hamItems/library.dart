@@ -40,38 +40,37 @@ class _LibraryState extends State<Library>  with SingleTickerProviderStateMixin{
                   controller: _controller,
                   children: <Widget>[
                     Container(
-                      child: ListView.builder(
+                      child: 0 == widget.librarydata.length ?
+                      Center(
+                          child: Text(
+                            "No Books available",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15.0
+                            ),
+                          )
+                      ) : ListView.builder(
                           itemCount: widget.librarydata[0]?.length??0,
                           itemBuilder: (context, index) {
-                            return 1 == widget.librarydata.length ?
-                            Center(
-                                child: Text(
-                                  "No Books available",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15.0
-                                  ),
-                                )
-                            ) :
-                            LibraryBooksCard(librarydata: widget.librarydata[0][index]);
+                            return LibraryBooksCard(librarydata: widget.librarydata[0][index]);
                           }
                       ),
                     ),
                     Container(
-                      child: ListView.builder(
+                      child: 0 == widget.librarydata.length ?
+                      Center(
+                          child: Text(
+                            "No Books Issued",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15.0
+                            ),
+                          )
+                      ) :
+                      ListView.builder(
                           itemCount:  widget.librarydata[1]?.length??0,
                           itemBuilder: (context, index) {
-                            return 1 == widget.librarydata.length ?
-                            Center(
-                                child: Text(
-                                  "No Books Issued",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15.0
-                                  ),
-                                )
-                            ) :
-                            LibraryBooksIssuedCard(librarydata:
+                            return LibraryBooksIssuedCard(librarydata:
                             widget.librarydata[1][index]);
                           }
                       ),
