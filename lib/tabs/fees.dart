@@ -26,7 +26,7 @@ class _FeesTabState extends State<FeesTab> {
              )
          )
        ) : ListView.builder(
-         itemCount: widget.feedata.length,
+         itemCount: widget.feedata.length??0,
          itemBuilder: (BuildContext context, int index) {
            return FeesCard(feedata: widget.feedata[index]);
          }
