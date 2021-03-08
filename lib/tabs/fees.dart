@@ -14,7 +14,7 @@ class _FeesTabState extends State<FeesTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       body: 1 == widget.feedata.length ?
+       body: 'nodata' == widget.feedata[0][0].type ?
        Card(
          child: Center(
              child: Text(
@@ -22,15 +22,15 @@ class _FeesTabState extends State<FeesTab> {
                style: TextStyle(
                    fontWeight: FontWeight.bold,
                    fontSize: 15.0
-               ),
+               )
              )
-         ),
+         )
        ) : ListView.builder(
-         itemCount: widget.feedata.length-1??0,
+         itemCount: widget.feedata.length,
          itemBuilder: (BuildContext context, int index) {
            return FeesCard(feedata: widget.feedata[index]);
-         },
-       ),
+         }
+       )
     );
   }
 }

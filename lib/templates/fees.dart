@@ -121,7 +121,7 @@ class _FeesCardState extends State<FeesCard> {
                           onPressed: () => showModalBottomSheet(
                             context: context,
                             builder: (BuildContext context) => ListView.builder(
-                              itemCount: widget.feedata.length-1??0,
+                              itemCount: 0 == widget.feedata.length-1??0,
                               itemBuilder: (BuildContext context, int index) =>
                                   ExpansionTile(
                                     title: Text('${widget.feedata[index].paiddt}'),

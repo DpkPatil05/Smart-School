@@ -30,7 +30,7 @@ class ProfileProvider with ChangeNotifier {
 
   // ignore: missing_return
   Future<ProfileData> fetchUser() async {
-    url = 'http://www.paperfree-erp.in/mobileapp/profile/profile.php?studentid=${HiveOperation().studentID}';
+    url = 'https://www.paperfree-erp.in/mobileapp/profile/profile.php?studentid=${HiveOperation().studentID}';
     print('Profile data url: ' + url);
     final response = await http.get(url);
     bool result = await DataConnectionChecker().hasConnection;
@@ -53,7 +53,7 @@ class ProfileProvider with ChangeNotifier {
 
   // ignore: missing_return
   Future<List<TimelineData>> fetchTimeline() async {
-    url = 'http://www.paperfree-erp.in/mobileapp/timeline/timeline.php?studentid=${HiveOperation().studentID}';
+    url = 'https://www.paperfree-erp.in/mobileapp/timeline/timeline.php?studentid=${HiveOperation().studentID}';
     print('Timeline data url: ' + url);
     final response = await http.get(url);
     bool result = await DataConnectionChecker().hasConnection;

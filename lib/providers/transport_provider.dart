@@ -85,7 +85,6 @@ class TransportProvider with ChangeNotifier {
         }
       } catch (e) {
         print("Problem fetching transport data: ${e.toString()}");
-        // toast("Problem fetching transport data");
       }
     } else {
       toast("No Data connection");

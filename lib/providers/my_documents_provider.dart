@@ -25,7 +25,7 @@ class MyDocumentsProvider with ChangeNotifier {
 
   // ignore: missing_return
   Future<List<MyDocumentsData>> fetchDocuments() async {
-    String url = 'http://www.paperfree-erp.in/mobileapp/mydocuments/mydocuments.php?studentid=${HiveOperation().studentID}';
+    String url = 'https://www.paperfree-erp.in/mobileapp/mydocuments/mydocuments.php?studentid=${HiveOperation().studentID}';
     print('My Documents url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {

@@ -48,7 +48,7 @@ class ExamProvider with ChangeNotifier {
 
   // ignore: missing_return
   Future<List<ExamSchedule>> fetchExamSchedule(int examID) async {
-    url = 'http://www.paperfree-erp.in/mobileapp/examschedule/exams.php?examid=$examID';
+    url = 'https://www.paperfree-erp.in/mobileapp/examschedule/exams.php?examid=$examID';
     print('Fees data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {
@@ -73,7 +73,7 @@ class ExamProvider with ChangeNotifier {
 
   // ignore: missing_return
   Future<List<ExamResult>> fetchExamResult(int examID) async {
-    url = 'http://www.paperfree-erp.in/mobileapp/examresult/exam.php?examid=$examID&studentid=${HiveOperation().studentID}';
+    url = 'https://www.paperfree-erp.in/mobileapp/examresult/exam.php?examid=$examID&studentid=${HiveOperation().studentID}';
     print('Exam result data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {

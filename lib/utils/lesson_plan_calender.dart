@@ -27,27 +27,29 @@ class _LessonPlanCalenderState extends State<LessonPlanCalender> with TickerProv
 
   @override
   void initState() {
-    for(final lessonPlan in widget.lessonplan) {
-      var year = int.parse(lessonPlan.date.substring(0, 4));
-      var month = int.parse(lessonPlan.date.substring(5, 7));
-      var day = int.parse(lessonPlan.date.substring(8, 10));
-      var date= DateTime(year, month, day);
+    if("nodata" != widget.lessonplan[0].subject) {
+      for (final lessonPlan in widget.lessonplan) {
+        var year = int.parse(lessonPlan.date.substring(0, 4));
+        var month = int.parse(lessonPlan.date.substring(5, 7));
+        var day = int.parse(lessonPlan.date.substring(8, 10));
+        var date = DateTime(year, month, day);
 
-      String subjectData = LessonPlanProvider().getLessonPlanData(lessonPlan);
+        String subjectData = LessonPlanProvider().getLessonPlanData(lessonPlan);
 
-      _markedDateMap.add(date, Event(
-        date: date,
-        title: subjectData,
-        icon: Padding(
-          padding: const EdgeInsets.only(top: 30.0),
-          child: SizedBox(
-            width: 5.0,
-            child: CircleAvatar(
-              backgroundColor: Colors.blue,
+        _markedDateMap.add(date, Event(
+          date: date,
+          title: subjectData,
+          icon: Padding(
+            padding: const EdgeInsets.only(top: 30.0),
+            child: SizedBox(
+              width: 5.0,
+              child: CircleAvatar(
+                backgroundColor: Colors.blue,
+              ),
             ),
           ),
-        ),
-      ));
+        ));
+      }
     }
     super.initState();
   }

@@ -38,7 +38,7 @@ class ApplyLeaveProvider with ChangeNotifier {
   Future<LeaveUploadMessage> uploadLeaveData(DateTime fromdate, DateTime todate, String reason) async {
     var fromDateToSend = "${fromdate.year}-${fromdate.month}-${fromdate.day}";
     var toDateToSend = "${todate.year}-${todate.month}-${todate.day}";
-    url = 'http://www.paperfree-erp.in/mobileapp/applyleave/applyleave.php?sid='
+    url = 'https://www.paperfree-erp.in/mobileapp/applyleave/applyleave.php?sid='
         '${HiveOperation().studentID}&fdate=$fromDateToSend&tdate=$toDateToSend&reason=${reason.replaceAll(" ", "%20")}';
     print('Upload Leave url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
@@ -63,7 +63,7 @@ class ApplyLeaveProvider with ChangeNotifier {
 
   // ignore: missing_return
   Future<LeaveUploadMessage> deleteLeaveData(int id) async {
-    url = 'http://www.paperfree-erp.in/mobileapp/applyleave/applyleave.php?leaveid=$id';
+    url = 'https://www.paperfree-erp.in/mobileapp/applyleave/applyleave.php?leaveid=$id';
     print('Delete Leave url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {
@@ -88,7 +88,7 @@ class ApplyLeaveProvider with ChangeNotifier {
 
   // ignore: missing_return
   Future<List<LeaveData>> fetchLeaveData() async {
-    url = 'http://www.paperfree-erp.in/mobileapp/applyleave/applyleave.php?studentid=${HiveOperation().studentID}';
+    url = 'https://www.paperfree-erp.in/mobileapp/applyleave/applyleave.php?studentid=${HiveOperation().studentID}';
     print('Apply Leave fetch url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {

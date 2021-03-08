@@ -31,7 +31,7 @@ class HomeworkProvider with ChangeNotifier {
 
   // ignore: missing_return
   Future<List<HomeworkData>> fetchHomework() async {
-    String url = 'http://www.paperfree-erp.in/mobileapp/homework/homework.php?studentid=${HiveOperation().studentID}';
+    String url = 'https://www.paperfree-erp.in/mobileapp/homework/homework.php?studentid=${HiveOperation().studentID}';
     print('Homework url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {
@@ -45,7 +45,7 @@ class HomeworkProvider with ChangeNotifier {
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          return List<HomeworkData>();
+          toast("Problem fetching data");
         }
       } catch(e) {toast("Problem fetching data");}
     } else toast("No Data connection");

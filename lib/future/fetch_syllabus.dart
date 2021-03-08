@@ -11,7 +11,7 @@ class FetchSyllabus extends StatelessWidget {
     return StreamProvider<List<SyllabusData>>.value(
       value: null,
       child: FutureBuilder<List<SyllabusData>>(
-        future: SyllabusProvider().fetchSyllabus('http://www.paperfree-erp.in/mobileapp/syllabus/subjects/syllabus.php?'
+        future: SyllabusProvider().fetchSyllabus('https://www.paperfree-erp.in/mobileapp/syllabus/subjects/syllabus.php?'
         'studentid=${HiveOperation().studentID}'),
         builder: (BuildContext context, AsyncSnapshot<List<SyllabusData>> subjectsData) {
           switch (subjectsData.connectionState) {
@@ -19,7 +19,7 @@ class FetchSyllabus extends StatelessWidget {
             default:
               return subjectsData.hasError? Text('Error: ${subjectsData.error}')
                   : FutureBuilder<List<SyllabusData>>(
-                future: SyllabusProvider().fetchSyllabus('http://www.paperfree-erp.in/mobileapp/syllabus/lessons/syllabus.php?'
+                future: SyllabusProvider().fetchSyllabus('https://www.paperfree-erp.in/mobileapp/syllabus/lessons/syllabus.php?'
                     'studentid=${HiveOperation().studentID}'),
                 builder: (BuildContext context, AsyncSnapshot<List<SyllabusData>> lessonsData) {
                   switch (lessonsData.connectionState) {
@@ -27,7 +27,7 @@ class FetchSyllabus extends StatelessWidget {
                     default:
                       return lessonsData.hasError? Text('Error: ${lessonsData.error}')
                           : FutureBuilder<List<SyllabusData>>(
-                        future: SyllabusProvider().fetchSyllabus('http://www.paperfree-erp.in/mobileapp/syllabus/topics/syllabus.php?'
+                        future: SyllabusProvider().fetchSyllabus('https://www.paperfree-erp.in/mobileapp/syllabus/topics/syllabus.php?'
                             'studentid=${HiveOperation().studentID}'),
                         builder: (BuildContext context, AsyncSnapshot<List<SyllabusData>> topicsData) {
                           switch (topicsData.connectionState) {

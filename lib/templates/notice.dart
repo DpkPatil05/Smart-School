@@ -34,24 +34,21 @@ class _NoticeCardState extends State<NoticeCard> {
                   ),
                 ),
                 Text('${widget.noticedata.date}'),
-                Container(
-                  height: 30.0,
-                  child: IconButton(
-                    iconSize: 20.0,
-                    icon: Icon(Icons.preview_outlined),
-                    tooltip: "View Details",
-                    onPressed: () => showModalBottomSheet(
-                        context: context,
-                        builder: (BuildContext context) => Container(
-                          alignment: Alignment.center,
-                          height: 300.0,
-                          child: Text(
-                              '${Provider.of<NoticeProvider>(context, listen: false)
-                              .noticeMessage(widget.noticedata.msg)}',
-                            textAlign: TextAlign.center,
-                          ),
-                        )
-                    ),
+                IconButton(
+                  iconSize: 20.0,
+                  icon: Icon(Icons.preview_outlined),
+                  tooltip: "View Details",
+                  onPressed: () => showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) => Container(
+                        alignment: Alignment.center,
+                        height: 300.0,
+                        child: Text(
+                            '${Provider.of<NoticeProvider>(context, listen: false)
+                            .noticeMessage(widget.noticedata.msg)}',
+                          textAlign: TextAlign.center,
+                        ),
+                      )
                   ),
                 ),
               ]
