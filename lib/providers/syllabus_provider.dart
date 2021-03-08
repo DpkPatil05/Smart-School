@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:smart_school/modal/syllabus.dart';
 
 class SyllabusProvider with ChangeNotifier {
-  String url = '';
 
   double subjectCompletion = 0.0, topicsCompletion = 0.0;
 

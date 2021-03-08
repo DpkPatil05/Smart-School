@@ -23,7 +23,7 @@ class AttendanceProvider with ChangeNotifier {
 
   // ignore: missing_return
   Future<AttendanceData> fetchAttendance() async {
-    url = 'http://www.paperfree-erp.in/mobileapp/attendance1/attendance1.php?studentid=${HiveOperation().studentID}';
+    url = 'https://www.paperfree-erp.in/mobileapp/attendance1/attendance1.php?studentid=${HiveOperation().studentID}';
     print('Attendance data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {

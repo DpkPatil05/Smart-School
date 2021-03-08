@@ -41,7 +41,7 @@ class TransportProvider with ChangeNotifier {
 
   // ignore: missing_return
   Future<List<TransportData>> fetchTransport() async {
-    url = 'http://www.paperfree-erp.in/mobileapp/transport/transport.php?studentid=${HiveOperation().studentID}';
+    url = 'https://www.paperfree-erp.in/mobileapp/transport/transport.php?studentid=${HiveOperation().studentID}';
     print('Transport data url: ' + url);
     final response = await http.get(url);
     bool result = await DataConnectionChecker().hasConnection;

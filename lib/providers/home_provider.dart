@@ -64,7 +64,7 @@ class HomeProvider with ChangeNotifier {
 
   // ignore: missing_return
   Future<List<EventData>> fetchEvents() async {
-    String url = 'http://www.paperfree-erp.in/mobileapp/events/events.php?'
+    String url = 'https://www.paperfree-erp.in/mobileapp/events/events.php?'
         'studentid=${HiveOperation().studentID}';
     print('Events data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;

@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:smart_school/services/download.dart';
 
 class MyDocumentsProvider with ChangeNotifier {
-  String generalDownloadURL = 'http://www.paperfree-erp.in/college/'
+  String generalDownloadURL = 'https://www.paperfree-erp.in/college/'
       '${HiveOperation().schoolSite}/uploads/student_documents/${HiveOperation().studentID}/';
 
   toast(String msg) {

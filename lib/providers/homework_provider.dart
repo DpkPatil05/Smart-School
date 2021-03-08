@@ -7,7 +7,7 @@ import 'package:smart_school/modal/homework.dart';
 import 'package:smart_school/services/download.dart';
 
 class HomeworkProvider with ChangeNotifier {
-  String generalDownloadURL = 'http://www.paperfree-erp.in/college/'
+  String generalDownloadURL = 'https://www.paperfree-erp.in/college/'
       '${HiveOperation().schoolSite}/uploads/homework/';
 
   toast(String msg) {

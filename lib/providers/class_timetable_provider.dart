@@ -10,7 +10,7 @@ class TimetableProvider with ChangeNotifier {
 
   // ignore: missing_return
   Future<List<List<TimetableData>>> fetchTimetable() async {
-    url = 'http://www.paperfree-erp.in/mobileapp/timetable/timetable.php?studentid=${HiveOperation().studentID}';
+    url = 'https://www.paperfree-erp.in/mobileapp/timetable/timetable.php?studentid=${HiveOperation().studentID}';
     print('Timetable data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {

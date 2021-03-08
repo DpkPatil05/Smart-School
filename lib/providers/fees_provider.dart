@@ -21,7 +21,7 @@ class FeesProvider with ChangeNotifier {
 
   // ignore: missing_return
   Future<List<List<FeesData>>> fetchFees() async {
-    url = 'http://www.paperfree-erp.in/mobileapp/fees/fees.php?studentid=${HiveOperation().studentID}';
+    url = 'https://www.paperfree-erp.in/mobileapp/fees/fees.php?studentid=${HiveOperation().studentID}';
     print('Fees data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {

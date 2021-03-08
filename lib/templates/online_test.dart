@@ -25,47 +25,50 @@ class _OnlineTestState extends State<OnlineTest> {
           int.parse(widget.duration.substring(3, 5)) * 60
           : int.parse(widget.duration.substring(0, 2)) * 60 * 60);
     return !_load ?
-        Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.red,
-            title: Text('${widget.exam}'),
-          ),
-          body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(child: Text(
-                    'Note',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold
-                    ),
-                  )),
-                  SizedBox(height: 10.0),
-                  Text('You can select option only once and test duration'
-                      ' will be ${widget.duration} minutes',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16.0),
+      Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.red,
+          title: Text('${widget.exam}'),
+        ),
+        body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(child: Text(
+                  'Note',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold
                   ),
-                  SizedBox(height: 20.0),
-                  RaisedButton(
-                    color: Colors.red,
-                    child: Text('Let`s Start',
-                      style: TextStyle(
-                          color: Colors.white
-                      ),
+                )),
+                SizedBox(height: 10.0),
+                Text('You can select option only once and test duration'
+                    ' will be ${widget.duration} minutes',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16.0),
+                ),
+                SizedBox(height: 20.0),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red, // background
+                    onPrimary: Colors.white, // foreground
+                  ),
+                  child: Text('Let`s Start',
+                    style: TextStyle(
+                        color: Colors.white
                     ),
-                    onPressed: () {
-                     setState(() {
-                       _load = true;
-                     });
-                    }
-                  )
-                ],
-              )
-          ),
-        ) :
+                  ),
+                  onPressed: () {
+                   setState(() {
+                     _load = true;
+                   });
+                  }
+                )
+              ],
+            )
+        ),
+      ) :
     Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,

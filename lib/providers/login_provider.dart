@@ -34,7 +34,7 @@ class LoginProvider with ChangeNotifier{
 
   // ignore: missing_return
   Future<LoginData> fetchUser() async {
-    String url = 'http://www.paperfree-erp.in/mobileapp/login/login.php?username=$user&password=$password';
+    String url = 'https://www.paperfree-erp.in/mobileapp/login/login.php?username=$user&password=$password';
     print('Login url: ' + url);
     final response = await http.get(url);
     bool result = await DataConnectionChecker().hasConnection;

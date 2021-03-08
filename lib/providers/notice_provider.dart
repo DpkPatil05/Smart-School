@@ -16,7 +16,7 @@ class NoticeProvider with ChangeNotifier {
 
   // ignore: missing_return
   Future<List<NoticeData>> fetchNotice() async {
-    url = 'http://www.paperfree-erp.in/mobileapp/noticeboard/noticeboard.php?studentid=${HiveOperation().studentID}';
+    url = 'https://www.paperfree-erp.in/mobileapp/noticeboard/noticeboard.php?studentid=${HiveOperation().studentID}';
     print('Notice data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {

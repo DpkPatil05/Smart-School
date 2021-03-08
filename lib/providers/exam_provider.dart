@@ -23,7 +23,7 @@ class ExamProvider with ChangeNotifier {
 
   // ignore: missing_return
   Future<List<Exam>> fetchExam() async {
-    url = 'http://www.paperfree-erp.in/mobileapp/exam/exam.php?studentid=${HiveOperation().studentID}';
+    url = 'https://www.paperfree-erp.in/mobileapp/exam/exam.php?studentid=${HiveOperation().studentID}';
     print('Exam data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {

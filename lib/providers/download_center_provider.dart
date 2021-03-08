@@ -7,7 +7,7 @@ import 'package:smart_school/modal/download_center.dart';
 import 'package:smart_school/services/download.dart';
 
 class DownloadCenterProvider with ChangeNotifier {
-  String generalDownloadURL = 'http://www.paperfree-erp.in/college/${HiveOperation().schoolSite}/';
+  String generalDownloadURL = 'https://www.paperfree-erp.in/college/${HiveOperation().schoolSite}/';
 
   toast(String msg) {
     return Fluttertoast.showToast(
