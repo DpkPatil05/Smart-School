@@ -7,6 +7,7 @@ import 'package:smart_school/modal/online_exam.dart';
 import 'package:smart_school/utils/months_in_number.dart';
 
 class OnlineExamProvider with ChangeNotifier {
+  final Map<String, String> selectedOptions = {};
 
   toast(String msg) {
     Fluttertoast.showToast(
@@ -66,4 +67,13 @@ class OnlineExamProvider with ChangeNotifier {
       }
     } else toast("No Data connection");
   }
+
+  saveAnswer(String qtID, String value) {
+    selectedOptions[qtID] = value;
+    print('Qt ID: $qtID, Value: $value');
+    notifyListeners();
+  }
+
+  bool checkSelected(String qtID) => selectedOptions.containsKey(qtID) ? true : false;
+
 }

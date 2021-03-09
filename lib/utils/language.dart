@@ -27,7 +27,6 @@ class Language {
 }
 
 class LanguageDropDownState extends State<LanguageDropDown> {
-  //
   List<Language> _languages = Language.getLanguages();
   List<DropdownMenuItem<Language>> _dropdownMenuItems;
   Language _selectedLanguage;
@@ -40,7 +39,7 @@ class LanguageDropDownState extends State<LanguageDropDown> {
   }
 
   List<DropdownMenuItem<Language>> buildDropdownMenuItems(List companies) {
-    List<DropdownMenuItem<Language>> items = List();
+    List<DropdownMenuItem<Language>> items = [];
     for (Language lang in _languages) {
       items.add(
         DropdownMenuItem(
@@ -60,7 +59,7 @@ class LanguageDropDownState extends State<LanguageDropDown> {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
           child: Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
