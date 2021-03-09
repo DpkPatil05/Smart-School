@@ -14,6 +14,26 @@ class DownloadCenter extends StatefulWidget {
 class _DownloadCenterState extends State<DownloadCenter> with SingleTickerProviderStateMixin{
 TabController _controller;
 
+Widget _header(String name) => Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Expanded(
+        flex: 1,
+        child: Container(
+            height: 50.0,
+            color: Colors.grey,
+            child: Center(child: Text(
+              '$name',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17.0
+              ),
+            ))
+        ),
+      ),
+    ]);
+
 @override
 void initState() {
   super.initState();
@@ -47,25 +67,7 @@ void initState() {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Container(
-                              height: 50.0,
-                              color: Colors.grey,
-                              child: Center(child: Text(
-                                'Assignment',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17.0
-                                ),
-                              ))
-                            ),
-                          ),
-                      ]),
+                      _header("Assignment"),
                       Container(
                         height: 500.0,
                         child: ListView.builder(
@@ -115,36 +117,44 @@ void initState() {
                 ),
                 Container(
                   child: 'nodata'!=widget.downloadcenterdata[0][0].title?
-                  ListView.builder(
-                      itemCount: widget.downloadcenterdata[1]?.length??0,
-                      itemBuilder: (context, index) {
-                        return Card(
-                            elevation: 5,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            child: ListTile(
-                                title: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    SizedBox(
-                                      width: 200.0,
-                                      child: Text('${widget.downloadcenterdata[1][index].title}')
-                                    ),
-                                    Text('${widget.downloadcenterdata[1][index].date}'),
-                                    IconButton(
-                                        icon: Icon(Icons.file_download),
-                                        onPressed: (){
-                                          CheckPermissions().checkStoragePermission().then((value) =>
-                                              DownloadCenterProvider().generateDownload(widget.downloadcenterdata[1][index].link));
-                                        }
-                                    ),
-                                    SizedBox(width: 5)
-                                  ],
-                                )
-                            )
-                        );
-                      }
+                  Column(
+                    children: [
+                      _header("Study Material"),
+                      Container(
+                        height: 500.0,
+                        child: ListView.builder(
+                            itemCount: widget.downloadcenterdata[1]?.length??0,
+                            itemBuilder: (context, index) {
+                              return Card(
+                                  elevation: 5,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  child: ListTile(
+                                      title: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          SizedBox(
+                                            width: 200.0,
+                                            child: Text('${widget.downloadcenterdata[1][index].title}')
+                                          ),
+                                          Text('${widget.downloadcenterdata[1][index].date}'),
+                                          IconButton(
+                                              icon: Icon(Icons.file_download),
+                                              onPressed: (){
+                                                CheckPermissions().checkStoragePermission().then((value) =>
+                                                    DownloadCenterProvider().generateDownload(widget.downloadcenterdata[1][index].link));
+                                              }
+                                          ),
+                                          SizedBox(width: 5)
+                                        ],
+                                      )
+                                  )
+                              );
+                            }
+                        ),
+                      ),
+                    ],
                   ) : Card(
                     child: Center(
                         child: Text(
@@ -159,36 +169,44 @@ void initState() {
                 ),
                 Container(
                   child: 'nodata'!=widget.downloadcenterdata[0][0].title?
-                  ListView.builder(
-                      itemCount: widget.downloadcenterdata[2]?.length??0,
-                      itemBuilder: (context, index) {
-                        return Card(
-                            elevation: 5,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            child: ListTile(
-                                title: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    SizedBox(
-                                      width: 200.0,
-                                      child: Text('${widget.downloadcenterdata[2][index].title}')
-                                    ),
-                                    Text('${widget.downloadcenterdata[2][index].date}'),
-                                    IconButton(
-                                        icon: Icon(Icons.file_download),
-                                        onPressed: (){
-                                          CheckPermissions().checkStoragePermission().then((value) =>
-                                              DownloadCenterProvider().generateDownload(widget.downloadcenterdata[2][index].link));
-                                        }
-                                    ),
-                                    SizedBox(width: 5)
-                                  ],
-                                )
-                            )
-                        );
-                      }
+                  Column(
+                    children: [
+                      _header("Syllabus"),
+                      Container(
+                        height: 500.0,
+                        child: ListView.builder(
+                            itemCount: widget.downloadcenterdata[2]?.length??0,
+                            itemBuilder: (context, index) {
+                              return Card(
+                                  elevation: 5,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  child: ListTile(
+                                      title: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          SizedBox(
+                                            width: 200.0,
+                                            child: Text('${widget.downloadcenterdata[2][index].title}')
+                                          ),
+                                          Text('${widget.downloadcenterdata[2][index].date}'),
+                                          IconButton(
+                                              icon: Icon(Icons.file_download),
+                                              onPressed: (){
+                                                CheckPermissions().checkStoragePermission().then((value) =>
+                                                    DownloadCenterProvider().generateDownload(widget.downloadcenterdata[2][index].link));
+                                              }
+                                          ),
+                                          SizedBox(width: 5)
+                                        ],
+                                      )
+                                  )
+                              );
+                            }
+                        ),
+                      ),
+                    ],
                   ) : Card(
                     child: Center(
                         child: Text(
@@ -203,36 +221,44 @@ void initState() {
                 ),
                 Container(
                   child: 'nodata'!=widget.downloadcenterdata[0][0].title?
-                  ListView.builder(
-                      itemCount: widget.downloadcenterdata[3]?.length??0,
-                      itemBuilder: (context, index) {
-                        return Card(
-                            elevation: 5,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            child: ListTile(
-                                title: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    SizedBox(
-                                      width: 200.0,
-                                      child: Text('${widget.downloadcenterdata[3][index].title}')
-                                    ),
-                                    Text('${widget.downloadcenterdata[3][index].date}'),
-                                    IconButton(
-                                        icon: Icon(Icons.file_download),
-                                        onPressed: (){
-                                          CheckPermissions().checkStoragePermission().then((value) =>
-                                              DownloadCenterProvider().generateDownload(widget.downloadcenterdata[3][index].link));
-                                        }
-                                    ),
-                                    SizedBox(width: 5)
-                                  ],
-                                )
-                            )
-                        );
-                      }
+                  Column(
+                    children: [
+                      _header("Others"),
+                      Container(
+                        height: 500.0,
+                        child: ListView.builder(
+                            itemCount: widget.downloadcenterdata[3]?.length??0,
+                            itemBuilder: (context, index) {
+                              return Card(
+                                  elevation: 5,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  child: ListTile(
+                                      title: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          SizedBox(
+                                            width: 200.0,
+                                            child: Text('${widget.downloadcenterdata[3][index].title}')
+                                          ),
+                                          Text('${widget.downloadcenterdata[3][index].date}'),
+                                          IconButton(
+                                              icon: Icon(Icons.file_download),
+                                              onPressed: (){
+                                                CheckPermissions().checkStoragePermission().then((value) =>
+                                                    DownloadCenterProvider().generateDownload(widget.downloadcenterdata[3][index].link));
+                                              }
+                                          ),
+                                          SizedBox(width: 5)
+                                        ],
+                                      )
+                                  )
+                              );
+                            }
+                        ),
+                      ),
+                    ],
                   ) : Card(
                     child: Center(
                         child: Text(

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/current_remaining_time.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
+import 'package:provider/provider.dart';
 import 'package:smart_school/modal/online_exam.dart';
 import 'package:smart_school/providers/online_exam_provider.dart';
 
@@ -18,8 +19,26 @@ class _OnlineTestState extends State<OnlineTest> {
   String _option = '';
   bool _load = false;
 
+  Widget _options(String option, String selected) {
+    return ListTile(
+      title: Text('$option'
+      ),
+      leading: Radio(
+        value: selected,
+        groupValue: _option,
+        onChanged: (String value) {
+          setState(() {
+            _option = value;
+          });
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    var olExamProv = Provider.of<OnlineExamProvider>(context, listen: false);
+
     int endTime = DateTime.now().millisecondsSinceEpoch + 1000
         * (widget.duration.substring(0, 2) == '00' ?
           int.parse(widget.duration.substring(3, 5)) * 60
@@ -109,7 +128,7 @@ class _OnlineTestState extends State<OnlineTest> {
               itemCount: widget.examdata.length-1??0,
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
-                  title: Text('Q${index + 1}) ${OnlineExamProvider()
+                  title: Text('Q${index + 1}) ${olExamProv
                       .clearData(widget.examdata[index].question)}',
                     style: TextStyle(
                       fontWeight: FontWeight.bold
@@ -118,81 +137,21 @@ class _OnlineTestState extends State<OnlineTest> {
                   subtitle: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      ListTile(
-                        title: Text('(A) ${OnlineExamProvider()
-                            .clearData(widget.examdata[index].optA)}'
-                        ),
-                        leading: Radio(
-                          value: OnlineExamProvider()
-                              .clearData(widget.examdata[index].optA),
-                          groupValue: _option,
-                          onChanged: (String value) {
-                            setState(() {
-                              _option = value;
-                            });
-                          },
-                        ),
-                      ),
-                      ListTile(
-                        title: Text('(B) ${OnlineExamProvider()
-                            .clearData(widget.examdata[index].optB)}'
-                        ),
-                        leading: Radio(
-                          value: OnlineExamProvider()
-                              .clearData(widget.examdata[index].optB),
-                          groupValue: _option,
-                          onChanged: (String value) {
-                            setState(() {
-                              _option = value;
-                            });
-                          },
-                        ),
-                      ),
-                      ListTile(
-                        title: Text('(C) ${OnlineExamProvider()
-                            .clearData(widget.examdata[index].optC)}'
-                        ),
-                        leading: Radio(
-                          value: OnlineExamProvider()
-                              .clearData(widget.examdata[index].optC),
-                          groupValue: _option,
-                          onChanged: (String value) {
-                            setState(() {
-                              _option = value;
-                            });
-                          },
-                        ),
-                      ),
-                      ListTile(
-                        title: Text('(D) ${OnlineExamProvider()
-                            .clearData(widget.examdata[index].optD)}'
-                        ),
-                        leading: Radio(
-                          value: OnlineExamProvider()
-                              .clearData(widget.examdata[index].optD),
-                          groupValue: _option,
-                          onChanged: (String value) {
-                            setState(() {
-                              _option = value;
-                            });
-                          },
-                        ),
-                      ),
-                      ListTile(
-                        title: Text('(E) ${OnlineExamProvider()
-                            .clearData(widget.examdata[index].optE)}'
-                        ),
-                        leading: Radio(
-                          value: OnlineExamProvider()
-                              .clearData(widget.examdata[index].optE),
-                          groupValue: _option,
-                          onChanged: (String value) {
-                            setState(() {
-                              _option = value;
-                            });
-                          },
-                        ),
-                      ),
+                      _options('(A) ${olExamProv
+                          .clearData(widget.examdata[index].optA)}',
+                          olExamProv.clearData(widget.examdata[index].optA)),
+                      _options('(B) ${olExamProv
+                          .clearData(widget.examdata[index].optB)}', olExamProv
+                          .clearData(widget.examdata[index].optB)),
+                      _options('(C) ${olExamProv
+                          .clearData(widget.examdata[index].optC)}', olExamProv
+                          .clearData(widget.examdata[index].optC)),
+                      _options('(D) ${olExamProv
+                          .clearData(widget.examdata[index].optD)}', olExamProv
+                          .clearData(widget.examdata[index].optD)),
+                      _options('(E) ${olExamProv
+                          .clearData(widget.examdata[index].optE)}', olExamProv
+                          .clearData(widget.examdata[index].optE)),
                     ],
                   ),
                 );
