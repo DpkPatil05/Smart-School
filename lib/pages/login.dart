@@ -69,7 +69,7 @@ class _LoginState extends State<Login> {
     return ChangeNotifierProvider(
       create: (context) => LoginProvider(),
       child: Consumer<LoginProvider>(
-        builder: (BuildContext context, loginProvider, Widget child) {
+        builder: (BuildContext context, loginProvider, _) {
           return Container(
             decoration: BoxDecoration(
               image: DecorationImage(
