@@ -109,7 +109,8 @@ class _OnlineTestState extends State<OnlineTest> {
               itemCount: widget.examdata.length-1??0,
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
-                  title: Text('Q${index + 1}) ${OnlineExamProvider().clearData(widget.examdata[index].question)}',
+                  title: Text('Q${index + 1}) ${OnlineExamProvider()
+                      .clearData(widget.examdata[index].question)}',
                     style: TextStyle(
                       fontWeight: FontWeight.bold
                     ),
