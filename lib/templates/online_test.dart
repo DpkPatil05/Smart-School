@@ -135,7 +135,10 @@ class _OnlineTestState extends State<OnlineTest> {
                 CountdownTimer(
                   endTime: endTime,
                   widgetBuilder: (_, CurrentRemainingTime time) {
-                    if (time == null) Navigator.of(context).pop();
+                    if (time == null) {
+                      olExamProv.submitTest();
+                      Navigator.of(context).pop();
+                    }
                     return Text(
                         '${time?.hours??'0'+'0'}:${time?.min??'0'+'0'}:${time.sec}',
                         style: TextStyle(
@@ -200,6 +203,19 @@ class _OnlineTestState extends State<OnlineTest> {
                             '(Qt${index+1})OPT_E',
                             '${widget.examdata[index].answer}'
                         ),
+                        index == widget.examdata.length-2 ?
+                          Container(
+                            width: 300.0,
+                            child: RaisedButton(
+                              color: Colors.red,
+                              onPressed: () {
+                                olExamProv.submitTest();
+                                Navigator.of(context).pop();
+                                },
+                              child: Text('Submit',
+                              style: TextStyle(color: Colors.white))
+                            ),
+                          ) : SizedBox(height: 5.0)
                       ],
                     ),
                   ),

@@ -76,4 +76,11 @@ class OnlineExamProvider with ChangeNotifier {
 
   bool checkSelected(String qtID) => selectedOptions.containsKey(qtID) ? true : false;
 
+  submitTest() {
+    selectedOptions.forEach((key, value) {
+      print("Qt $key: Ans $value");
+    });
+    toast('Answers Submitted');
+  }
+
 }
