@@ -79,7 +79,14 @@ class _HomeState extends State<Home> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             backgroundColor: Colors.red,
-            title: Center(child: Text('${widget.school}')),
+            title: Center(
+                child: Text('${widget.school}',
+                  style: TextStyle(
+                      fontSize: widget.school.length >= 20 ? 10.0 : 20.0,
+                  ),
+                )
+            ),
+
             actions: [
               Builder(
                 builder: (context) => IconButton(

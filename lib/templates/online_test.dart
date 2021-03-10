@@ -38,6 +38,11 @@ class _OnlineTestState extends State<OnlineTest> {
     }
   }
 
+  PageController pageController = PageController(initialPage: 0);
+  int page=1;
+
+
+
   Widget _options(String qtID, String option, String selected, String answer) {
     var olXamProv = Provider.of<OnlineExamProvider>(context, listen: true);
     if(olXamProv.checkSelected(selected)) this._option = selected;
@@ -155,6 +160,7 @@ class _OnlineTestState extends State<OnlineTest> {
           SizedBox(
             height: 550.0,
             child: PageView.builder(
+              controller: pageController,
               itemCount: widget.examdata.length-1??0,
               itemBuilder: (BuildContext context, int index) {
                 return SingleChildScrollView(
@@ -216,7 +222,19 @@ class _OnlineTestState extends State<OnlineTest> {
                               child: Text('Submit',
                               style: TextStyle(color: Colors.white))
                             ),
-                          ) : SizedBox(height: 5.0)
+                          )
+                        : Container(
+                          width: 300.0,
+                          child: RaisedButton(
+                              color: Colors.red,
+                              onPressed: () {
+                                pageController.jumpToPage(page);
+                                page++;
+                                },
+                              child: Text('Next',
+                                  style: TextStyle(color: Colors.white))
+                          ),
+                        )
                       ],
                     ),
                   ),

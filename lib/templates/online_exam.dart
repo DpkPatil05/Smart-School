@@ -186,7 +186,8 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                     onPressed: () {
                                       Navigator.push(
                                         context,
-                                        MaterialPageRoute(builder: (context) =>
+                                        MaterialPageRoute(
+                                            builder: (context) =>
                                             OnlineTest(
                                                 exam: widget.examdata[widget.examdata.length-1].exam,
                                                 duration: widget.examdata[widget.examdata.length-1].duration,
