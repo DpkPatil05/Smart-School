@@ -7,10 +7,10 @@ import 'package:smart_school/modal/online_exam.dart';
 import 'package:smart_school/providers/online_exam_provider.dart';
 
 class OnlineTest extends StatefulWidget {
-  final String exam, duration;
+  final String exam, examid, duration;
   final List<OnlineExamData> examdata;
 
-  const OnlineTest({this.exam, this.examdata, this.duration});
+  const OnlineTest({this.exam, this.examdata, this.duration, this.examid});
   @override
   _OnlineTestState createState() => _OnlineTestState();
 }
@@ -136,7 +136,7 @@ class _OnlineTestState extends State<OnlineTest> {
                   endTime: endTime,
                   widgetBuilder: (_, CurrentRemainingTime time) {
                     if (time == null) {
-                      olExamProv.submitTest();
+                      olExamProv.submitTest(widget.examid);
                       Navigator.of(context).pop();
                     }
                     return Text(
@@ -178,27 +178,32 @@ class _OnlineTestState extends State<OnlineTest> {
                     ),
                     subtitle: Column(
                       children: [
-                        _options((index+1).toString(),
+                        _options(
+                            widget.examdata[index].qusid,
                             '(A) ${olExamProv.clearData(widget.examdata[index].optA)}',
                             '(Qt${index+1})OPT_A',
                             '${widget.examdata[index].answer}'
                         ),
-                        _options((index+1).toString(),
+                        _options(
+                            widget.examdata[index].qusid,
                             '(B) ${olExamProv.clearData(widget.examdata[index].optB)}',
                             '(Qt${index+1})OPT_B',
                             '${widget.examdata[index].answer}'
                         ),
-                        _options((index+1).toString(),
+                        _options(
+                            widget.examdata[index].qusid,
                             '(C) ${olExamProv.clearData(widget.examdata[index].optC)}',
                             '(Qt${index+1})OPT_C',
                             '${widget.examdata[index].answer}'
                         ),
-                        _options((index+1).toString(),
+                        _options(
+                            widget.examdata[index].qusid,
                             '(D) ${olExamProv.clearData(widget.examdata[index].optD)}',
                             '(Qt${index+1})OPT_D',
                             '${widget.examdata[index].answer}'
                         ),
-                        _options((index+1).toString(),
+                        _options(
+                            widget.examdata[index].qusid,
                             '(E) ${olExamProv.clearData(widget.examdata[index].optE)}',
                             '(Qt${index+1})OPT_E',
                             '${widget.examdata[index].answer}'
@@ -209,7 +214,7 @@ class _OnlineTestState extends State<OnlineTest> {
                             child: RaisedButton(
                               color: Colors.red,
                               onPressed: () {
-                                  olExamProv.submitTest();
+                                  olExamProv.submitTest(widget.examid);
                                   Navigator.of(context).pop();
                                   Navigator.of(context).pop();
                               },

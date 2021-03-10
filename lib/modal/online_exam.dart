@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final onlineExamData = onlineExamDataFromJson(jsonString);
+
 import 'dart:convert';
 
 List<List<OnlineExamData>> onlineExamDataFromJson(String str) => List<List<OnlineExamData>>.from(json.decode(str).map((x) => List<OnlineExamData>.from(x.map((x) => OnlineExamData.fromJson(x)))));
@@ -12,7 +16,9 @@ class OnlineExamData {
     this.optD,
     this.optE,
     this.question,
+    this.qusid,
     this.answer,
+    this.examid,
     this.exam,
     this.from,
     this.to,
@@ -30,7 +36,9 @@ class OnlineExamData {
   String optD;
   String optE;
   String question;
+  String qusid;
   Answer answer;
+  String examid;
   String exam;
   String from;
   String to;
@@ -48,7 +56,9 @@ class OnlineExamData {
     optD: json["optD"] == null ? null : json["optD"],
     optE: json["optE"] == null ? null : json["optE"],
     question: json["question"] == null ? null : json["question"],
+    qusid: json["qusid"] == null ? null : json["qusid"],
     answer: json["answer"] == null ? null : answerValues.map[json["answer"]],
+    examid: json["examid"] == null ? null : json["examid"],
     exam: json["exam"] == null ? null : json["exam"],
     from: json["from"] == null ? null : json["from"],
     to: json["to"] == null ? null : json["to"],
@@ -67,7 +77,9 @@ class OnlineExamData {
     "optD": optD == null ? null : optD,
     "optE": optE == null ? null : optE,
     "question": question == null ? null : question,
+    "qusid": qusid == null ? null : qusid,
     "answer": answer == null ? null : answerValues.reverse[answer],
+    "examid": examid == null ? null : examid,
     "exam": exam == null ? null : exam,
     "from": from == null ? null : from,
     "to": to == null ? null : to,
