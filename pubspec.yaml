@@ -61,7 +61,7 @@ dev_dependencies:
 
   flutter_native_splash: ^0.3.1+1
 flutter_native_splash:
-  image: assets/graduated.png
+  image: assets/launcher/icon.png
   color: "#EE4B2B"
 
   flutter_launcher_name: ^0.0.1
