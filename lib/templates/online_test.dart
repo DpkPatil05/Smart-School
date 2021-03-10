@@ -209,9 +209,10 @@ class _OnlineTestState extends State<OnlineTest> {
                             child: RaisedButton(
                               color: Colors.red,
                               onPressed: () {
-                                olExamProv.submitTest();
-                                Navigator.of(context).pop();
-                                },
+                                  olExamProv.submitTest();
+                                  Navigator.of(context).pop();
+                                  Navigator.of(context).pop();
+                              },
                               child: Text('Submit',
                               style: TextStyle(color: Colors.white))
                             ),

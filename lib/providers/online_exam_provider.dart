@@ -1,13 +1,18 @@
+import 'dart:convert';
+
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:smart_school/future/post_online_exam_answers.dart';
 import 'package:smart_school/hive_operations.dart';
 import 'package:smart_school/modal/online_exam.dart';
+import 'package:smart_school/modal/online_exam_submit_response.dart';
 import 'package:smart_school/utils/months_in_number.dart';
 
 class OnlineExamProvider with ChangeNotifier {
   final Map<String, String> selectedOptions = {};
+  final Map<String, String> finalAnswers = {};
 
   toast(String msg) {
     Fluttertoast.showToast(
@@ -44,9 +49,29 @@ class OnlineExamProvider with ChangeNotifier {
     return clearPTag.replaceAll('</p>', '');
   }
 
+  saveAnswer(String qtID, String value) {
+    selectedOptions[qtID] = value;
+    print('Qt ID: $qtID, Value: $value');
+    notifyListeners();
+  }
+
+  bool checkSelected(String qtID) =>
+      selectedOptions.containsKey(qtID) ? true : false;
+
+  submitTest() {
+    selectedOptions.forEach((key, value) {
+      finalAnswers[key] = value.substring(5, 10).toLowerCase();
+    });
+    print(json.encode(finalAnswers).toString());
+    selectedOptions.clear();
+    toast('Answers Submitted');
+    return PostAnswers();
+  }
+
   // ignore: missing_return
   Future<List<List<OnlineExamData>>> fetchOnlineExam() async {
-    String url = 'https://www.paperfree-erp.in/mobileapp/onlineexam/exam.php?studentid=${HiveOperation().studentID}';
+    String url = 'https://www.paperfree-erp.in/mobileapp/onlineexam/exam.php?'
+        'studentid=${HiveOperation().studentID}';
     print('Online exam data url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {
@@ -68,19 +93,28 @@ class OnlineExamProvider with ChangeNotifier {
     } else toast("No Data connection");
   }
 
-  saveAnswer(String qtID, String value) {
-    selectedOptions[qtID] = value;
-    print('Qt ID: $qtID, Value: $value');
-    notifyListeners();
-  }
-
-  bool checkSelected(String qtID) => selectedOptions.containsKey(qtID) ? true : false;
-
-  submitTest() {
-    selectedOptions.forEach((key, value) {
-      print("Qt $key: Ans $value");
-    });
-    toast('Answers Submitted');
+  // ignore: missing_return
+  Future<OnlineExamSubmitResponse> submitAnswers() async {
+    String url = 'https://www.paperfree-erp.in/mobileapp/onlineexam/exam.php?'
+        'studentid=${HiveOperation().studentID}&data=${json.encode(finalAnswers).toString()}';
+    print('Online exam data url: ' + url);
+    bool result = await DataConnectionChecker().hasConnection;
+    if (result) {
+      try {
+        final response = await http.get(url);
+        if (response.statusCode == 200) {
+          // If the server did return a 200 OK response,
+          // then parse the JSON.=
+          return onineExamSubmitResponseFromJson(response.body);
+        } else {
+          // If the server did not return a 200 OK response,
+          // then throw an exception.
+          toast("Problem fetching data");
+        }
+      } catch(e) {
+        toast("Problem fetching data");
+      }
+    } else toast("No Data connection");
   }
 
 }

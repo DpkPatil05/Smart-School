@@ -21,7 +21,8 @@ class TeachersReviewProvider with ChangeNotifier {
     );
   }
 
-  postReview(int rating, String comment, String staffid) => PostReview(rating: rating, comment: comment, staffid: staffid);
+  postReview(int rating, String comment, String staffid) =>
+      PostReview(rating: rating, comment: comment, staffid: staffid);
 
   // ignore: missing_return
   Future<List<TeacherReviewData>> fetchReviews() async {
