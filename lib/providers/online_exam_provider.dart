@@ -97,7 +97,7 @@ class OnlineExamProvider with ChangeNotifier {
   Future<OnlineExamSubmitResponse> submitAnswers() async {
     String url = 'https://www.paperfree-erp.in/mobileapp/onlineexam/exam.php?'
         'studentid=${HiveOperation().studentID}&data=${json.encode(finalAnswers).toString()}';
-    print('Online exam data url: ' + url);
+    print('Online exam submit url: ' + url);
     bool result = await DataConnectionChecker().hasConnection;
     if (result) {
       try {
@@ -109,10 +109,10 @@ class OnlineExamProvider with ChangeNotifier {
         } else {
           // If the server did not return a 200 OK response,
           // then throw an exception.
-          toast("Problem fetching data");
+          toast("Problem submitting data");
         }
       } catch(e) {
-        toast("Problem fetching data");
+        toast("Problem submitting data");
       }
     } else toast("No Data connection");
   }
