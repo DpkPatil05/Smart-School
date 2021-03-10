@@ -190,6 +190,7 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                             builder: (context) =>
                                             OnlineTest(
                                                 exam: widget.examdata[widget.examdata.length-1].exam,
+                                                examid: widget.examdata[widget.examdata.length-1].examid,
                                                 duration: widget.examdata[widget.examdata.length-1].duration,
                                                 examdata: widget.examdata
                                             )

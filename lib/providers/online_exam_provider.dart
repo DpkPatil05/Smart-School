@@ -58,7 +58,8 @@ class OnlineExamProvider with ChangeNotifier {
   bool checkSelected(String qtID) =>
       selectedOptions.containsKey(qtID) ? true : false;
 
-  submitTest() {
+  submitTest(String examid) {
+    selectedOptions['examid'] = examid;
     selectedOptions.forEach((key, value) {
       finalAnswers[key] = value.substring(5, 10).toLowerCase();
     });
