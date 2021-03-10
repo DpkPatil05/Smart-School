@@ -39,9 +39,7 @@ class _OnlineTestState extends State<OnlineTest> {
   }
 
   PageController pageController = PageController(initialPage: 0);
-  int page=1;
-
-
+  int page = 1;
 
   Widget _options(String qtID, String option, String selected, String answer) {
     var olXamProv = Provider.of<OnlineExamProvider>(context, listen: true);
@@ -126,6 +124,7 @@ class _OnlineTestState extends State<OnlineTest> {
       appBar: AppBar(
         backgroundColor: Colors.red,
         title: Text('${widget.exam}'),
+        automaticallyImplyLeading: false,
       ),
       body: Column(
         children: [
@@ -141,8 +140,20 @@ class _OnlineTestState extends State<OnlineTest> {
                   endTime: endTime,
                   widgetBuilder: (_, CurrentRemainingTime time) {
                     if (time == null) {
-                      olExamProv.submitTest(widget.examid);
-                      Navigator.of(context).pop();
+                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                Scaffold(
+                                    appBar: AppBar(
+                                      backgroundColor: Colors.red,
+                                      title: Text('Online Exam'),
+                                    ),
+                                    body: olExamProv.submitTest(widget.examid)
+                                )
+                        ),
+                      );
                     }
                     return Text(
                         '${time?.hours??'0'+'0'}:${time?.min??'0'+'0'}:${time.sec}',
@@ -215,27 +226,84 @@ class _OnlineTestState extends State<OnlineTest> {
                             '${widget.examdata[index].answer}'
                         ),
                         index == widget.examdata.length-2 ?
+                        //Last Question
                           Container(
                             width: 300.0,
-                            child: RaisedButton(
-                              color: Colors.red,
-                              onPressed: () {
-                                  olExamProv.submitTest(widget.examid);
-                                  Navigator.of(context).pop();
-                                  Navigator.of(context).pop();
-                              },
-                              child: Text('Submit',
-                              style: TextStyle(color: Colors.white))
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                RaisedButton(
+                                    color: Colors.red,
+                                    onPressed: () {
+                                      page == 1 ? page = page : page--;
+                                      pageController.jumpToPage(page);
+                                    },
+                                    child: Text('Prev',
+                                        style: TextStyle(color: Colors.white))
+                                ),
+                                RaisedButton(
+                                  color: Colors.red,
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                          Scaffold(
+                                              appBar: AppBar(
+                                                backgroundColor: Colors.red,
+                                                title: Text('Online Exam'),
+                                              ),
+                                              body: olExamProv.submitTest(widget.examid)
+                                          )
+                                      ),
+                                    );
+                                  },
+                                  child: Text('Submit',
+                                  style: TextStyle(color: Colors.white))
+                                ),
+                              ],
                             ),
                           )
+                        : 0 != index ?
+                        //Mid Questions
+                        Container(
+                          width: 300.0,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              RaisedButton(
+                                  color: Colors.red,
+                                  onPressed: () {
+                                    page == 0 ? page = page : page--;
+                                    pageController.jumpToPage(page);
+                                    },
+                                  child: Text('Prev',
+                                      style: TextStyle(color: Colors.white))
+                              ),
+                              RaisedButton(
+                                  color: Colors.red,
+                                  onPressed: () {
+                                    page == widget.examdata.length-2 ?
+                                    page = page : page++;
+                                    pageController.jumpToPage(page);
+                                  },
+                                  child: Text('Next',
+                                      style: TextStyle(color: Colors.white))
+                              ),
+                            ],
+                          ),
+                        )
+                        //First Question
                         : Container(
                           width: 300.0,
                           child: RaisedButton(
                               color: Colors.red,
                               onPressed: () {
+                                page == 1 ?
+                                page = page : page++;
                                 pageController.jumpToPage(page);
-                                page++;
-                                },
+                              },
                               child: Text('Next',
                                   style: TextStyle(color: Colors.white))
                           ),

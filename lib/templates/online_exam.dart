@@ -184,7 +184,7 @@ class _OnlineExamCardState extends State<OnlineExamCard> {
                                     color: Colors.red,
                                     textColor: Colors.white,
                                     onPressed: () {
-                                      Navigator.push(
+                                      Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>

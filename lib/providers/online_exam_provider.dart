@@ -12,7 +12,6 @@ import 'package:smart_school/utils/months_in_number.dart';
 
 class OnlineExamProvider with ChangeNotifier {
   final Map<String, String> selectedOptions = {};
-  final Map<String, String> finalAnswers = {};
 
   toast(String msg) {
     Fluttertoast.showToast(
@@ -59,14 +58,15 @@ class OnlineExamProvider with ChangeNotifier {
       selectedOptions.containsKey(qtID) ? true : false;
 
   submitTest(String examid) {
-    selectedOptions['examid'] = examid;
+    final Map<String, String> finalAnswers = {};
+    finalAnswers['examid'] = examid;
     selectedOptions.forEach((key, value) {
       finalAnswers[key] = value.substring(5, 10).toLowerCase();
     });
     print(json.encode(finalAnswers).toString());
     selectedOptions.clear();
     toast('Answers Submitted');
-    return PostAnswers();
+    return PostAnswers(finalAnswers : finalAnswers);
   }
 
   // ignore: missing_return
@@ -95,7 +95,7 @@ class OnlineExamProvider with ChangeNotifier {
   }
 
   // ignore: missing_return
-  Future<OnlineExamSubmitResponse> submitAnswers() async {
+  Future<OnlineExamSubmitResponse> submitAnswers(Map<String, String> finalAnswers) async {
     String url = 'https://www.paperfree-erp.in/mobileapp/onlineexam/exam.php?'
         'studentid=${HiveOperation().studentID}&data=${json.encode(finalAnswers).toString()}';
     print('Online exam submit url: ' + url);
