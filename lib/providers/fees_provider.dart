@@ -43,4 +43,10 @@ class FeesProvider with ChangeNotifier {
     } else toast("No Data connection");
   }
 
+  grandTotalData(List<List<FeesData>> feedata) {
+    Map<String, int> grandTotal = {};
+    // grandTotal["amount"] = value;
+    return grandTotal;
+  }
+
 }
