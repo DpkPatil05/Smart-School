@@ -17,7 +17,8 @@ class _FeesTabState extends State<FeesTab> {
   @override
   Widget build(BuildContext context) {
     setState(() {
-      grandTotal = Provider.of(context, listen: true).grandTotalData(widget.feedata);
+      this.grandTotal = Provider.of<FeesProvider>(context, listen: false)
+          .grandTotalData(widget.feedata);
     });
     return Scaffold(
        body: 0 == widget.feedata.length ?
