@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:smart_school/modal/fees.dart';
 import 'package:smart_school/providers/fees_provider.dart';
 import 'package:smart_school/templates/fees.dart';
+import 'package:smart_school/templates/grand_total_card.dart';
 
 class FeesTab extends StatefulWidget {
   final List<List<FeesData>> feedata;
@@ -13,13 +14,16 @@ class FeesTab extends StatefulWidget {
 }
 
 class _FeesTabState extends State<FeesTab> {
-  Map<String, int> grandTotal = {};
+  @override
+  void initState() {
+    Provider.of<FeesProvider>(context, listen: false)
+        .grandTotalData(widget.feedata);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    setState(() {
-      this.grandTotal = Provider.of<FeesProvider>(context, listen: false)
-          .grandTotalData(widget.feedata);
-    });
+
     return Scaffold(
        body: 0 == widget.feedata.length ?
        Card(
@@ -36,22 +40,17 @@ class _FeesTabState extends State<FeesTab> {
          builder: (BuildContext context, feesProv, _) {
            return Column(
              children: [
-               Card(
-                 child: Text(""),
-               ),
-               Card(
-                 child: Text(""),
-               ),
+               GrandTotalCard(grandtotal: Provider.of<FeesProvider>(context).grandTotal),
                Container(
-                 height: 450.0,
+                 height: 400.0,
                  child: ListView.builder(
-                     itemCount: widget.feedata.length??0,
+                     itemCount: widget.feedata.length,
                      itemBuilder: (BuildContext context, int index) {
                        return FeesCard(feedata: widget.feedata[index]);
                      }
-                 ),
-               ),
-             ],
+                 )
+               )
+             ]
            );
          },
        )

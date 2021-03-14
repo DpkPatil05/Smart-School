@@ -7,6 +7,7 @@ import 'package:smart_school/hive_operations.dart';
 
 class FeesProvider with ChangeNotifier {
   String url = '';
+  Map<String, double> grandTotal = {};
 
   toast(String msg) {
     Fluttertoast.showToast(
@@ -43,10 +44,35 @@ class FeesProvider with ChangeNotifier {
     } else toast("No Data connection");
   }
 
-  grandTotalData(List<List<FeesData>> feedata) {
-    Map<String, int> grandTotal = {};
-    // grandTotal["amount"] = value;
-    return grandTotal;
+  grandTotalData(List<List<FeesData>> feedata) async{
+    double totalAmount = 0.0, totalDiscount = 0.0, totalFine = 0.0,
+        totalPaid = 0.0, totalBalance = 0.0;
+    for(int i=0;i<feedata.length; i++){
+      totalAmount = totalAmount +
+          double.parse(feedata[i][feedata[i].length-1].amount.replaceAll(',', ''));
+      if(feedata[i].length-1 == 0)
+        totalBalance = totalBalance +
+          double.parse(feedata[i][feedata[i].length-1].amount.replaceAll(',', ''));
+    }
+    grandTotal['amount'] = totalAmount;
+
+    for(int i=0;i<feedata.length; i++){
+      for(int j=0;j<feedata[i].length-1; j++){
+        totalDiscount = totalDiscount +
+            double.parse(feedata[i][j].discnt.replaceAll(',', ''));
+        totalFine = totalFine +
+            double.parse(feedata[i][j].fine.replaceAll(',', ''));
+        totalPaid = totalPaid +
+            double.parse(feedata[i][j].paidamt.replaceAll(',', ''));
+      }
+    }
+
+    grandTotal['discount'] = totalDiscount;
+    grandTotal['fine'] = totalFine;
+    grandTotal['paid'] = totalPaid;
+    grandTotal['balance'] = totalBalance;
+
+    print('total amount ${grandTotal['amount']}');
   }
 
 }
