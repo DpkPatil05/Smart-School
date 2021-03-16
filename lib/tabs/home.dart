@@ -39,7 +39,7 @@ class _HomeTabState extends State<HomeTab> {
                  child: const Text(
                      'Attendance',
                      style: TextStyle(
-                         fontSize: 25.0,
+                         fontSize: 20.0,
                          color: Colors.white
                      )
                  ),
@@ -69,7 +69,7 @@ class _HomeTabState extends State<HomeTab> {
                  child: const Text(
                      'To Do',
                      style: TextStyle(
-                         fontSize: 25.0,
+                         fontSize: 20.0,
                          color: Colors.white
                      )
                  ),
