@@ -47,18 +47,21 @@ class FeesProvider with ChangeNotifier {
   grandTotalData(List<List<FeesData>> feedata) async{
     double totalAmount = 0.0, totalDiscount = 0.0, totalFine = 0.0,
         totalPaid = 0.0, totalBalance = 0.0;
-    for(int i=0;i<feedata.length; i++){
+    for(int i=0; i<feedata.length-1; i++){
       totalAmount = totalAmount +
           double.parse(feedata[i][feedata[i].length-1].amount.replaceAll(',', ''));
-        if (feedata[i].length - 1 == 0)
-          totalBalance = totalBalance + double.parse(
-                  feedata[i][feedata[i].length - 1].amount.replaceAll(',', '')) +
-                  double.parse(feedata[i][feedata[i].length - 2].balanceamt.replaceAll(',', ''));
+        if (feedata[i].length - 1 == 0) {
+          totalBalance = totalBalance +
+              double.parse(feedata[i][feedata[i].length - 1].amount.replaceAll(',', ''));
+          if(feedata[i][feedata[i].length - 1].balanceamt != null)
+            totalBalance = totalBalance +
+                double.parse(feedata[i][feedata[i].length - 1].balanceamt.replaceAll(',', ''));
+        }
     }
     grandTotal['amount'] = totalAmount;
 
-    for(int i=0;i<feedata.length; i++){
-      for(int j=0;j<feedata[i].length-1; j++){
+    for(int i=0; i<feedata.length; i++){
+      for(int j=0; j<feedata[i].length-1; j++){
         totalDiscount = totalDiscount +
             double.parse(feedata[i][j].discnt.replaceAll(',', ''));
         totalFine = totalFine +
@@ -72,8 +75,6 @@ class FeesProvider with ChangeNotifier {
     grandTotal['fine'] = totalFine;
     grandTotal['paid'] = totalPaid;
     grandTotal['balance'] = totalBalance;
-
-    print('total amount ${grandTotal['amount']}');
   }
 
 }

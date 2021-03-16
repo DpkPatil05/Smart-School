@@ -37,7 +37,6 @@ class _FeesCardState extends State<FeesCard> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 15.0),
                   child: Row(
-
                     children: [
                       Expanded(
                         flex: 1,

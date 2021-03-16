@@ -4,6 +4,7 @@ import 'package:smart_school/modal/fees.dart';
 import 'package:smart_school/providers/fees_provider.dart';
 import 'package:smart_school/templates/fees.dart';
 import 'package:smart_school/templates/grand_total_card.dart';
+import 'package:smart_school/templates/previous_fees_card.dart';
 
 class FeesTab extends StatefulWidget {
   final List<List<FeesData>> feedata;
@@ -25,7 +26,7 @@ class _FeesTabState extends State<FeesTab> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-       body: 0 == widget.feedata.length ?
+       body: 1 == widget.feedata.length ?
        Card(
          child: Center(
              child: Text(
@@ -41,10 +42,11 @@ class _FeesTabState extends State<FeesTab> {
            return Column(
              children: [
                GrandTotalCard(grandtotal: Provider.of<FeesProvider>(context).grandTotal),
+               PrevBalCard(prevbal: widget.feedata[widget.feedata.length-1]),
                Container(
-                 height: 400.0,
+                 height: 270.0,
                  child: ListView.builder(
-                     itemCount: widget.feedata.length,
+                     itemCount: widget.feedata.length-1,
                      itemBuilder: (BuildContext context, int index) {
                        return FeesCard(feedata: widget.feedata[index]);
                      }
