@@ -39,20 +39,22 @@ class _FeesTabState extends State<FeesTab> {
          )
        ) : Consumer<FeesProvider>(
          builder: (BuildContext context, feesProv, _) {
-           return Column(
-             children: [
-               GrandTotalCard(grandtotal: Provider.of<FeesProvider>(context).grandTotal),
-               PrevBalCard(prevbal: widget.feedata[widget.feedata.length-1]),
-               Container(
-                 height: 270.0,
-                 child: ListView.builder(
-                     itemCount: widget.feedata.length-1,
-                     itemBuilder: (BuildContext context, int index) {
-                       return FeesCard(feedata: widget.feedata[index]);
-                     }
+           return SingleChildScrollView(
+             child: Column(
+               children: [
+                 GrandTotalCard(grandtotal: Provider.of<FeesProvider>(context).grandTotal),
+                 PrevBalCard(prevbal: widget.feedata[widget.feedata.length-1]),
+                 Container(
+                   height: 600.0,
+                   child: ListView.builder(
+                       itemCount: widget.feedata.length-1,
+                       itemBuilder: (BuildContext context, int index) {
+                         return FeesCard(feedata: widget.feedata[index]);
+                       }
+                   )
                  )
-               )
-             ]
+               ]
+             ),
            );
          },
        )
