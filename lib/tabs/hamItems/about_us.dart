@@ -19,7 +19,7 @@ class AboutUs extends StatelessWidget {
             ),
           ),
           Container(
-            child: Image.network(welcomeProvider.schoolLogo),
+            child: Image.network(welcomeProvider.paperfreeLogo),
           ),
           SizedBox(height: 50.0),
           Column(

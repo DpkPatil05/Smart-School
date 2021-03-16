@@ -7,7 +7,7 @@ import 'package:smart_school/providers/welcome_provider.dart';
 class Welcome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var welcomeProvider = Provider.of<WelcomeProvider>(context, listen: true);
+    var welcomeProvider = Provider.of<WelcomeProvider>(context);
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -22,8 +22,8 @@ class Welcome extends StatelessWidget {
           children: [
             SizedBox(height: 30.0),
             Center(
-              child: Image.network(
-                welcomeProvider.schoolLogo,
+              child: Image.asset(
+                welcomeProvider.paperfreeLogo,
                 height: 150.0,
                 width: 150.0,
               ),
