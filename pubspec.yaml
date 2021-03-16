@@ -60,7 +60,7 @@ dev_dependencies:
   hive_generator: ^0.8.2
   build_runner: ^1.11.1
 
-  flutter_native_splash: ^1.0.3
+  flutter_native_splash: ^1.1.0
 flutter_native_splash:
   image: assets/launcher/icon.png
   color: "#EE4B2B"
