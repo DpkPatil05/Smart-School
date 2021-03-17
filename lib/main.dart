@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:smart_school/modal/todo.dart';
 
 import 'package:smart_school/pages/welcome.dart';
+import 'package:smart_school/providers/about_provider.dart';
 import 'package:smart_school/providers/apply_leave_provider.dart';
 import 'package:smart_school/providers/attendance_provider.dart';
 import 'package:smart_school/providers/class_timetable_provider.dart';
@@ -70,6 +71,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => TeachersReviewProvider()),
         ChangeNotifierProvider(create: (context) => Download()),
         ChangeNotifierProvider(create: (context) => DownloadCenterProvider()),
+        ChangeNotifierProvider(create: (context) => AboutProvider()),
       ],
       child: MaterialApp(
           home: FutureBuilder(

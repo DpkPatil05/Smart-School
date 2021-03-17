@@ -40,13 +40,13 @@ class HomeProvider with ChangeNotifier {
     ['Online Exam', '0xe8a6', '8'], ['Apply Leave', '0xe0b7', '9'], ['Download Center', '0xf189', '10'],
     ['Attendance', '0xe8f9', '11'], ['Examination', '0xeb8f', '12'], ['Notice Board', '0xe658', '13'],
     ['Teachers Reviews', '0xe355', '14'], ['Library', '0xe927', '15'], ['Transport Route', '0xe990', '16'],
-    ['Hostels', '0xe98f', '17'],  ['About Us', '0xe7d9', '18'], ['Logout', '0xe848', '19']
+    ['Hostels', '0xe98f', '17'],  ['About', '0xe7d9', '18'], ['Logout', '0xe848', '19']
   ];
 
   logoutFunction(BuildContext context) {
     HiveOperation().studentBox.delete('sid');
-    Navigator.of(context).pop(false);
-    Navigator.of(context).pop(false);
+    Navigator.of(context).pop();
+    Navigator.of(context).pop();
   }
 
   String loadProfilePic(String path) => fetchProfilePic+path;

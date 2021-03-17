@@ -48,6 +48,7 @@ class _LoginState extends State<Login> {
         MaterialPageRoute(builder: (context) => Home(
           site: loginData.sitename,
           school: loginData.schoolname,
+          schoollogo: loginData.schoollogo,
           userrole : loginData.userrole,
           studentid: loginData.studentid,
           firstlast: loginData.firstlast,

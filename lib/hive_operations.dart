@@ -9,4 +9,5 @@ class HiveOperation {
   String vehicleNo = Hive.box('studentData').get('vno');
   String schoolSite = Hive.box('studentData').get('site');
   String schoolName = Hive.box('studentData').get('school');
+  String schoolLogo = Hive.box('studentData').get('schoollogo');
 }

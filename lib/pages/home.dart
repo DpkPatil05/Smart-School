@@ -12,7 +12,6 @@ import 'package:smart_school/providers/home_provider.dart';
 import 'package:smart_school/tabs/home.dart';
 import 'package:smart_school/hive_operations.dart';
 
-
 const _kPages = <String, IconData>{
   'Home': Icons.home,
   'Homework': Icons.book,
@@ -31,9 +30,9 @@ dynamic pageWidgets = <String, Widget>{
 
 class Home extends StatefulWidget {
   final String userrole, studentid, firstlast, imgurl, classsection, standard,
-  site, school;
+  site, school, schoollogo;
   const Home({this.userrole, this.studentid, this.firstlast, this.imgurl,
-    this.classsection,this.standard, this.site, this.school});
+    this.classsection,this.standard, this.site, this.school, this.schoollogo});
   @override
   _HomeState createState() => _HomeState();
 }
@@ -48,13 +47,13 @@ class _HomeState extends State<Home> {
           title: Text('Are You Sure'),
           content: Text('You are going to exit the application!'),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               child: Text('NO'),
               onPressed: (){
                 Navigator.of(context).pop(false);
               },
             ),
-            FlatButton(
+            TextButton(
               child: Text('YES'),
               onPressed: (){
                 SystemNavigator.pop();
@@ -70,6 +69,7 @@ class _HomeState extends State<Home> {
     HiveOperation().studentBox.put('site', widget.site);
     HiveOperation().studentBox.put('school', widget.school);
     HiveOperation().studentBox.put('sid', int.parse(widget.studentid));
+    HiveOperation().studentBox.put('schoollogo', widget.schoollogo);
     return DefaultTabController(
       length: 5,
       initialIndex: 0,

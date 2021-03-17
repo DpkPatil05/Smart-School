@@ -15,6 +15,7 @@ class LoginData {
     this.loginDataClass,
     this.schoolname,
     this.sitename,
+    this.schoollogo,
   });
 
   String success;
@@ -26,6 +27,7 @@ class LoginData {
   String loginDataClass;
   String schoolname;
   String sitename;
+  String schoollogo;
 
   factory LoginData.fromJson(Map<String, dynamic> json) => LoginData(
     success: json["success"],
@@ -37,6 +39,7 @@ class LoginData {
     loginDataClass: json["class"],
     schoolname: json["schoolname"],
     sitename: json["sitename"],
+    schoollogo: json["schoollogo"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -49,5 +52,6 @@ class LoginData {
     "class": loginDataClass,
     "schoolname": schoolname,
     "sitename": sitename,
+    "schoollogo": schoollogo,
   };
 }
