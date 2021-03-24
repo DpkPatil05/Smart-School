@@ -70,7 +70,7 @@ class _EventsCalenderState extends State<EventsCalender> with TickerProviderStat
                   Expanded(
                     flex: 1,
                     child: ListTile(
-                      tileColor: Colors.blueGrey,
+                      tileColor: Colors.red,
                       title: Center(
                         child: SizedBox(
                           width: 390.0,
@@ -80,7 +80,7 @@ class _EventsCalenderState extends State<EventsCalender> with TickerProviderStat
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 17.0,
+                              fontSize: 20.0,
                             ),
                           ),
                         ),
@@ -98,6 +98,7 @@ class _EventsCalenderState extends State<EventsCalender> with TickerProviderStat
                             '${eventsProv.getData(event.title, 1)}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                              fontWeight: FontWeight.bold,
                               fontSize: 15.0,
                             ),
                           ),
@@ -114,6 +115,7 @@ class _EventsCalenderState extends State<EventsCalender> with TickerProviderStat
                         child: Text(
                           'End Date: ${event.date.day}/${event.date.month}/${event.date.year}',
                           style: TextStyle(
+                            fontWeight: FontWeight.bold,
                             fontSize: 15.0,
                           ),
                         )
