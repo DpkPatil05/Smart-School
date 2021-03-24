@@ -12,6 +12,7 @@ import 'package:smart_school/providers/apply_leave_provider.dart';
 import 'package:smart_school/providers/attendance_provider.dart';
 import 'package:smart_school/providers/class_timetable_provider.dart';
 import 'package:smart_school/providers/download_center_provider.dart';
+import 'package:smart_school/providers/events_provider.dart';
 import 'package:smart_school/providers/exam_provider.dart';
 import 'package:smart_school/providers/fees_provider.dart';
 import 'package:smart_school/providers/homework_provider.dart';
@@ -54,6 +55,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => MyDocumentsProvider()),
         ChangeNotifierProvider(create: (context) => LoginProvider()),
         ChangeNotifierProvider(create: (context) => HomeProvider()),
+        ChangeNotifierProvider(create: (context) => EventsProvider()),
         ChangeNotifierProvider(create: (context) => ProfileProvider()),
         ChangeNotifierProvider(create: (context) => FeesProvider()),
         ChangeNotifierProvider(create: (context) => HomeworkProvider()),

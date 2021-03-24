@@ -276,7 +276,6 @@ class _ProfileViewState extends State<ProfileView> with SingleTickerProviderStat
                         ),
                         Divider(color: Colors.black),
                         Container(
-                          height: 50,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

@@ -55,12 +55,13 @@ class AttendanceProvider with ChangeNotifier {
       if(int.parse(attendanceData[1]) == month &&
           int.parse(attendanceData[2]) == year &&
           'grey' != attendanceData[5].toString()) {
-        total = ++total;
+        total++;
         if('green' == attendanceData[5].toString() ||'#FFFF00' == attendanceData[5].toString())
-          attended = ++attended;
+          attended++;
         else if('#FF8C00' == attendanceData[5].toString())
           attended = attended + 0.5;
-        else attended = attended;
+        else
+          attended = attended;
       }
     }
 

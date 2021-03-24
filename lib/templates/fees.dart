@@ -25,7 +25,7 @@ class _FeesCardState extends State<FeesCard> {
               Expanded(
                 child: Center(
                   child: Text(
-                    "${widget.feedata[widget.feedata.length-1].type}",
+                    '${widget.feedata[widget.feedata.length-1].type}',
                     style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold
@@ -43,7 +43,7 @@ class _FeesCardState extends State<FeesCard> {
                         child: Row(
                           children: [
                             Text(
-                              "Fees Code:",
+                              'Fees Code:',
                               style: TextStyle(
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold
@@ -62,7 +62,7 @@ class _FeesCardState extends State<FeesCard> {
                         child: Row(
                           children: [
                             Text(
-                              "Due Date:",
+                              'Due Date:',
                               style: TextStyle(
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold
@@ -89,7 +89,7 @@ class _FeesCardState extends State<FeesCard> {
                       Row(
                         children: [
                           Text(
-                            "Amount:",
+                            'Amount:',
                             style: TextStyle(
                                 fontSize: 14.0,
                                 fontWeight: FontWeight.bold
@@ -104,7 +104,7 @@ class _FeesCardState extends State<FeesCard> {
                       ),
                       0 >= widget.feedata.length-1 ?
                       SizedBox(width: 8.0)
-                      : FlatButton(
+                      : TextButton(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [

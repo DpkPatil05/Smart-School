@@ -18,14 +18,13 @@ class Welcome extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 30.0),
             Center(
               child: Image.asset(
                 welcomeProvider.paperfreeLogo,
-                height: 150.0,
-                width: 150.0,
+                height: 130.0,
+                width: 130.0,
               ),
             ),
             Center(child: Text(

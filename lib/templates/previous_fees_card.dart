@@ -22,21 +22,6 @@ class _PrevBalCardState extends State<PrevBalCard> {
         child: Column(
             children: <Widget>[
               SizedBox(height: 10.0),
-              Expanded(
-                child: Center(
-                  child: SizedBox(
-                    width: 350.0,
-                    child: Text(
-                      "Balance Master-Previous Session Balance",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold
-                      ),
-                    ),
-                  ),
-                ),
-              ),
               'nodata' == widget.prevbal[widget.prevbal.length-1].duedate ?
               Expanded(
                 child: Center(

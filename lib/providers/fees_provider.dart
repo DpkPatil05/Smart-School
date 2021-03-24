@@ -50,12 +50,15 @@ class FeesProvider with ChangeNotifier {
     for(int i=0; i<feedata.length-1; i++){
       totalAmount = totalAmount +
           double.parse(feedata[i][feedata[i].length-1].amount.replaceAll(',', ''));
-        if (feedata[i].length - 1 == 0) {
+        if (feedata[i].length-1 == 0) {
           totalBalance = totalBalance +
-              double.parse(feedata[i][feedata[i].length - 1].amount.replaceAll(',', ''));
-          if(feedata[i][feedata[i].length - 1].balanceamt != null)
-            totalBalance = totalBalance +
-                double.parse(feedata[i][feedata[i].length - 1].balanceamt.replaceAll(',', ''));
+              double.parse(
+                  feedata[i][feedata[i].length-1].amount.replaceAll(',', ''));
+        } else {
+          totalBalance = totalBalance +
+              double.parse(
+                  feedata[i][feedata[i].length-2].balanceamt.replaceAll(
+                      ',', ''));
         }
     }
     grandTotal['amount'] = totalAmount;

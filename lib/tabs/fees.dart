@@ -42,14 +42,38 @@ class _FeesTabState extends State<FeesTab> {
            return SingleChildScrollView(
              child: Column(
                children: [
-                 GrandTotalCard(grandtotal: Provider.of<FeesProvider>(context).grandTotal),
-                 PrevBalCard(prevbal: widget.feedata[widget.feedata.length-1]),
+                 ExpansionTile(
+                   title: Text(
+                       'Grand Total',
+                       style: TextStyle(fontWeight: FontWeight.bold)
+                   ),
+                   children: [
+                     GrandTotalCard(grandtotal: Provider.of<FeesProvider>(context).grandTotal),
+                   ],
+                 ),
+                 ExpansionTile(
+                   title: Text(
+                       'Balance Master-Previous Session Balance',
+                       style: TextStyle(fontWeight: FontWeight.bold)
+                   ),
+                   children: [
+                     PrevBalCard(prevbal: widget.feedata[widget.feedata.length-1]),
+                   ],
+                 ),
                  Container(
-                   height: 600.0,
+                   height: 355.0,
                    child: ListView.builder(
                        itemCount: widget.feedata.length-1,
                        itemBuilder: (BuildContext context, int index) {
-                         return FeesCard(feedata: widget.feedata[index]);
+                         return ExpansionTile(
+                           title: Text(
+                               '${widget.feedata[index][widget.feedata[index].length-1].type}',
+                               style: TextStyle(fontWeight: FontWeight.bold)
+                           ),
+                           children: [
+                             FeesCard(feedata: widget.feedata[index]),
+                           ],
+                         );
                        }
                    )
                  )

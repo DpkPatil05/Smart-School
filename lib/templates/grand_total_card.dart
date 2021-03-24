@@ -41,17 +41,6 @@ class _GrandTotalCardState extends State<GrandTotalCard> {
             children: <Widget>[
               SizedBox( height: 10.0),
               Expanded(
-                child: Center(
-                  child: Text(
-                    "Grand Total",
-                    style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 15.0),
                   child: Column(

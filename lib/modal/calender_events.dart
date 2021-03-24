@@ -9,21 +9,25 @@ class EventData {
     this.title,
     this.startdate,
     this.enddate,
+    this.description,
   });
 
   String title;
   String startdate;
   String enddate;
+  String description;
 
   factory EventData.fromJson(Map<String, dynamic> json) => EventData(
     title: json["title"],
     startdate: json["startdate"],
     enddate: json["enddate"],
+    description: json["description"],
   );
 
   Map<String, dynamic> toJson() => {
     "title": title,
     "startdate": startdate,
     "enddate": enddate,
+    "description": description,
   };
 }
