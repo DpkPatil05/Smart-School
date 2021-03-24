@@ -98,7 +98,6 @@ class _EventsCalenderState extends State<EventsCalender> with TickerProviderStat
                             '${eventsProv.getData(event.title, 1)}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
                               fontSize: 15.0,
                             ),
                           ),
@@ -115,7 +114,6 @@ class _EventsCalenderState extends State<EventsCalender> with TickerProviderStat
                         child: Text(
                           'End Date: ${event.date.day}/${event.date.month}/${event.date.year}',
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
                             fontSize: 15.0,
                           ),
                         )

@@ -70,7 +70,7 @@ class _FeesCardState extends State<FeesCard> {
                             ),
                             SizedBox(width: 10.0),
                             Text(
-                              "${widget.feedata[widget.feedata.length-1].duedate}",
+                              '${widget.feedata[widget.feedata.length-1].duedate}',
                               style: TextStyle(fontSize: 14.0,),
                             ),
                           ],
@@ -97,8 +97,8 @@ class _FeesCardState extends State<FeesCard> {
                           ),
                           SizedBox(width: 10.0),
                           Text(
-                            "${widget.feedata[widget.feedata.length-1].amount}",
-                            style: TextStyle(fontSize: 14.0,),
+                            '${widget.feedata[widget.feedata.length-1].amount}',
+                            style: TextStyle(fontSize: 14.0),
                           ),
                         ],
                       ),
